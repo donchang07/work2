@@ -68,6 +68,7 @@
   .eyebrow { font-size: 0.9rem; letter-spacing: 0.12em; opacity: 0.8; text-transform: uppercase; }
   .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 900; margin: 6px 0 14px; }
   .hero .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero .intro { margin-top: 18px; max-width: 640px; opacity: 0.92; }
   .hero .roles span {
     background: rgba(255, 255, 255, 0.14);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -159,9 +160,18 @@
     border-radius: 10px;
     padding: 14px 16px;
   }
+  .book.new { background: var(--accent-soft); }
+  .book.new .t::after { content: "NEW"; margin-left: 6px; font-size: 0.7rem; color: var(--accent); vertical-align: 2px; }
   .book .y { color: var(--muted); font-size: 0.85rem; }
   .book .t { font-weight: 700; margin-top: 2px; }
 
+  .news { list-style: none; display: grid; gap: 12px; }
+  .news li { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; }
+  .news .d { color: var(--muted); font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+  .news .h { font-weight: 700; }
+  .news a { color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+  .news a:hover { text-decoration: underline; }
+  footer a { color: var(--muted); }
   footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 0 16px 40px; }
 
   @media (max-width: 680px) {
@@ -180,14 +190,16 @@
         <span>KAIST 김재철 AI 대학원 책임교수</span>
         <span>AiBB Lab 대표</span>
         <span>DeepAuto.ai CBO</span>
+        <span>빅데이터전문가협의회 의장</span>
       </div>
+      <p class="intro">“기업 임원이 코딩을 할 수 있어야 비즈니스와 조직이 산다”는 신념으로 한국 최초로 임원을 위한 AI 코딩 강의를 시작했습니다.</p>
     </div>
   </header>
 
   <main class="wrap">
     <div class="stats">
       <div class="stat"><b>40년+</b><small>IT·데이터·AI 현장 경력 (1984~)</small></div>
-      <div class="stat"><b>7권</b><small>단독 저서</small></div>
+      <div class="stat"><b>8권</b><small>단독 저서 (최신 2025.10)</small></div>
       <div class="stat"><b>경영학 박사</b><small>Big Data 전공</small></div>
       <div class="stat"><b>글로벌</b><small>미국·독일·한국 경력</small></div>
     </div>
@@ -195,6 +207,7 @@
     <section class="card">
       <h2>경력</h2>
       <ul class="timeline">
+        <li class="now"><span class="yr">현재</span><span class="what">빅데이터전문가협의회 의장</span></li>
         <li class="now"><span class="yr">2023 – 현재</span><span class="what">AI 벤처기업 DeepAuto.ai CBO (Chief Business Officer)</span></li>
         <li class="now"><span class="yr">2022 – 현재</span><span class="what">KAIST 김재철 AI 대학원 책임교수 (CAIO 과정 담당)</span></li>
         <li class="now"><span class="yr">2019 – 현재</span><span class="what">AiBB Lab 대표 (AI, Big Data, Blockchain)</span></li>
@@ -241,6 +254,7 @@
     <section class="card" style="margin-top:20px">
       <h2>저서</h2>
       <div class="books">
+        <div class="book new"><div class="y">2025.10 · 리코멘드</div><div class="t">돈 되는 AI, 어디서부터 무엇을 어떻게 해야 할까</div></div>
         <div class="book"><div class="y">2025</div><div class="t">AI Agent 시대 기업이 살아남는 법</div></div>
         <div class="book"><div class="y">2023</div><div class="t">ChatGPT 시대 기업이 살아남는 법</div></div>
         <div class="book"><div class="y">2019</div><div class="t">AI로 일하는 기술</div></div>
@@ -250,8 +264,31 @@
         <div class="book"><div class="y">1999</div><div class="t">실무자들을 위한 데이터웨어하우스</div></div>
       </div>
     </section>
+    <section class="card">
+      <h2>최근 활동</h2>
+      <ul class="news">
+        <li>
+          <div class="d">2026.07.28</div>
+          <div class="h">에스넷그룹 사장단 특강 — “AI 시대 기업의 경영 전략과 경영진의 역할”</div>
+          <a href="https://m.bikorea.net/news/articleView.html?idxno=46807" target="_blank" rel="noopener">BIkorea 기사 ↗</a>
+        </li>
+        <li>
+          <div class="d">2025.10</div>
+          <div class="h">신간 『돈 되는 AI, 어디서부터 무엇을 어떻게 해야 할까』(리코멘드) 출간 — 4단계 문제 정의 필터링과 ABCD 방법론(Analysis·Blueprint·Create·Develop) 제시</div>
+          <a href="https://www.cadgraphics.co.kr/newsview.php?pages=news&amp;sub=news03&amp;catecode=4&amp;num=77471" target="_blank" rel="noopener">캐드앤그래픽스 신간 소개 ↗</a>
+        </li>
+        <li>
+          <div class="d">2025.07.03</div>
+          <div class="h">KAIST CAIO AI 리더십 포럼 2025 — “돈 되는 AI 도입은 문제 해결이 아니라 문제 정의가 핵심”</div>
+          <a href="https://www.etnews.com/20250626000082" target="_blank" rel="noopener">전자신문 인터뷰 ↗</a>
+        </li>
+      </ul>
+    </section>
   </main>
 
-  <footer>© 장동인 · AiBB Lab</footer>
+  <footer>
+    <p>© 장동인 · AiBB Lab</p>
+    <p>본인 제공 자료 + 공개 웹 자료(<a href="https://www.rdbook.co.kr/%EC%A0%80%EC%9E%90%EC%86%8C%EA%B0%9C/%EC%9E%A5%EB%8F%99%EC%9D%B81" target="_blank" rel="noopener">리코멘드 저자소개</a> 등) 기준 · 2026년 10월 21일 업데이트</p>
+  </footer>
 </body>
 </html>
