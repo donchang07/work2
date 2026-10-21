@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>장동인 교수 소개</title>
+<meta name="description" content="KAIST 김재철 AI 대학원 책임교수, AiBB Lab 대표 장동인의 경력·학력·전문분야·저서 소개">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --text: #1b1f2a;
+    --muted: #5d6475;
+    --line: #e3e6ee;
+    --accent: #2f5bea;
+    --accent-soft: #e8eefe;
+    --hero-from: #14213d;
+    --hero-to: #2f5bea;
+    --hero-text: #ffffff;
+    --shadow: 0 4px 18px rgba(20, 33, 61, 0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f121a;
+      --surface: #181c27;
+      --text: #e8ebf3;
+      --muted: #a2a9ba;
+      --line: #2a3040;
+      --accent: #7c9bff;
+      --accent-soft: #1f2a4a;
+      --hero-from: #0b1430;
+      --hero-to: #2a46b0;
+      --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f121a;
+    --surface: #181c27;
+    --text: #e8ebf3;
+    --muted: #a2a9ba;
+    --line: #2a3040;
+    --accent: #7c9bff;
+    --accent-soft: #1f2a4a;
+    --hero-from: #0b1430;
+    --hero-to: #2a46b0;
+    --shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans KR", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    word-break: keep-all;
+  }
+
+  header.hero {
+    background: linear-gradient(135deg, var(--hero-from), var(--hero-to));
+    color: var(--hero-text);
+    padding: 64px 16px 72px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  header.hero .wrap { padding: 0; }
+  .eyebrow { font-size: 0.9rem; letter-spacing: 0.12em; opacity: 0.8; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 900; margin: 6px 0 14px; }
+  .hero .roles { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero .roles span {
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 0.92rem;
+  }
+
+  main { margin-top: -36px; padding-bottom: 64px; }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+  .stat b { display: block; font-size: 1.7rem; color: var(--accent); font-weight: 900; }
+  .stat small { color: var(--muted); font-size: 0.88rem; }
+
+  section.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  section.card h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section.card h2::before {
+    content: "";
+    width: 6px; height: 22px;
+    background: var(--accent);
+    border-radius: 3px;
+  }
+
+  .timeline { list-style: none; position: relative; }
+  .timeline li {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline .yr { color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .timeline li.now .what::after {
+    content: "현재";
+    margin-left: 8px;
+    font-size: 0.75rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 2px 7px;
+    vertical-align: 2px;
+  }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .two section.card { margin-bottom: 0; }
+
+  .chips { display: grid; gap: 10px; }
+  .chips div {
+    background: var(--accent-soft);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-weight: 500;
+  }
+
+  .books {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .book {
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .book .y { color: var(--muted); font-size: 0.85rem; }
+  .book .t { font-weight: 700; margin-top: 2px; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; padding: 0 16px 40px; }
+
+  @media (max-width: 680px) {
+    .two { grid-template-columns: 1fr; }
+    .timeline li { grid-template-columns: 1fr; gap: 2px; }
+    section.card { padding: 22px 18px; }
+  }
+</style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Profile</p>
+      <h1>장동인</h1>
+      <div class="roles">
+        <span>KAIST 김재철 AI 대학원 책임교수</span>
+        <span>AiBB Lab 대표</span>
+        <span>DeepAuto.ai CBO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="stats">
+      <div class="stat"><b>40년+</b><small>IT·데이터·AI 현장 경력 (1984~)</small></div>
+      <div class="stat"><b>7권</b><small>단독 저서</small></div>
+      <div class="stat"><b>경영학 박사</b><small>Big Data 전공</small></div>
+      <div class="stat"><b>글로벌</b><small>미국·독일·한국 경력</small></div>
+    </div>
+
+    <section class="card">
+      <h2>경력</h2>
+      <ul class="timeline">
+        <li class="now"><span class="yr">2023 – 현재</span><span class="what">AI 벤처기업 DeepAuto.ai CBO (Chief Business Officer)</span></li>
+        <li class="now"><span class="yr">2022 – 현재</span><span class="what">KAIST 김재철 AI 대학원 책임교수 (CAIO 과정 담당)</span></li>
+        <li class="now"><span class="yr">2019 – 현재</span><span class="what">AiBB Lab 대표 (AI, Big Data, Blockchain)</span></li>
+        <li><span class="yr">2019</span><span class="what">연세대 의료 블록체인 고위과정 주임교수</span></li>
+        <li><span class="yr">2017 – 2019</span><span class="what">Advisor of Funkey Pay, MCC, Edenchain, Sigmachain(한국), Linkchain(미국), Tempo ICO(프랑스), Calero</span></li>
+        <li><span class="yr">2015 – 2018</span><span class="what">국방과학연구소 빅데이터/AI 과제 PM</span></li>
+        <li><span class="yr">2014 – 2015</span><span class="what">한국 테라데이타 부사장</span></li>
+        <li><span class="yr">2010 – 2014</span><span class="what">미래읽기 컨설팅 대표</span></li>
+        <li><span class="yr">2007 – 2009</span><span class="what">Ernst &amp; Young 컨설팅 본부장</span></li>
+        <li><span class="yr">2006</span><span class="what">Deloitte Consulting 전무 (CRM 부문 파트너)</span></li>
+        <li><span class="yr">2002 – 2005</span><span class="what">SAS Korea 부사장</span></li>
+        <li><span class="yr">2000 – 2001</span><span class="what">Siebel Korea 초대 지사장</span></li>
+        <li><span class="yr">1996 – 2000</span><span class="what">Oracle Korea 컨설팅 본부 이사</span></li>
+        <li><span class="yr">1995 – 1996</span><span class="what">Oracle HQ, Senior Principal Consultant</span></li>
+        <li><span class="yr">1992 – 1994</span><span class="what">Germany Amadeus, System Support Engineer</span></li>
+        <li><span class="yr">1991 – 1992</span><span class="what">American Airline Information Service, Consultant</span></li>
+        <li><span class="yr">1988 – 1991</span><span class="what">EDS, System Engineer</span></li>
+        <li><span class="yr">1984 – 1988</span><span class="what">VISA International, Programmer</span></li>
+      </ul>
+    </section>
+
+    <div class="two">
+      <section class="card">
+        <h2>학력</h2>
+        <ul class="timeline">
+          <li><span class="yr">2018</span><span class="what">서울과학종합대학원 경영학박사 (Big Data)</span></li>
+          <li><span class="yr">1994</span><span class="what">University of Southern California, 컴퓨터 전공</span></li>
+          <li><span class="yr">1982</span><span class="what">서울대학교 공과대학 원자핵공학과 졸업</span></li>
+          <li><span class="yr">1975</span><span class="what">용산고등학교 졸업</span></li>
+        </ul>
+      </section>
+
+      <section class="card">
+        <h2>전문분야</h2>
+        <div class="chips">
+          <div>돈 되는 AI 도입과 활용을 위한 전략 컨설팅</div>
+          <div>CEO를 위한 AI 코딩 스쿨 (운영 중)</div>
+          <div>실무자를 위한 AI 코딩 스쿨 (운영 중)</div>
+          <div>벤처기업 고문 / Advisor</div>
+        </div>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:20px">
+      <h2>저서</h2>
+      <div class="books">
+        <div class="book"><div class="y">2025</div><div class="t">AI Agent 시대 기업이 살아남는 법</div></div>
+        <div class="book"><div class="y">2023</div><div class="t">ChatGPT 시대 기업이 살아남는 법</div></div>
+        <div class="book"><div class="y">2019</div><div class="t">AI로 일하는 기술</div></div>
+        <div class="book"><div class="y">2017</div><div class="t">IT 전문가로 사는 법</div></div>
+        <div class="book"><div class="y">2015</div><div class="t">빅데이터로 일하는 기술</div></div>
+        <div class="book"><div class="y">2010</div><div class="t">공피고아</div></div>
+        <div class="book"><div class="y">1999</div><div class="t">실무자들을 위한 데이터웨어하우스</div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 장동인 · AiBB Lab</footer>
+</body>
+</html>
