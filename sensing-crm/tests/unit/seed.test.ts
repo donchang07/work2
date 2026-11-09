@@ -33,3 +33,15 @@ describe('SC-010 결정적 시드', () => {
     expect(out[0].counts).toEqual({ users: 3, accounts: 30, churn: 6 });
   });
 });
+
+describe('NFR-08 용량·시드 시간', () => {
+  it('시드 5초 이내, DB 50MB 이하', async () => {
+    process.env.AI_MODE = 'mock';
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'nfr-'));
+    process.env.DATA_DIR = path.join(dir, 'feeds');
+    const file = path.join(dir, 'n.db');
+    const t0 = Date.now(); const db = openDb(file); await seedDatabase(db); db.close();
+    expect(Date.now() - t0).toBeLessThan(5000);
+    expect(fs.statSync(file).size).toBeLessThan(50 * 1024 * 1024);
+  });
+});
