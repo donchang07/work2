@@ -2,9 +2,9 @@
 
 | 항목 | 값 |
 |---|---|
-| 대상 | `docs/PRD.md` (정본 개정 v1.0, screen-first-v2) |
+| 대상 | `docs/PRD.md` (정본 개정 v1.1, screen-first-v2) |
 | 검사일 | 2026-11-09 |
-| 판정 | **조건부 착수** (Blocker 0, 87점) |
+| 판정 | **착수 가능** (Blocker 0, 92점) — v1.1 재판정 |
 | 기계 검사 | `node scripts/validate_prd.mjs docs/PRD.md` → 통과 (SCR 12 · 요소 96 · NAV 12 · FR 45 · SC 38 · DATA 14 · NG 9) |
 
 > 채점 기준: to-prd `references/gate-checklist.md`가 작성 환경에 없어, SKILL.md의 Hard Gate 원칙과 감점식(Major −5, Minor −2)으로 대체 채점했다. 점수는 참고값이며 Hard Gate(Blocker 0)가 우선한다.
@@ -29,13 +29,13 @@
 
 | 등급 | ID | 내용 | 조치 |
 |---|---|---|---|
-| Major | M-1 | bkit 설치본과 to-prd 참조 파일(bkit 계약·템플릿·게이트 체크리스트·원본 검증 스크립트)을 확인하지 못해 15장 명령·matchRateThreshold가 [검증 기준] | bkit 설치 후 `bkit.config.json`과 비교, 차이를 부록 B에 기록하고 v1.1 개정 |
+| ~~Major~~ | ~~M-1~~ | ~~bkit 계약 미확인~~ — v1.1에서 해소: 미설치 확정, 수동 PDCA와 gap 분석 스크립트, 기준 95% 명시 | 해소 |
 | Minor | m-1 | SC-034의 재현율 목표(≥0.80, 격차 ≥0.30)가 [가설] | quality-lab Check 단계에서 실측, 미달 시 11.9 열화율 조정 후 개정 |
 | Minor | m-2 | 부록 B 공공 API 존재가 [추정] | NG-02 재검토(v1) 전 공식 사이트 확인 |
-| Minor | m-3 | MVP 목표일 미기입 | D-03 결정 시 10장 기입 |
+| Minor | m-3 | MVP 목표일 미기입 | D-03 확정(미기입 유지) |
 | Minor | m-4 | SC-038·SC-039 번호 공백(의도적, 7장에 사유 기록) | 조치 불필요 — 번호 재사용 금지 원칙 |
 
-점수: 100 − 5 − 2×4 = **87** → 조건부 착수
+점수(v1.1): 100 − 2×4 = **92** → 착수 가능 (v1.0: 87, 조건부 착수)
 
 ## 숫자 재계산
 

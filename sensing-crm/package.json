@@ -1,0 +1,36 @@
+{
+  "name": "sensing-crm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "제약·바이오 마켓 센싱 CRM 강의용 데모",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start -p 3000",
+    "db:seed": "tsx scripts/seed.ts",
+    "setup": "npm run db:seed",
+    "test": "vitest run",
+    "test:e2e": "playwright test --trace off",
+    "gap": "node scripts/gap_analysis.mjs",
+    "prd:validate": "node scripts/validate_prd.mjs docs/PRD.md"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "better-sqlite3": "^11.8.1",
+    "next": "15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "recharts": "^2.15.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.1",
+    "@playwright/test": "1.63.0",
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  }
+}

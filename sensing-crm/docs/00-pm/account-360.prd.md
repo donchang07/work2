@@ -3,7 +3,7 @@
 | 항목 | 값 |
 |---|---|
 | 정본 | `docs/PRD.md` |
-| 정본 개정 | v1.0 |
+| 정본 개정 | v1.1 |
 | PRD 스키마 | screen-first-v2 |
 | feature | account-360 (순서 8, 규모 M) |
 | 의존 | churn-risk, next-best-action |
@@ -119,7 +119,7 @@
 | NFR-03 | 접근성 | P0 화면 전부 axe 검사 serious·critical 위반 0건 | [E2E] @axe-core/playwright |
 | NFR-04 | 실행 검증 | E2E는 프로덕션 빌드(`next build && next start`, 포트 3100), Chromium, 뷰포트 1440×900 기본 + 반응형 SC는 390×844, workers=1(SQLite 단일 파일) | [E2E] Playwright 설정 |
 | NFR-05 | 테스트 식별자 | 요소 ID = `data-testid` 값. E2E 셀렉터는 `data-testid`만 사용 | [수동] 코드 리뷰 + [E2E] 셀렉터 규칙 |
-| NFR-06 | 상태 유도 | 테스트 DB(`DATABASE_PATH=data/test.db`)를 매 테스트 파일 시작 시 시드로 재생성. AI는 `AI_MODE=mock`(결정적 응답)·`AI_MODE=fail`(강제 실패)·`AI_MODE=off`. 시스템 오류는 Playwright route 모킹으로 500 유도. 세션 만료는 테스트 전용 시계 오프셋 `TEST_NOW_OFFSET_MS` | [E2E] 상태 유도 동작 |
+| NFR-06 | 상태 유도 | 테스트 서버는 `E2E=1`로 기동하고, `E2E=1`일 때만 열리는 테스트 전용 API(`POST /api/test/reset {variant}`: 시드 재생성·변형 `default`/`empty-today`, `POST /api/test/config {aiMode, nowOffsetMs}`: AI 모드·시계 오프셋)로 상태를 유도한다. AI 모드는 `mock`(결정적 응답)·`fail`(강제 실패)·`off`. 시스템 오류는 Playwright route 모킹으로 500 유도. 세션 만료는 시계 오프셋으로 유도 | [E2E] 상태 유도 동작 |
 | NFR-07 | 반응형 | 390×844에서 가로 스크롤 없음, NAV-11로 메뉴 접근 | [E2E] SC-037 |
 | NFR-08 | 용량 | SQLite 파일 50MB 이하, 시드 생성 5초 이내 | [통합] 파일 크기·시간 |
 | NFR-09 | 오프라인 | 해당 없음 — localhost 단일 기기 실행. AI 외 외부 네트워크 호출 없음 | [수동] 네트워크 차단 상태 실행 확인 |
@@ -236,7 +236,7 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 
 ### 11.3 실행 환경 변수
 
-`DATABASE_PATH`(기본 `data/sensing.db`) · `SEED_PASSWORD` · `AI_MODE`(`live`|`mock`|`fail`|`off`, 기본: 키 있으면 live, 없으면 mock) · `ANTHROPIC_API_KEY`(선택) · `AI_MODEL`(기본 `claude-sonnet-5-5`) · `TEST_NOW_OFFSET_MS`(테스트 전용). 값은 `.env.local`에 두고 저장소에는 `.env.example`(이름만)만 커밋한다.
+`DATABASE_PATH`(기본 `data/sensing.db`) · `SEED_PASSWORD` · `AI_MODE`(`live`|`mock`|`fail`|`off`, 기본: 키 있으면 live, 없으면 mock) · `ANTHROPIC_API_KEY`(선택) · `AI_MODEL`(기본 `claude-sonnet-5-5`) · `E2E`(테스트 서버 전용, 테스트 API 활성화). 값은 `.env.local`에 두고 저장소에는 `.env.example`(이름만)만 커밋한다.
 
 ### 11.4 AI 판정 계약
 
@@ -312,11 +312,11 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 
 ## 완료 조건
 
-- 계약 버전: [검증 기준] 이 환경에 bkit 설치본과 to-prd `references/bkit-contract.md`가 없어 확인하지 못했다. 설치 후 `bkit.config.json`과 로컬 템플릿이 다르면 로컬을 우선하고 부록 B에 기록한다.
-- 설정: `matchRateThreshold` 90 [검증 기준]
+- 계약 버전: [확정] 작성·구현 환경에 bkit이 설치되어 있지 않다. 같은 PDCA 절차와 bkit 산출물 경로(`docs/01-plan/features/{feature}.plan.md`, `docs/02-design/features/{feature}.design.md`, `docs/03-analysis/{feature}.analysis.md`, `docs/04-report/features/{feature}.report.md`)로 수동 수행한다. gap 분석은 `npm run gap -- {feature}`(설계 항목 대비 구현 일치율)로 계산한다. bkit 설치 후에는 로컬 계약을 우선한다.
+- 설정: `matchRateThreshold` **95** [확정] — 사용자 지시(2026-11-09)
 - 명령 순서(feature마다, 14장 순서): `/pdca plan {feature}` → `/pdca design {feature}` → `/pdca do {feature}` → `/pdca analyze {feature}` → (미달 시 `/pdca iterate {feature}`) → `/pdca report {feature}`
 - 이 feature 첫 명령: `/pdca plan account-360`
 - 완료 조건(두 관문):
-  1. gap 분석 match rate 90% 이상
+  1. gap 분석 match rate 95% 이상
   2. Check 단계에서 `npm run test`와 `npm run test:e2e`를 **실제로 실행**해 해당 feature SC가 모두 통과하고, 결과를 analysis 문서에 기록
 - gap-detector는 설계와 코드를 비교할 뿐 테스트를 실행하지 않으므로 match rate만으로 완료를 판정하지 않는다.

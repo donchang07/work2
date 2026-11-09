@@ -3,13 +3,13 @@
 | 항목 | 값 |
 |---|---|
 | 문서 | 제품 통합 정본 (`docs/PRD.md`) |
-| 정본 개정 | v1.0 |
+| 정본 개정 | v1.1 |
 | PRD 스키마 | screen-first-v2 |
 | 작성일 | 2026-11-09 (Asia/Seoul) |
 | 작성 | to-prd (bkit 실행 계약) |
 | 요청자 | 장동인 교수 |
 | 레벨 | Dynamic (풀스택, 로컬 실행) |
-| bkit 계약 | [검증 기준] 설치본·`references/bkit-contract.md` 미확인. 15장 참고 |
+| bkit 계약 | [확정] bkit 미설치 — 같은 PDCA 절차·산출물 경로로 수동 수행. 15장 참고 |
 | 입력 | 현재 대화(써모피셔코리아 분석, AI 도입 목적 4분류 요구사항 20개, 앱 계획안, 강의용·SQLite·localhost 결정) |
 
 ---
@@ -573,7 +573,7 @@ SCR-002 카드 ──▶ SCR-006 / SCR-009      SCR-006 ──▶ SCR-004(고객
 | NFR-03 | 접근성 | P0 화면 전부 axe 검사 serious·critical 위반 0건 | [E2E] @axe-core/playwright |
 | NFR-04 | 실행 검증 | E2E는 프로덕션 빌드(`next build && next start`, 포트 3100), Chromium, 뷰포트 1440×900 기본 + 반응형 SC는 390×844, workers=1(SQLite 단일 파일) | [E2E] Playwright 설정 |
 | NFR-05 | 테스트 식별자 | 요소 ID = `data-testid` 값. E2E 셀렉터는 `data-testid`만 사용 | [수동] 코드 리뷰 + [E2E] 셀렉터 규칙 |
-| NFR-06 | 상태 유도 | 테스트 DB(`DATABASE_PATH=data/test.db`)를 매 테스트 파일 시작 시 시드로 재생성. AI는 `AI_MODE=mock`(결정적 응답)·`AI_MODE=fail`(강제 실패)·`AI_MODE=off`. 시스템 오류는 Playwright route 모킹으로 500 유도. 세션 만료는 테스트 전용 시계 오프셋 `TEST_NOW_OFFSET_MS` | [E2E] 상태 유도 동작 |
+| NFR-06 | 상태 유도 | 테스트 서버는 `E2E=1`로 기동하고, `E2E=1`일 때만 열리는 테스트 전용 API(`POST /api/test/reset {variant}`: 시드 재생성·변형 `default`/`empty-today`, `POST /api/test/config {aiMode, nowOffsetMs}`: AI 모드·시계 오프셋)로 상태를 유도한다. AI 모드는 `mock`(결정적 응답)·`fail`(강제 실패)·`off`. 시스템 오류는 Playwright route 모킹으로 500 유도. 세션 만료는 시계 오프셋으로 유도 | [E2E] 상태 유도 동작 |
 | NFR-07 | 반응형 | 390×844에서 가로 스크롤 없음, NAV-11로 메뉴 접근 | [E2E] SC-037 |
 | NFR-08 | 용량 | SQLite 파일 50MB 이하, 시드 생성 5초 이내 | [통합] 파일 크기·시간 |
 | NFR-09 | 오프라인 | 해당 없음 — localhost 단일 기기 실행. AI 외 외부 네트워크 호출 없음 | [수동] 네트워크 차단 상태 실행 확인 |
@@ -587,7 +587,7 @@ SCR-002 카드 ──▶ SCR-006 / SCR-009      SCR-006 ──▶ SCR-004(고객
 | SC-003 | 관리자 로그인 후 NAV-08·NAV-09가 보인다 | FR-001, FR-005 | [E2E] admin 로그인 | 예 |
 | SC-004 | 틀린 비밀번호 제출 시 SCR-001-EL-04가 보이고 URL이 `/login`이며 이메일 값이 유지된다 | FR-002 | [E2E] 실패 로그인 | 예 |
 | SC-005 | 빈 이메일·잘못된 형식 제출 시 SCR-001-EL-07 문구가 보이고 요청이 전송되지 않는다 | FR-002 | [E2E] 검증 오류 | 예 |
-| SC-006 | 시계 오프셋 8시간 1분 후 보호 화면 이동 시 `/login?reason=expired`와 SCR-001-EL-06이 보인다 | FR-003 | [E2E] TEST_NOW_OFFSET_MS 유도 | 예 |
+| SC-006 | 테스트 API로 시계를 8시간 1분 앞당긴 뒤 보호 화면 이동 시 `/login?reason=expired`와 SCR-001-EL-06이 보인다 | FR-003 | [E2E] 시계 오프셋 유도 | 예 |
 | SC-007 | 로그아웃 후 SCR-001로 이동하고, `/briefing` 재접근 시 다시 SCR-001로 이동한다 | FR-004 · NAV-10 | [E2E] 로그아웃 흐름 | 예 |
 | SC-008 | KAM이 `/lab`, `/admin/ops` 접근 시 SCR-012가 보이고 EL-02 클릭 시 SCR-002로 간다. 관리자 API 직접 호출은 403 | FR-006 · SCR-010, SCR-011, SCR-012 | [E2E] 직접 URL·API 요청 | 예 |
 | SC-009 | kam1이 kam2 담당 고객 `/accounts/{id}`·`/notes?account={id}` 접근 시 SCR-012가 보이고, 목록 화면(SCR-005·008·009)에 범위 밖 고객이 없다 | FR-007 · SCR-005·006·008·009 | [E2E] 시드 고객 ID 사용 | 예 |
@@ -720,7 +720,7 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 
 ### 11.3 실행 환경 변수
 
-`DATABASE_PATH`(기본 `data/sensing.db`) · `SEED_PASSWORD` · `AI_MODE`(`live`|`mock`|`fail`|`off`, 기본: 키 있으면 live, 없으면 mock) · `ANTHROPIC_API_KEY`(선택) · `AI_MODEL`(기본 `claude-sonnet-5-5`) · `TEST_NOW_OFFSET_MS`(테스트 전용). 값은 `.env.local`에 두고 저장소에는 `.env.example`(이름만)만 커밋한다.
+`DATABASE_PATH`(기본 `data/sensing.db`) · `SEED_PASSWORD` · `AI_MODE`(`live`|`mock`|`fail`|`off`, 기본: 키 있으면 live, 없으면 mock) · `ANTHROPIC_API_KEY`(선택) · `AI_MODEL`(기본 `claude-sonnet-5-5`) · `E2E`(테스트 서버 전용, 테스트 API 활성화). 값은 `.env.local`에 두고 저장소에는 `.env.example`(이름만)만 커밋한다.
 
 ### 11.4 AI 판정 계약
 
@@ -809,9 +809,9 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 
 | ID | 상태 | 이슈 | 선택지 | 추천 | fallback(무응답 시) | 연쇄 영향 |
 |---|---|---|---|---|---|---|
-| D-01 | 미결(비차단) | 고객사 이름을 가상 이름으로 할지 실제 기업명으로 할지 | ① 가상 이름(예: 송도바이오텍) ② 실제 기업명 | ① — 합성 주문 데이터가 실제 기업 정보로 오인될 위험 제거 | ① 가상 이름 | 시드 데이터, SC-032 별칭 예시 |
-| D-02 | 미결(비차단) | 강의 시연 때 Claude API를 실제 호출할지 | ① 키가 있으면 live ② 항상 mock | ① — 실제 AI 구조화를 보여 주되 키 없으면 자동 mock | 키 유무에 따라 자동(11.3) | SCR-004·SCR-011 배지, 강의 준비물 |
-| D-03 | 미결(비차단) | 강의 일정(MVP 목표일) | 날짜 입력 | 강의 1주 전 리허설 | 날짜 미기입 유지 | 10장 일정 |
+| D-01 | 확정(2026-11-09, 추천안 채택) | 고객사 이름을 가상 이름으로 할지 실제 기업명으로 할지 | ① 가상 이름(예: 송도바이오텍) ② 실제 기업명 | ① — 합성 주문 데이터가 실제 기업 정보로 오인될 위험 제거 | ① 가상 이름 | 시드 데이터, SC-032 별칭 예시 |
+| D-02 | 확정(2026-11-09, 추천안 채택) | 강의 시연 때 Claude API를 실제 호출할지 | ① 키가 있으면 live ② 항상 mock | ① — 실제 AI 구조화를 보여 주되 키 없으면 자동 mock | 키 유무에 따라 자동(11.3) | SCR-004·SCR-011 배지, 강의 준비물 |
+| D-03 | 확정(2026-11-09, 추천안 채택: 미기입 유지) | 강의 일정(MVP 목표일) | 날짜 입력 | 강의 1주 전 리허설 | 날짜 미기입 유지 | 10장 일정 |
 
 ## 14. Feature 분해
 
@@ -829,12 +829,12 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 
 ## 15. bkit 실행 계약
 
-- 계약 버전: [검증 기준] 이 환경에 bkit 설치본과 to-prd `references/bkit-contract.md`가 없어 확인하지 못했다. 설치 후 `bkit.config.json`과 로컬 템플릿이 다르면 로컬을 우선하고 부록 B에 기록한다.
-- 설정: `matchRateThreshold` 90 [검증 기준]
+- 계약 버전: [확정] 작성·구현 환경에 bkit이 설치되어 있지 않다. 같은 PDCA 절차와 bkit 산출물 경로(`docs/01-plan/features/{feature}.plan.md`, `docs/02-design/features/{feature}.design.md`, `docs/03-analysis/{feature}.analysis.md`, `docs/04-report/features/{feature}.report.md`)로 수동 수행한다. gap 분석은 `npm run gap -- {feature}`(설계 항목 대비 구현 일치율)로 계산한다. bkit 설치 후에는 로컬 계약을 우선한다.
+- 설정: `matchRateThreshold` **95** [확정] — 사용자 지시(2026-11-09)
 - 명령 순서(feature마다, 14장 순서): `/pdca plan {feature}` → `/pdca design {feature}` → `/pdca do {feature}` → `/pdca analyze {feature}` → (미달 시 `/pdca iterate {feature}`) → `/pdca report {feature}`
 - 첫 명령: `/pdca plan foundation-auth`
 - 완료 조건(두 관문):
-  1. gap 분석 match rate 90% 이상
+  1. gap 분석 match rate 95% 이상
   2. Check 단계에서 `npm run test`와 `npm run test:e2e`를 **실제로 실행**해 해당 feature SC가 모두 통과하고, 결과를 analysis 문서에 기록
 - gap-detector는 설계와 코드를 비교할 뿐 테스트를 실행하지 않으므로 match rate만으로 완료를 판정하지 않는다.
 
@@ -1010,11 +1010,12 @@ AppShell, TopNav, SideNav, PageHeader, Button(primary/secondary/text/destructive
 | 글로벌 원부자재 4개사 한국 합산 매출 약 1.63조 원, 약 80%가 단일 CDMO | 바이오북 "95% of Bioprocess Materials Are Imported" (GlobalData 발표 인용) | 2026-10-08 | 강의 자료 작성 시 |
 | 바이오 원부자재 수입 의존도 약 95%, 단계적 국산화 제안 | 같음 | 2026-10-08 | 같음 |
 | DART OpenAPI, 공공데이터포털 식약처 임상시험 승인 정보, NTIS 공개 API가 존재 | [추정] 공식 사이트 미확인 | 2026-11-09 | v1(NG-02) 착수 전 |
-| bkit 명령·경로·matchRateThreshold | [검증 기준] 설치본 미확인 | 2026-11-09 | bkit 설치 직후 |
+| bkit 명령·경로 | 미설치 확인, 수동 PDCA로 대체 | 2026-11-09 | bkit 설치 직후 |
 | Claude 모델 ID `claude-sonnet-5-5` | 실행 환경 안내 | 2026-11-09 | 구현 착수 시 |
 
 ## 개정 이력
 
 | 개정 | 일자 | 변경 | 출처 |
 |---|---|---|---|
+| v1.1 | 2026-11-09 | match rate 기준 95%로 상향, D-01~D-03 추천안 확정, bkit 미설치에 따른 수동 PDCA·gap 분석 스크립트 명시, NFR-06 테스트 전용 API로 상태 유도 방식 구체화 | 사용자 지시(구현 착수) |
 | v1.0 | 2026-11-09 | 최초 작성(신규 모드). 대화의 요구사항 A-1·A-2·A-5·P-2·O-2와 사용자 결정(강의용·SQLite·localhost)을 화면 계약으로 변환 | 현재 대화 |
