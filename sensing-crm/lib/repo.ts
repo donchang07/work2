@@ -144,3 +144,42 @@ export async function refreshDerived(db = getDb(), opts: { snapshot?: boolean } 
   detectIssues(db); recomputeRisk(db); await recomputeRecs(db);
   if (opts.snapshot !== false) snapshot(db);
 }
+
+// ---------- 통합·기각 (FR-030)
+export async function resolveIssue(db: Database.Database, issueId: number, action: 'merge' | 'dismiss', userId: number) {
+  const issue = db.prepare("SELECT * FROM dq_issues WHERE id=? AND status='open'").get(issueId) as { id: number; issue_type: string; entity_id: number; raw_name: string | null; candidate_account_id: number | null } | undefined;
+  if (!issue) return { ok: false as const, code: 'not_found' };
+  const at = nowIso();
+  if (action === 'dismiss') {
+    db.prepare("UPDATE dq_issues SET status='dismissed', resolved_by=?, resolved_at=? WHERE id=?").run(userId, at, issueId);
+    await refreshDerived(db);
+    return { ok: true as const };
+  }
+  if (issue.issue_type === 'unresolved_name' && issue.raw_name && issue.candidate_account_id) {
+    const target = issue.candidate_account_id, norm = normalizeName(issue.raw_name);
+    db.transaction(() => {
+      db.prepare('INSERT OR IGNORE INTO account_aliases(account_id, alias, alias_norm) VALUES (?,?,?)').run(target, issue.raw_name, norm);
+      const sigs = (db.prepare('SELECT id, raw_org_name FROM signals WHERE account_id IS NULL').all() as { id: number; raw_org_name: string }[]).filter(s => normalizeName(s.raw_org_name) === norm);
+      for (const s of sigs) db.prepare('UPDATE signals SET account_id=? WHERE id=?').run(target, s.id);
+      const leads = (db.prepare("SELECT id, org_name FROM leads WHERE status='pending' AND matched_account_id IS NULL").all() as { id: number; org_name: string }[]).filter(l => normalizeName(l.org_name) === norm);
+      for (const l of leads) db.prepare("UPDATE leads SET matched_account_id=?, match_status='auto', match_score=1 WHERE id=?").run(target, l.id);
+      db.prepare("UPDATE dq_issues SET status='resolved', resolved_by=?, resolved_at=? WHERE issue_type='unresolved_name' AND status='open' AND raw_name=?").run(userId, at, issue.raw_name);
+    })();
+  } else if (issue.issue_type === 'duplicate_account' && issue.candidate_account_id) {
+    const dup = issue.entity_id, primary = issue.candidate_account_id;
+    db.transaction(() => {
+      for (const t of ['activities', 'orders', 'signals']) db.prepare(`UPDATE ${t} SET account_id=? WHERE account_id=?`).run(primary, dup);
+      db.prepare('UPDATE leads SET matched_account_id=? WHERE matched_account_id=?').run(primary, dup);
+      db.prepare("DELETE FROM recommendations WHERE account_id=? AND status='new'").run(dup);
+      db.prepare('UPDATE recommendations SET account_id=? WHERE account_id=?').run(primary, dup);
+      db.prepare('DELETE FROM risk_scores WHERE account_id=?').run(dup);
+      const name = (db.prepare('SELECT name FROM accounts WHERE id=?').get(dup) as { name: string }).name;
+      db.prepare('INSERT OR IGNORE INTO account_aliases(account_id, alias, alias_norm) VALUES (?,?,?)').run(primary, name, normalizeName(name));
+      db.prepare('UPDATE account_aliases SET account_id=? WHERE account_id=?').run(primary, dup);
+      db.prepare("UPDATE accounts SET status='merged', merged_into_id=? WHERE id=?").run(primary, dup);
+      db.prepare("UPDATE dq_issues SET status='resolved', resolved_by=?, resolved_at=? WHERE id=?").run(userId, at, issueId);
+    })();
+  } else return { ok: false as const, code: 'not_mergeable' };
+  await refreshDerived(db);
+  return { ok: true as const };
+}
