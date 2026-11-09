@@ -35,7 +35,7 @@ const navs = ids(/^\| (NAV-\d{2}) \|/gm);
 const frs = [...prd.matchAll(/^\| (FR-\d{3}) \|(.*)$/gm)].map(m => ({ id: m[1], scs: [...new Set([...m[2].matchAll(/SC-\d{3}/g)].map(x => x[0]))] }));
 const scs = ids(/^\| (SC-\d{3}) \|/gm);
 const datas = ids(/^### (DATA-\d{3}) /gm);
-const screens = [...prd.matchAll(/^### (SCR-\d{3}) [^\n]*\n\n- 유형: [^·]+· Route `([^`]+)`/gm)].map(m => ({ id: m[1], route: m[2] }));
+const screens = [...prd.matchAll(/^### (SCR-\d{3}) [^\n]*\n\n- 유형: [^\n]*?Route `([^`]+)`/gm)].map(m => ({ id: m[1], route: m[2] }));
 const tableOf = {};
 for (const m of canon.matchAll(/^### (DATA-\d{3}) (\w+)/gm)) tableOf[m[1]] = m[2];
 const tableName = { user: 'users', account: 'accounts', account_alias: 'account_aliases', signal: 'signals', lead: 'leads', activity: 'activities', order: 'orders', risk_score: 'risk_scores', recommendation: 'recommendations', dq_issue: 'dq_issues', dq_snapshot: 'dq_snapshots', lab_run: 'lab_runs', session: 'sessions', job_run: 'job_runs' };
