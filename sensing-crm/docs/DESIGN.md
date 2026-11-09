@@ -37,6 +37,7 @@
 | `--text` | #1D1D1F | #F5F5F7 | 본문 |
 | `--text-2` | #6E6E73 | #A1A1A6 | 보조 |
 | `--primary` | #0071E3 | #0A84FF | 주요 행동·링크·포커스 |
+| `--primary-strong` | #0058B0 | #64B0FF | 옅은 강조 배경 위 텍스트(대비 4.5:1 확보) |
 | `--risk-high` | #C00012 | #FF453A | 위험 고, destructive |
 | `--risk-mid` | #8F4000 | #FF9F0A | 위험 중, warning |
 | `--risk-low` | #1D7533 | #30D158 | 위험 저, success |

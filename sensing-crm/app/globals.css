@@ -1,5 +1,5 @@
-:root{--bg:#F5F5F7;--surface:#fff;--border:#D2D2D7;--text:#1D1D1F;--text-2:#6E6E73;--primary:#0071E3;--primary-weak:#E8F1FD;--risk-high:#C00012;--risk-mid:#8F4000;--risk-low:#1D7533;--ai:#6E3CBC;--radius-card:18px;--radius:10px;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04)}
-@media (prefers-color-scheme:dark){:root{--bg:#000;--surface:#1C1C1E;--border:#38383A;--text:#F5F5F7;--text-2:#A1A1A6;--primary:#0A84FF;--primary-weak:#0A2540;--risk-high:#FF453A;--risk-mid:#FF9F0A;--risk-low:#30D158;--ai:#BF5AF2}}
+:root{--bg:#F5F5F7;--surface:#fff;--border:#D2D2D7;--text:#1D1D1F;--text-2:#6E6E73;--primary:#0071E3;--primary-strong:#0058B0;--primary-weak:#E8F1FD;--risk-high:#C00012;--risk-mid:#8F4000;--risk-low:#1D7533;--ai:#6E3CBC;--radius-card:18px;--radius:10px;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04)}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--surface:#1C1C1E;--border:#38383A;--text:#F5F5F7;--text-2:#A1A1A6;--primary:#0A84FF;--primary-strong:#64B0FF;--primary-weak:#0A2540;--risk-high:#FF453A;--risk-mid:#FF9F0A;--risk-low:#30D158;--ai:#BF5AF2}}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:15px;line-height:22px;-webkit-font-smoothing:antialiased}
 a{color:var(--primary);text-decoration:none}
@@ -16,7 +16,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sidenav{width:232px;flex:none;padding:16px 12px;border-right:1px solid var(--border);background:var(--surface)}
 .sidenav a{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:var(--radius);color:var(--text);margin-bottom:2px}
 .sidenav a:hover{background:var(--bg)}
-.sidenav a[aria-current=page]{background:var(--primary-weak);color:var(--primary);font-weight:600}
+.sidenav a[aria-current=page]{background:var(--primary-weak);color:var(--primary-strong);font-weight:600}
 .sidenav .sep{margin:16px 12px 6px}
 .main{flex:1;min-width:0;padding:32px;max-width:1264px}
 .hamburger{display:none}
@@ -65,7 +65,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .field-error{font-size:13px;color:var(--risk-high)}
 /* badge/tag */
 .badge{display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--bg);color:var(--text-2);white-space:nowrap}
-.badge.primary{background:var(--primary-weak);color:var(--primary)}
+.badge.primary{background:var(--primary-weak);color:var(--primary-strong)}
 .badge.high{background:color-mix(in srgb,var(--risk-high) 12%,transparent);color:var(--risk-high)}
 .badge.mid{background:color-mix(in srgb,var(--risk-mid) 14%,transparent);color:var(--risk-mid)}
 .badge.low{background:color-mix(in srgb,var(--risk-low) 14%,transparent);color:var(--risk-low)}
@@ -92,7 +92,7 @@ table.dt{width:100%;border-collapse:collapse;font-size:14px}
 .banner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-radius:12px;margin-bottom:16px;font-size:14px}
 .banner.error{background:color-mix(in srgb,var(--risk-high) 10%,var(--surface));color:var(--risk-high)}
 .banner.warning{background:color-mix(in srgb,var(--risk-mid) 12%,var(--surface));color:var(--risk-mid)}
-.banner.info{background:var(--primary-weak);color:var(--primary)}
+.banner.info{background:var(--primary-weak);color:var(--primary-strong)}
 .empty{text-align:center;padding:40px 16px;color:var(--text-2)}
 .empty .icon{font-size:28px;margin-bottom:8px}
 .skeleton{background:linear-gradient(90deg,var(--bg),color-mix(in srgb,var(--border) 40%,var(--bg)),var(--bg));background-size:200% 100%;animation:pulse 1.2s ease-in-out infinite;border-radius:12px}
@@ -119,3 +119,5 @@ table.dt{width:100%;border-collapse:collapse;font-size:14px}
 .feed-card .summary{white-space:pre-line;margin:8px 0}
 .callout{border-left:4px solid var(--primary)}
 @media (max-width:767px){.topnav{gap:8px}.topnav .brand{font-size:15px}.topnav [data-testid=NAV-12]{font-size:11px;padding:0 8px}.topnav [data-testid=NAV-10] .badge{display:none}.topnav [data-testid=NAV-10]{max-width:84px;overflow:hidden;text-overflow:ellipsis}}
+
+.caption a,p a{text-decoration:underline}

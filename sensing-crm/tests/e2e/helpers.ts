@@ -18,3 +18,9 @@ export async function login(page: Page, who: keyof typeof USERS, next?: string) 
 export async function accountId(request: APIRequestContext, name: string): Promise<number> {
   const r = await request.get(`/api/test/lookup?name=${encodeURIComponent(name)}`); const j = await r.json(); return j.id;
 }
+import AxeBuilder from '@axe-core/playwright';
+export async function axeClean(page: Page) {
+  const r = await new AxeBuilder({ page: page as never }).analyze();
+  const bad = r.violations.filter(v => ['serious', 'critical'].includes(v.impact ?? ''));
+  expect(bad.map(v => `${v.id}: ${v.nodes.map(n => n.target.join(' ')).join(', ')}`)).toEqual([]);
+}

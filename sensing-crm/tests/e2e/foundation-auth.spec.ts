@@ -56,8 +56,8 @@ test('SC-005 빈 값·형식 오류: 검증 문구, 요청 미전송', async ({ 
 test('SC-006 세션 만료 → reason=expired 안내', async ({ page, request }) => {
   await login(page, 'kam1');
   await config(request, { nowOffsetMs: (8 * 60 + 1) * 60 * 1000 });
-  await page.goto('/leads');
-  await expect(page).toHaveURL(/\/login\?reason=expired/);
+  await page.goto('/leads').catch(() => { /* 진행 중 fetch의 401 리다이렉트와 경합 가능 */ });
+  await page.waitForURL(/\/login\?reason=expired/);
   await expect(page.getByTestId('SCR-001-EL-06')).toHaveText('세션이 만료되었습니다. 다시 로그인해 주세요.');
   await config(request, { nowOffsetMs: 0 });
 });
