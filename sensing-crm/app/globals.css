@@ -19,9 +19,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sidenav a[aria-current=page]{background:var(--primary-weak);color:var(--primary-strong);font-weight:600}
 .sidenav .sep{margin:16px 12px 6px}
 .main{flex:1;min-width:0;padding:32px;max-width:1264px}
-.hamburger{display:none}
+.icon-btn.hamburger{display:none}
 .sheet{display:none}
-@media (max-width:767px){.sidenav{display:none}.hamburger{display:inline-flex}.main{padding:16px}.topnav{padding:0 12px}
+@media (max-width:767px){.sidenav{display:none}.icon-btn.hamburger{display:inline-flex}.main{padding:16px}.topnav{padding:0 12px}
  .sheet.open{display:block;position:fixed;inset:56px 0 0 0;z-index:30;background:var(--surface);padding:12px;overflow:auto}
  .sheet.open a{display:block;padding:12px;border-radius:var(--radius);color:var(--text)}}
 /* page header */

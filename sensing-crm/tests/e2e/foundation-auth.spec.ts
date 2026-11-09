@@ -28,6 +28,7 @@ test('SC-003 관리자 로그인: 관리자 메뉴 노출', async ({ page }) => 
   await login(page, 'admin');
   await expect(page.getByTestId('NAV-08')).toBeVisible();
   await expect(page.getByTestId('NAV-09')).toBeVisible();
+  await expect(page.getByTestId('NAV-11')).toBeHidden(); // 데스크톱에서는 햄버거 숨김
 });
 
 test('SC-004 틀린 비밀번호: 오류 배너, URL 유지, 이메일 유지', async ({ page }) => {
