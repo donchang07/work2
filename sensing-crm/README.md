@@ -18,6 +18,9 @@ npm run dev          # http://localhost:3000
 - AI: `ANTHROPIC_API_KEY`가 있으면 Claude로 구조화·요약·설명(`AI_MODEL` 기본 `claude-sonnet-5-5`), 없으면 결정적 모의 응답. `AI_MODE=off`면 규칙 기반.
 - 시연 순서(약 20분): 관리자 로그인 → 데이터 운영(신호 수집·리드 변환) → 브리핑 → 리드 인박스 → 미팅 노트 → 데이터 품질(통합 승인) → 위험 고객 → 다음 행동 → **품질-성과 실험실**
 
+## 문제 해결
+- Windows 등에서 `Assertion failed: (env) != nullptr ... RemoveEnvironmentCleanupHook`로 서버가 죽는 경우: Node.js 24.19~24.21의 알려진 회귀(nodejs/node#65446, 24.22.0에서 수정)입니다. 앱은 prepared statement 캐시로 이를 피하도록 되어 있으며, Node.js 22 LTS 또는 24.22 이상 사용을 권장합니다.
+
 ## 테스트
 
 ```bash

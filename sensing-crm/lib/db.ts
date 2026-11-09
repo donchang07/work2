@@ -36,6 +36,23 @@ export function openDb(file = dbPath()): Database.Database {
   db.pragma('journal_mode = WAL');
   db.pragma('foreign_keys = ON');
   db.exec(SCHEMA);
+  return cachePrepare(db);
+}
+
+/**
+ * Prepared statement 캐시.
+ * Node.js 24.19~24.21에는 better-sqlite3의 Statement가 GC로 정리될 때
+ * `RemoveEnvironmentCleanupHook ... Assertion failed: (env) != nullptr`로 프로세스가 죽는 회귀가 있다(nodejs/node#65446, 24.22.0에서 수정).
+ * 같은 SQL의 Statement를 재사용해 GC 대상 자체를 만들지 않음으로써 해당 Node 버전에서도 안전하게 동작하게 하고, 성능도 좋아진다.
+ */
+function cachePrepare(db: Database.Database): Database.Database {
+  const cache = new Map<string, Database.Statement>();
+  const original = db.prepare.bind(db);
+  (db as unknown as { prepare: (sql: string) => Database.Statement }).prepare = (sql: string) => {
+    let st = cache.get(sql);
+    if (!st) { st = original(sql); cache.set(sql, st); }
+    return st;
+  };
   return db;
 }
 export function getDb(): Database.Database {
