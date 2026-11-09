@@ -1,0 +1,19 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+:root{--bg:#F5F5F7;--surface:#fff;--border:#D2D2D7;--text:#1D1D1F;--text-2:#6E6E73;--primary:#0071E3}
+@media (prefers-color-scheme:dark){:root{--bg:#000;--surface:#1C1C1E;--border:#38383A;--text:#F5F5F7;--text-2:#A1A1A6;--primary:#0A84FF}}
+html{background:var(--bg)}
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;color:var(--text);background:var(--bg);max-width:1100px;margin:0 auto;padding:32px 16px 96px;line-height:1.6;font-size:15px}
+#TOC{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px 24px;margin:24px 0;font-size:14px}
+#TOC ul{padding-left:18px}
+h1{font-size:30px;line-height:1.25;font-weight:700}
+h2{font-size:22px;margin-top:48px;padding-top:16px;border-top:1px solid var(--border)}
+h3{font-size:18px;margin-top:32px}
+a{color:var(--primary);text-decoration:none}
+table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:13px;background:var(--surface);border-radius:12px;margin:12px 0}
+th,td{border-bottom:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+th{color:var(--text-2);font-weight:600;white-space:nowrap}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+pre{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;overflow-x:auto}
+blockquote{margin:12px 0;padding:8px 16px;border-left:3px solid var(--primary);color:var(--text-2);background:var(--surface);border-radius:0 12px 12px 0}
+.id-anchor{scroll-margin-top:24px}
+td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums}

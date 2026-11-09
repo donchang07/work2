@@ -1,0 +1,5917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Sensing CRM PRD</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+  :root{--bg:#F5F5F7;--surface:#fff;--border:#D2D2D7;--text:#1D1D1F;--text-2:#6E6E73;--primary:#0071E3}
+  @media (prefers-color-scheme:dark){:root{--bg:#000;--surface:#1C1C1E;--border:#38383A;--text:#F5F5F7;--text-2:#A1A1A6;--primary:#0A84FF}}
+  html{background:var(--bg)}
+  body{font-family:"Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;color:var(--text);background:var(--bg);max-width:1100px;margin:0 auto;padding:32px 16px 96px;line-height:1.6;font-size:15px}
+  #TOC{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px 24px;margin:24px 0;font-size:14px}
+  #TOC ul{padding-left:18px}
+  h1{font-size:30px;line-height:1.25;font-weight:700}
+  h2{font-size:22px;margin-top:48px;padding-top:16px;border-top:1px solid var(--border)}
+  h3{font-size:18px;margin-top:32px}
+  a{color:var(--primary);text-decoration:none}
+  table{border-collapse:collapse;width:100%;display:block;overflow-x:auto;font-size:13px;background:var(--surface);border-radius:12px;margin:12px 0}
+  th,td{border-bottom:1px solid var(--border);padding:8px 10px;text-align:left;vertical-align:top}
+  th{color:var(--text-2);font-weight:600;white-space:nowrap}
+  code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+  pre{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;overflow-x:auto}
+  blockquote{margin:12px 0;padding:8px 16px;border-left:3px solid var(--primary);color:var(--text-2);background:var(--surface);border-radius:0 12px 12px 0}
+  .id-anchor{scroll-margin-top:24px}
+  td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Sensing CRM PRD</h1>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#sensing-crm--제약바이오-마켓-센싱-crm-강의용-데모-prd"
+id="toc-sensing-crm--제약바이오-마켓-센싱-crm-강의용-데모-prd">Sensing
+CRM — 제약·바이오 마켓 센싱 CRM 강의용 데모 PRD</a>
+<ul>
+<li><a href="#0-executive-summary" id="toc-0-executive-summary">0.
+Executive Summary</a></li>
+<li><a href="#1-개요" id="toc-1-개요">1. 개요</a></li>
+<li><a href="#2-배경" id="toc-2-배경">2. 배경</a></li>
+<li><a href="#3-목표와-비목표" id="toc-3-목표와-비목표">3. 목표와
+비목표</a></li>
+<li><a href="#4-사용자-시나리오와-역할"
+id="toc-4-사용자-시나리오와-역할">4. 사용자 시나리오와 역할</a></li>
+<li><a href="#5-화면-계약" id="toc-5-화면-계약">5. 화면 계약</a></li>
+<li><a href="#6-functional-requirements"
+id="toc-6-functional-requirements">6. Functional Requirements</a></li>
+<li><a href="#7-success-criteria" id="toc-7-success-criteria">7. Success
+Criteria</a></li>
+<li><a href="#8-오류경계-처리" id="toc-8-오류경계-처리">8. 오류·경계
+처리</a></li>
+<li><a href="#9-브랜드디자인" id="toc-9-브랜드디자인">9.
+브랜드·디자인</a></li>
+<li><a href="#10-범위와-일정" id="toc-10-범위와-일정">10. 범위와
+일정</a></li>
+<li><a href="#11-레벨스택시스템-가정"
+id="toc-11-레벨스택시스템-가정">11. 레벨·스택·시스템 가정</a></li>
+<li><a href="#12-구현자-결정-이슈" id="toc-12-구현자-결정-이슈">12.
+구현자 결정 이슈</a></li>
+<li><a href="#13-작성자-결정-요청" id="toc-13-작성자-결정-요청">13.
+작성자 결정 요청</a></li>
+<li><a href="#14-feature-분해" id="toc-14-feature-분해">14. Feature
+분해</a></li>
+<li><a href="#15-bkit-실행-계약" id="toc-15-bkit-실행-계약">15. bkit
+실행 계약</a></li>
+<li><a href="#부록-a-데이터-계약" id="toc-부록-a-데이터-계약">부록 A.
+데이터 계약</a></li>
+<li><a href="#부록-b-외부-사실" id="toc-부록-b-외부-사실">부록 B. 외부
+사실</a></li>
+<li><a href="#개정-이력" id="toc-개정-이력">개정 이력</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="sensing-crm--제약바이오-마켓-센싱-crm-강의용-데모-prd">Sensing
+CRM — 제약·바이오 마켓 센싱 CRM 강의용 데모 PRD</h1>
+<table>
+<thead>
+<tr class="header">
+<th>항목</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>문서</td>
+<td>제품 통합 정본 (<code>docs/PRD.md</code>)</td>
+</tr>
+<tr class="even">
+<td>정본 개정</td>
+<td>v1.0</td>
+</tr>
+<tr class="odd">
+<td>PRD 스키마</td>
+<td>screen-first-v2</td>
+</tr>
+<tr class="even">
+<td>작성일</td>
+<td>2026-11-09 (Asia/Seoul)</td>
+</tr>
+<tr class="odd">
+<td>작성</td>
+<td>to-prd (bkit 실행 계약)</td>
+</tr>
+<tr class="even">
+<td>요청자</td>
+<td>장동인 교수</td>
+</tr>
+<tr class="odd">
+<td>레벨</td>
+<td>Dynamic (풀스택, 로컬 실행)</td>
+</tr>
+<tr class="even">
+<td>bkit 계약</td>
+<td>[검증 기준] 설치본·<code>references/bkit-contract.md</code> 미확인.
+15장 참고</td>
+</tr>
+<tr class="odd">
+<td>입력</td>
+<td>현재 대화(써모피셔코리아 분석, AI 도입 목적 4분류 요구사항 20개, 앱
+계획안, 강의용·SQLite·localhost 결정)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="0-executive-summary">0. Executive Summary</h2>
+<p>강의에서 "<strong>자동화(A-1·A-2·A-5)가 CRM 데이터 품질을 높이고, 그
+품질이 예측(P-2 이탈위험)과 최적화(O-2 다음 행동 추천)의 성패를
+좌우한다</strong>"는 명제를 수치로 시연하는 로컬 웹앱을 만든다. 가상의
+다국적 생명과학 기업 한국법인 영업·마케팅 조직을 무대로, 합성 데이터와
+공공데이터 형식의 샘플 피드를 SQLite에 담아 <code>localhost</code>에서
+실행한다.</p>
+<h3 id="context-anchor">Context Anchor</h3>
+<table>
+<thead>
+<tr class="header">
+<th>축</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WHY</td>
+<td>마켓 센싱 AI의 가치는 모델보다 데이터 품질에서 결정된다는 점을
+수강생이 직접 눈으로 확인하게 한다</td>
+</tr>
+<tr class="even">
+<td>WHO</td>
+<td>강사(관리자 역할로 시연), 수강생(KAM 역할로 실습)</td>
+</tr>
+<tr class="odd">
+<td>RISK</td>
+<td>실제 기업 데이터로 오인될 위험 → 전부 합성·가상 데이터와 "교육용
+데모" 표기. AI 키 미설정 → 규칙 기반 대체로 항상 시연 가능</td>
+</tr>
+<tr class="even">
+<td>SUCCESS</td>
+<td>품질-성과 실험실에서 자동화 비율을 올릴수록 종합 품질과 이탈 탐지
+재현율이 함께 오르는 결과가 재현된다 (<a href="#SC-034">SC-034</a>)</td>
+</tr>
+<tr class="odd">
+<td>SCOPE</td>
+<td>A-1·A-2·A-5 → 데이터 품질 계층 → P-2·O-2, 그리고 품질-성과 실험실.
+시뮬레이션(S)·실데이터 연동 제외</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-개요">1. 개요</h2>
+<ul>
+<li>서비스 이름: <strong>Sensing CRM</strong> (부제: 제약·바이오 마켓
+센싱 CRM · 교육용 데모)</li>
+<li>형태: 데스크톱 우선 반응형 웹앱,
+<code>http://localhost:3000</code></li>
+<li>사용 맥락: 대학원·기업 AI 리더십 강의에서 강사가 프로젝터로 시연하고
+수강생이 각자 노트북에서 실행</li>
+</ul>
+<h2 id="2-배경">2. 배경</h2>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>사실·해석</th>
+<th>라벨</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>글로벌 바이오 원부자재 4개사의 한국 합산 매출 약 1조 6,300억 원 중
+약 80%가 단일 CDMO에서 발생</td>
+<td>[조사·2026-10-08 바이오북/GlobalData]</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>한국 바이오 원부자재 수입 의존도 약 95%, 국산화 로드맵(2026~2032)
+제안</td>
+<td>[조사·2026-10-08 바이오북]</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>경쟁사의 국내 생산 거점 확대(대전·송도)로 가격·공급 경쟁 심화</td>
+<td>[조사·2026-10-08 바이오북]</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>따라서 고객 집중·이탈 신호를 조기에 감지하는 마켓 센싱이 영업 조직의
+핵심 과제가 된다</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>CRM의 결측·지연·고객명 불일치가 예측·추천 품질을 떨어뜨린다</td>
+<td>[가설] — 본 앱의 실험실로 시연</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-목표와-비목표">3. 목표와 비목표</h2>
+<h3 id="31-goals">3.1 Goals</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>목표</th>
+<th>측정</th>
+<th>라벨</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>G-1</td>
+<td>강사가 20분 안에 전체
+흐름(브리핑→리드→미팅노트→품질→위험→추천→실험실)을 시연</td>
+<td>리허설 시간 측정</td>
+<td>[가설]</td>
+</tr>
+<tr class="even">
+<td>G-2</td>
+<td>수강생이 품질과 예측 성과의 관계를 수치로 확인</td>
+<td><a href="#SC-034">SC-034</a> 통과</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>G-3</td>
+<td>수강생 노트북에서 설치부터 첫 화면까지 10분 이내</td>
+<td><code>npm install &amp;&amp; npm run setup &amp;&amp; npm run dev</code>
+소요 시간</td>
+<td>[가설]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-비목표">3.2 비목표</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>이번에 만들지 않을 것</th>
+<th>제외 이유</th>
+<th>다시 검토할 시점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="NG-01" class="id-anchor">NG-01</td>
+<td>실제 기업 내부 데이터·사내 시스템(CRM·ERP) 연동</td>
+<td>기밀 보호, 강의용 데모 범위</td>
+<td>실제 파일럿 제안 시</td>
+</tr>
+<tr class="even">
+<td id="NG-02" class="id-anchor">NG-02</td>
+<td>공공 API(DART·식약처·NTIS) 실시간 호출</td>
+<td>API 키·네트워크 의존 제거. 같은 형식의 샘플 피드로 대체</td>
+<td>v1 착수 시</td>
+</tr>
+<tr class="odd">
+<td id="NG-03" class="id-anchor">NG-03</td>
+<td>시뮬레이션 요구사항 S-1~S-5</td>
+<td>이번 강의 모듈 범위 밖</td>
+<td>다음 강의 모듈 기획 시</td>
+</tr>
+<tr class="even">
+<td id="NG-04" class="id-anchor">NG-04</td>
+<td>머신러닝 모델 학습(로지스틱 회귀 등)</td>
+<td>설명 가능한 규칙 점수가 강의 목적에 적합</td>
+<td>v1</td>
+</tr>
+<tr class="odd">
+<td id="NG-05" class="id-anchor">NG-05</td>
+<td>회원가입·비밀번호 재설정·SSO</td>
+<td>시드 계정으로 충분</td>
+<td>외부 공개 배포 시</td>
+</tr>
+<tr class="even">
+<td id="NG-06" class="id-anchor">NG-06</td>
+<td>클라우드 배포·다중 기기 공유</td>
+<td>localhost 실행이 요구사항</td>
+<td>외부 공유 요구 발생 시</td>
+</tr>
+<tr class="odd">
+<td id="NG-07" class="id-anchor">NG-07</td>
+<td>특정 실제 기업의 상표·로고·제품명 사용</td>
+<td>실제 기업으로 오인 방지</td>
+<td>재검토 없음</td>
+</tr>
+<tr class="even">
+<td id="NG-08" class="id-anchor">NG-08</td>
+<td>이메일·메신저 알림 발송</td>
+<td>데모 범위 밖</td>
+<td>v1</td>
+</tr>
+<tr class="odd">
+<td id="NG-09" class="id-anchor">NG-09</td>
+<td>다국어 지원</td>
+<td>한국어 강의</td>
+<td>해외 강의 요청 시</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-사용자-시나리오와-역할">4. 사용자 시나리오와 역할</h2>
+<h3 id="41-역할">4.1 역할</h3>
+<table>
+<thead>
+<tr class="header">
+<th>역할</th>
+<th>정의</th>
+<th>열람 범위</th>
+<th>행동 차이</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>비로그인</td>
+<td>로그인 전 방문자</td>
+<td><a href="#SCR-001">SCR-001</a>만</td>
+<td>로그인만 가능</td>
+</tr>
+<tr class="even">
+<td>일반 사용자 (KAM)</td>
+<td>핵심 고객 담당 영업. 수강생 실습 역할</td>
+<td>담당 고객과 그 고객의 신호·리드·활동·점수·추천</td>
+<td>리드 수락/거절, 미팅 노트 작성·확정, 추천 채택/보류/거절</td>
+</tr>
+<tr class="odd">
+<td>관리자 (영업기획)</td>
+<td>강사 시연 역할</td>
+<td>전체 고객 + 관리자 전용 화면(SCR-010, <a href="#SCR-011">SCR-011</a>)</td>
+<td>신호 수집·리드 변환 실행, 데이터 초기화, 별칭·중복 통합 승인, 리드
+담당자 지정, 실험 실행</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-시나리오">4.2 시나리오</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>사용자</th>
+<th>상황</th>
+<th>목표</th>
+<th>흐름</th>
+<th>완료 조건 (Given/When/Then)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>US-01</td>
+<td>KAM</td>
+<td>출근 직후</td>
+<td>담당 고객 변화 파악 후 미팅 기록</td>
+<td>SCR-001 → SCR-002 → SCR-006 → <a href="#SCR-004">SCR-004</a></td>
+<td>Given 시드 데이터, When 브리핑 카드에서 고객 360으로 이동해 미팅
+노트를 확정 저장, Then 최근 기록과 고객 360 타임라인에 활동이
+표시된다</td>
+</tr>
+<tr class="even">
+<td>US-02</td>
+<td>관리자</td>
+<td>강의 시작</td>
+<td>오늘 신호 수집과 리드 생성</td>
+<td>SCR-011 → SCR-002 → <a href="#SCR-003">SCR-003</a></td>
+<td>Given 미수집 피드, When 수집·변환 실행, Then 브리핑 카드와 리드
+인박스 검토 대기 건수가 늘고 실행 로그가 남는다</td>
+</tr>
+<tr class="odd">
+<td>US-03</td>
+<td>관리자</td>
+<td>데이터 정리</td>
+<td>고객명 불일치 해소</td>
+<td><a href="#SCR-007">SCR-007</a></td>
+<td>Given 통합 후보 존재, When 통합 승인, Then 대기열이 줄고 일관성
+지표가 오른다</td>
+</tr>
+<tr class="even">
+<td>US-04</td>
+<td>KAM</td>
+<td>주간 점검</td>
+<td>이탈 위험 고객 대응</td>
+<td>SCR-008 → <a href="#SCR-009">SCR-009</a></td>
+<td>Given 고위험 고객, When 근거 확인 후 추천 채택, Then 추천이 채택
+탭으로 이동한다</td>
+</tr>
+<tr class="odd">
+<td>US-05</td>
+<td>관리자(강사)</td>
+<td>강의 핵심 장면</td>
+<td>품질과 성과의 관계 시연</td>
+<td><a href="#SCR-010">SCR-010</a></td>
+<td>Given 시드, When 실험 실행, Then 자동화 비율 5단계별
+품질·재현율·정밀도·추천 적중률 표와 차트가 표시된다</td>
+</tr>
+<tr class="even">
+<td>US-06</td>
+<td>KAM</td>
+<td>실패</td>
+<td>AI 구조화 실패</td>
+<td><a href="#SCR-004">SCR-004</a></td>
+<td>Given AI 실패, When 구조화 요청, Then 대체 안내 배너와 규칙 기반
+결과가 표시되고 저장은 계속 가능하다</td>
+</tr>
+<tr class="odd">
+<td>US-07</td>
+<td>KAM</td>
+<td>이탈·거부</td>
+<td>관리자 화면 접근·세션 만료</td>
+<td>SCR-010 → SCR-012, 만료 → <a href="#SCR-001">SCR-001</a></td>
+<td>Given KAM 세션, When <code>/lab</code> 접근, Then SCR-012가
+표시된다. Given 만료 세션, When 이동, Then 만료 안내와 함께 <a href="#SCR-001">SCR-001</a>로
+이동한다</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-화면-계약">5. 화면 계약</h2>
+<h3 id="51-화면-인벤토리">5.1 화면 인벤토리</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>화면</th>
+<th>화면 유형</th>
+<th>Route</th>
+<th>접근</th>
+<th>관련 요구사항</th>
+<th>feature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#SCR-001">SCR-001</a></td>
+<td>로그인</td>
+<td>인증</td>
+<td><code>/login</code></td>
+<td>비로그인</td>
+<td>공통</td>
+<td>foundation-auth</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-002">SCR-002</a></td>
+<td>오늘의 브리핑</td>
+<td>대시보드</td>
+<td><code>/briefing</code> (로그인 후 홈)</td>
+<td>KAM·관리자</td>
+<td>A-1</td>
+<td>signal-briefing</td>
+</tr>
+<tr class="odd">
+<td><a href="#SCR-003">SCR-003</a></td>
+<td>리드 인박스</td>
+<td>목록·처리</td>
+<td><code>/leads</code></td>
+<td>KAM·관리자</td>
+<td>A-2</td>
+<td>lead-inbox</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-004">SCR-004</a></td>
+<td>미팅 노트</td>
+<td>입력·검토</td>
+<td><code>/notes</code></td>
+<td>KAM·관리자</td>
+<td>A-5</td>
+<td>meeting-note</td>
+</tr>
+<tr class="odd">
+<td><a href="#SCR-005">SCR-005</a></td>
+<td>고객 목록</td>
+<td>목록</td>
+<td><code>/accounts</code></td>
+<td>KAM·관리자</td>
+<td>공통</td>
+<td>account-360</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-006">SCR-006</a></td>
+<td>고객 360</td>
+<td>상세</td>
+<td><code>/accounts/[id]</code></td>
+<td>KAM(담당)·관리자</td>
+<td>공통</td>
+<td>account-360</td>
+</tr>
+<tr class="odd">
+<td><a href="#SCR-007">SCR-007</a></td>
+<td>데이터 품질</td>
+<td>대시보드</td>
+<td><code>/quality</code></td>
+<td>KAM(조회)·관리자</td>
+<td>품질 계층</td>
+<td>data-quality</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-008">SCR-008</a></td>
+<td>위험 고객</td>
+<td>목록</td>
+<td><code>/risk</code></td>
+<td>KAM·관리자</td>
+<td>P-2</td>
+<td>churn-risk</td>
+</tr>
+<tr class="odd">
+<td><a href="#SCR-009">SCR-009</a></td>
+<td>다음 행동 추천</td>
+<td>목록·처리</td>
+<td><code>/actions</code></td>
+<td>KAM·관리자</td>
+<td>O-2</td>
+<td>next-best-action</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-010">SCR-010</a></td>
+<td>품질-성과 실험실</td>
+<td>분석</td>
+<td><code>/lab</code></td>
+<td>관리자</td>
+<td>시연</td>
+<td>quality-lab</td>
+</tr>
+<tr class="odd">
+<td><a href="#SCR-011">SCR-011</a></td>
+<td>데이터 운영</td>
+<td>관리</td>
+<td><code>/admin/ops</code></td>
+<td>관리자</td>
+<td>A-1·A-2 실행</td>
+<td>signal-briefing</td>
+</tr>
+<tr class="even">
+<td><a href="#SCR-012">SCR-012</a></td>
+<td>접근 거부</td>
+<td>시스템</td>
+<td><code>/forbidden</code></td>
+<td>로그인 사용자</td>
+<td>공통</td>
+<td>foundation-auth</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-사이트맵과-전이">5.2 사이트맵과 전이</h3>
+<pre><code>/login (SCR-001) ──로그인──▶ /briefing (SCR-002)
+AppShell 메뉴: 브리핑(002) · 리드(003) · 미팅노트(004) · 고객(005→006) · 위험(008) · 다음행동(009) · 데이터품질(007)
+               [관리자] 실험실(010) · 데이터운영(011)
+SCR-002 카드 ──▶ SCR-006 / SCR-009      SCR-006 ──▶ SCR-004(고객 선택됨) / SCR-007 / SCR-009
+권한 없는 경로 ──▶ SCR-012 ──▶ SCR-002     세션 만료 ──▶ <a href="#SCR-001">SCR-001</a>(?reason=expired)</code></pre>
+<h3 id="53-메뉴-nav">5.3 메뉴 (NAV)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>위치·순서</th>
+<th>라벨</th>
+<th>노출 역할</th>
+<th>대상</th>
+<th>데스크톱</th>
+<th>모바일(&lt;768px)</th>
+<th>활성 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="NAV-01" class="id-anchor">NAV-01</td>
+<td>사이드 1</td>
+<td>오늘의 브리핑</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-002">SCR-002</a></td>
+<td>SideNav 항목</td>
+<td>햄버거 메뉴 항목</td>
+<td>경로 <code>/briefing</code></td>
+</tr>
+<tr class="even">
+<td id="NAV-02" class="id-anchor">NAV-02</td>
+<td>사이드 2</td>
+<td>리드 인박스</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-003">SCR-003</a></td>
+<td>〃 + 검토 대기 수 Badge</td>
+<td>〃</td>
+<td><code>/leads</code></td>
+</tr>
+<tr class="odd">
+<td id="NAV-03" class="id-anchor">NAV-03</td>
+<td>사이드 3</td>
+<td>미팅 노트</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-004">SCR-004</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/notes</code></td>
+</tr>
+<tr class="even">
+<td id="NAV-04" class="id-anchor">NAV-04</td>
+<td>사이드 4</td>
+<td>고객</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-005">SCR-005</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/accounts*</code></td>
+</tr>
+<tr class="odd">
+<td id="NAV-05" class="id-anchor">NAV-05</td>
+<td>사이드 5</td>
+<td>위험 고객</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-008">SCR-008</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/risk</code></td>
+</tr>
+<tr class="even">
+<td id="NAV-06" class="id-anchor">NAV-06</td>
+<td>사이드 6</td>
+<td>다음 행동</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-009">SCR-009</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/actions</code></td>
+</tr>
+<tr class="odd">
+<td id="NAV-07" class="id-anchor">NAV-07</td>
+<td>사이드 7</td>
+<td>데이터 품질</td>
+<td>KAM·관리자</td>
+<td><a href="#SCR-007">SCR-007</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/quality</code></td>
+</tr>
+<tr class="even">
+<td id="NAV-08" class="id-anchor">NAV-08</td>
+<td>사이드 8 (관리자 구분선 아래)</td>
+<td>품질-성과 실험실</td>
+<td>관리자</td>
+<td><a href="#SCR-010">SCR-010</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/lab</code></td>
+</tr>
+<tr class="odd">
+<td id="NAV-09" class="id-anchor">NAV-09</td>
+<td>사이드 9</td>
+<td>데이터 운영</td>
+<td>관리자</td>
+<td><a href="#SCR-011">SCR-011</a></td>
+<td>〃</td>
+<td>〃</td>
+<td><code>/admin/ops</code></td>
+</tr>
+<tr class="even">
+<td id="NAV-10" class="id-anchor">NAV-10</td>
+<td>상단 우측</td>
+<td>사용자 메뉴(이름·역할 Badge·로그아웃)</td>
+<td>KAM·관리자</td>
+<td>로그아웃 → <a href="#SCR-001">SCR-001</a></td>
+<td>TopNav 드롭다운</td>
+<td>TopNav 아이콘</td>
+<td>해당 없음</td>
+</tr>
+<tr class="odd">
+<td id="NAV-11" class="id-anchor">NAV-11</td>
+<td>상단 좌측</td>
+<td>햄버거 버튼</td>
+<td>KAM·관리자</td>
+<td>메뉴 열기</td>
+<td>숨김</td>
+<td>IconButton</td>
+<td>해당 없음</td>
+</tr>
+<tr class="even">
+<td id="NAV-12" class="id-anchor">NAV-12</td>
+<td>상단 중앙</td>
+<td>"교육용 데모 · 합성 데이터" Badge</td>
+<td>모두</td>
+<td>해당 없음</td>
+<td>표시</td>
+<td>표시</td>
+<td>정적</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-인증">5.4 인증</h3>
+<ul>
+<li><strong>인증 사용: 예</strong> — 관리자 전용 기능(수집
+실행·초기화·통합 승인·실험)과 담당 범위 데이터 분리가 있다.</li>
+<li>방식: 이메일·비밀번호, 서버 세션 쿠키(httpOnly, SameSite=Lax), 유효
+8시간.</li>
+<li>결과: 성공 → SCR-002. 실패 → SCR-001-EL-04. 만료 → SCR-001 +
+SCR-001-EL-06. 권한 없음 → SCR-012. 로그아웃 → 세션 삭제 후
+SCR-001.</li>
+<li>비로그인 사용자가 보호 경로 접근 시
+<code>/login?next={경로}</code>로 이동하고 로그인 후 원래 경로로
+복귀한다(단, 권한이 없으면 <a href="#SCR-012">SCR-012</a>).</li>
+</ul>
+<h3 id="55-화면별-상세-계약">5.5 화면별 상세 계약</h3>
+<blockquote>
+<p>공통: 모든 로그인 화면은 AppShell(TopNav + SideNav + 본문) 안에
+렌더링한다. 요소 ID는 구현의 <code>data-testid</code> 값이다.</p>
+</blockquote>
+<h3 id="SCR-001">SCR-001 로그인</h3>
+<ul>
+<li>유형: 인증 · Route <code>/login</code> · 대상: 비로그인 · 목적:
+역할별 진입</li>
+<li>진입: 직접 접속, 보호 경로 리다이렉트, 세션 만료, 로그아웃</li>
+<li>종료·전이: 성공 → <code>next</code> 또는 <a href="#SCR-002">SCR-002</a></li>
+<li>관련: US-01, US-07 · FR-001~FR-004 · SC-001~SC-007 · DATA-001,
+DATA-013</li>
+<li>디자인 참고: REF-01(중앙 단일 카드 로그인)</li>
+<li>레이아웃: 화면 중앙 Card(로고 텍스트 → NAV-12와 같은 데모 Badge →
+입력 2개 → 버튼 → 시드 계정 안내). 모바일은 좌우 16px 여백 전폭
+카드</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-001-EL-01" class="id-anchor">SCR-001-EL-01</td>
+<td>입력</td>
+<td>TextField</td>
+<td>이메일</td>
+<td>모두</td>
+<td>항상</td>
+<td><a href="#DATA-001">DATA-001</a>.email</td>
+<td>필수, 이메일 형식</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-001-EL-02" class="id-anchor">SCR-001-EL-02</td>
+<td>입력</td>
+<td>PasswordField</td>
+<td>비밀번호</td>
+<td>모두</td>
+<td>항상</td>
+<td>저장 안 함</td>
+<td>필수</td>
+<td>Enter 시 제출</td>
+</tr>
+<tr class="odd">
+<td id="SCR-001-EL-03" class="id-anchor">SCR-001-EL-03</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>로그인</td>
+<td>모두</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td>제출 → <a href="#FR-001">FR-001</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-001-EL-04" class="id-anchor">SCR-001-EL-04</td>
+<td>상태</td>
+<td>ErrorBanner</td>
+<td>이메일 또는 비밀번호가 올바르지 않습니다.</td>
+<td>모두</td>
+<td>인증 실패 시</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-001-EL-05" class="id-anchor">SCR-001-EL-05</td>
+<td>표시</td>
+<td>Card(note)</td>
+<td>실습 계정은 강사 안내 자료를 확인하세요.</td>
+<td>모두</td>
+<td>항상</td>
+<td>정적</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-001-EL-06" class="id-anchor">SCR-001-EL-06</td>
+<td>상태</td>
+<td>ErrorBanner(info)</td>
+<td>세션이 만료되었습니다. 다시 로그인해 주세요.</td>
+<td>모두</td>
+<td><code>reason=expired</code></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-001-EL-07" class="id-anchor">SCR-001-EL-07</td>
+<td>상태</td>
+<td>FieldError</td>
+<td>이메일을 입력하세요 / 올바른 이메일 형식이 아닙니다 / 비밀번호를
+입력하세요</td>
+<td>모두</td>
+<td>검증 실패</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>빈 입력, 버튼 활성</td>
+<td id="SC-001" class="id-anchor">SC-001</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>버튼 비활성 + 스피너</td>
+<td id="SC-002" class="id-anchor">SC-002</td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>해당 없음 — 목록 없음</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td><a href="#SCR-002">SCR-002</a> 이동</td>
+<td>SC-002, <a href="#SC-003">SC-003</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td><a href="#SCR-001-EL-07">SCR-001-EL-07</a></td>
+<td id="SC-005" class="id-anchor">SC-005</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner "일시적인 오류입니다. 잠시 후 다시 시도하세요."</td>
+<td id="SC-040" class="id-anchor">SC-040</td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>해당 없음 — 인증 화면</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost 단일 기기 실행, 서버 미기동은 브라우저 연결
+오류</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-002">SCR-002 오늘의 브리핑</h3>
+<ul>
+<li>유형: 대시보드 · Route <code>/briefing</code> · 대상: KAM(담당
+고객), 관리자(전체) · 목적: A-1 고객별 일일 시장 신호 확인</li>
+<li>진입: 로그인 성공, NAV-01 · 전이: 카드 → SCR-006, <a href="#SCR-009">SCR-009</a></li>
+<li>관련: US-01, US-02 · FR-009~FR-012 · SC-011~SC-013 · DATA-004,
+DATA-002</li>
+<li>디자인 참고: REF-02(카드형 피드)</li>
+<li>레이아웃: PageHeader → StatTile 3개 가로 → 필터 → 카드 리스트(1열).
+모바일은 StatTile 세로 스택</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-002-EL-01" class="id-anchor">SCR-002-EL-01</td>
+<td>표시</td>
+<td>PageHeader</td>
+<td>오늘의 브리핑 · {YYYY년 M월 D일 (요일)}</td>
+<td>로그인</td>
+<td>항상</td>
+<td>서버 시각(Asia/Seoul)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-002-EL-02" class="id-anchor">SCR-002-EL-02</td>
+<td>표시</td>
+<td>StatTile</td>
+<td>오늘 신호 {n}건 / 고위험 고객 {n}곳 / 검토 대기 리드 {n}건</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-004, DATA-008, <a href="#DATA-005">DATA-005</a> 집계</td>
+<td>—</td>
+<td>리드 타일 클릭 → <a href="#SCR-003">SCR-003</a></td>
+</tr>
+<tr class="odd">
+<td id="SCR-002-EL-03" class="id-anchor">SCR-002-EL-03</td>
+<td>입력</td>
+<td>Select</td>
+<td>고객: 전체 담당 고객 / {고객명}</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-002">DATA-002</a>.name</td>
+<td>범위 내 고객만</td>
+<td>목록 필터</td>
+</tr>
+<tr class="even">
+<td id="SCR-002-EL-04" class="id-anchor">SCR-002-EL-04</td>
+<td>표시</td>
+<td>Card</td>
+<td>{고객명} · {신호유형 Badge} · {제목} · 요약 3줄 · 출처 링크 · {수집
+시각}</td>
+<td>로그인</td>
+<td>신호 1건 이상</td>
+<td><a href="#DATA-004">DATA-004</a>.*</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-002-EL-05" class="id-anchor">SCR-002-EL-05</td>
+<td>표시</td>
+<td>Badge</td>
+<td>AI 요약 / 규칙 요약</td>
+<td>로그인</td>
+<td>카드별</td>
+<td><a href="#DATA-004">DATA-004</a>.summary_method</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-002-EL-06" class="id-anchor">SCR-002-EL-06</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>고객 360 보기</td>
+<td>로그인</td>
+<td>카드에 고객 매칭 있음</td>
+<td><a href="#DATA-004">DATA-004</a>.account_id</td>
+<td>—</td>
+<td>→ <a href="#SCR-006">SCR-006</a></td>
+</tr>
+<tr class="odd">
+<td id="SCR-002-EL-07" class="id-anchor">SCR-002-EL-07</td>
+<td>행동</td>
+<td>Button(text)</td>
+<td>관련 다음 행동</td>
+<td>로그인</td>
+<td>해당 고객 추천 있음</td>
+<td><a href="#DATA-009">DATA-009</a></td>
+<td>—</td>
+<td>→ <a href="#SCR-009">SCR-009</a>?account={id}</td>
+</tr>
+<tr class="even">
+<td id="SCR-002-EL-08" class="id-anchor">SCR-002-EL-08</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>오늘 새 신호가 없습니다.</td>
+<td>로그인</td>
+<td>신호 0건</td>
+<td>—</td>
+<td>—</td>
+<td>관리자에게만 "데이터 운영으로" 버튼(<a href="#SCR-002-EL-09">SCR-002-EL-09</a>)</td>
+</tr>
+<tr class="odd">
+<td id="SCR-002-EL-09" class="id-anchor">SCR-002-EL-09</td>
+<td>행동</td>
+<td>Button</td>
+<td>데이터 운영으로</td>
+<td>관리자</td>
+<td>빈 상태</td>
+<td>—</td>
+<td>—</td>
+<td>→ <a href="#SCR-011">SCR-011</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>헤더·타일·카드</td>
+<td id="SC-011" class="id-anchor">SC-011</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>Skeleton 카드 3개</td>
+<td><a href="#SC-011">SC-011</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td><a href="#SCR-002-EL-08">SCR-002-EL-08</a></td>
+<td id="SC-012" class="id-anchor">SC-012</td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>카드 리스트</td>
+<td><a href="#SC-011">SC-011</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 입력 없음(필터는 선택형)</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>비로그인 → <a href="#SCR-001">SCR-001</a></td>
+<td><a href="#SC-001">SC-001</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-003">SCR-003 리드 인박스</h3>
+<ul>
+<li>유형: 목록·처리 · Route <code>/leads</code> · 대상: KAM(본인 배정
+리드), 관리자(전체) · 목적: A-2 임상 승인·국가 과제 신호를 잠재 수요
+리드로 검토</li>
+<li>진입: NAV-02, <a href="#SCR-002-EL-02">SCR-002-EL-02</a> · 전이: 수락·거절 후 같은 화면</li>
+<li>관련: US-02 · FR-016~FR-020 · SC-016~SC-019 · DATA-005,
+DATA-002</li>
+<li>디자인 참고: REF-03(메일 인박스형 탭+표)</li>
+<li>레이아웃: PageHeader → Tabs → DataTable(행 끝 행동 버튼). 모바일은
+표를 카드 리스트로 변환</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-003-EL-01" class="id-anchor">SCR-003-EL-01</td>
+<td>탐색</td>
+<td>Tabs</td>
+<td>검토 대기 {n} / 수락 / 거절</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-005">DATA-005</a>.status</td>
+<td>—</td>
+<td>탭 전환</td>
+</tr>
+<tr class="even">
+<td id="SCR-003-EL-02" class="id-anchor">SCR-003-EL-02</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>출처(식약처 임상/국가 과제) · 기관명 · 매칭 고객(자동/후보/신규
+Badge) · 모달리티 · 단계 · 예산 규모 · 추천 제품군 · 신뢰도</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-005">DATA-005</a>.*</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-003-EL-03" class="id-anchor">SCR-003-EL-03</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>수락</td>
+<td>로그인</td>
+<td>status=pending</td>
+<td>—</td>
+<td>매칭 고객 확정 필요(후보면 EL-06 선택 필수)</td>
+<td id="FR-018" class="id-anchor">FR-018</td>
+</tr>
+<tr class="even">
+<td id="SCR-003-EL-04" class="id-anchor">SCR-003-EL-04</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>거절</td>
+<td>로그인</td>
+<td>status=pending</td>
+<td>—</td>
+<td>EL-05 필수</td>
+<td id="FR-019" class="id-anchor">FR-019</td>
+</tr>
+<tr class="odd">
+<td id="SCR-003-EL-05" class="id-anchor">SCR-003-EL-05</td>
+<td>입력</td>
+<td>Select</td>
+<td>거절 사유: 중복 / 사업 범위 밖 / 정보 부족</td>
+<td>로그인</td>
+<td>거절 클릭 시 인라인 표시</td>
+<td><a href="#DATA-005">DATA-005</a>.reject_reason</td>
+<td>필수</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-003-EL-06" class="id-anchor">SCR-003-EL-06</td>
+<td>입력</td>
+<td>Select</td>
+<td>매칭 고객: {후보 고객들} / 신규 고객으로 등록</td>
+<td>로그인</td>
+<td>match_status=candidate 또는 new</td>
+<td><a href="#DATA-005">DATA-005</a>.matched_account_id</td>
+<td>필수(수락 시)</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-003-EL-07" class="id-anchor">SCR-003-EL-07</td>
+<td>입력</td>
+<td>Select</td>
+<td>담당자: {KAM 목록}</td>
+<td>관리자</td>
+<td>항상</td>
+<td><a href="#DATA-005">DATA-005</a>.assignee_user_id</td>
+<td>—</td>
+<td>저장 즉시 반영 <a href="#FR-020">FR-020</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-003-EL-08" class="id-anchor">SCR-003-EL-08</td>
+<td>상태</td>
+<td>Toast</td>
+<td>리드를 수락했습니다 / 리드를 거절했습니다</td>
+<td>로그인</td>
+<td>처리 성공</td>
+<td>—</td>
+<td>—</td>
+<td>3초 후 닫힘</td>
+</tr>
+<tr class="odd">
+<td id="SCR-003-EL-09" class="id-anchor">SCR-003-EL-09</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>검토할 리드가 없습니다.</td>
+<td>로그인</td>
+<td>탭 결과 0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-003-EL-10" class="id-anchor">SCR-003-EL-10</td>
+<td>상태</td>
+<td>FieldError</td>
+<td>거절 사유를 선택하세요 / 매칭할 고객을 선택하세요</td>
+<td>로그인</td>
+<td>검증 실패</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>검토 대기 탭</td>
+<td id="SC-017" class="id-anchor">SC-017</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>표 Skeleton</td>
+<td><a href="#SC-017">SC-017</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td><a href="#SCR-003-EL-09">SCR-003-EL-09</a></td>
+<td id="SC-018" class="id-anchor">SC-018</td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>Toast + 행이 다른 탭으로 이동</td>
+<td>SC-017, <a href="#SC-018">SC-018</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td><a href="#SCR-003-EL-10">SCR-003-EL-10</a></td>
+<td><a href="#SC-018">SC-018</a></td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>타 담당 리드는 목록에서 제외(서버 필터)</td>
+<td id="SC-019" class="id-anchor">SC-019</td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-004">SCR-004 미팅 노트</h3>
+<ul>
+<li>유형: 입력·검토 · Route <code>/notes</code>
+(<code>?account={id}</code>로 고객 미리 선택) · 대상: KAM(담당 고객),
+관리자 · 목적: A-5 메모를 구조화된 CRM 활동으로 확정</li>
+<li>진입: NAV-03, <a href="#SCR-006-EL-08">SCR-006-EL-08</a> · 전이: 확정 저장 후 같은 화면(폼
+초기화, 최근 기록 갱신)</li>
+<li>관련: US-01, US-06 · FR-021~FR-026 · SC-020~SC-024 · <a href="#DATA-006">DATA-006</a></li>
+<li>디자인 참고: REF-04(좌 입력·우 결과 2단 편집기)</li>
+<li>레이아웃: 데스크톱 2단(좌: 고객·날짜·메모·구조화 버튼 / 우: 구조화
+결과 폼·저장) → 하단 최근 기록 표. 모바일은 1단 순차</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-004-EL-01" class="id-anchor">SCR-004-EL-01</td>
+<td>입력</td>
+<td>Select</td>
+<td>고객</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-006">DATA-006</a>.account_id</td>
+<td>필수, 범위 내 고객</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-02" class="id-anchor">SCR-004-EL-02</td>
+<td>입력</td>
+<td>DateField</td>
+<td>미팅일</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-006">DATA-006</a>.meeting_date</td>
+<td>필수, 오늘 이후 불가</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-03" class="id-anchor">SCR-004-EL-03</td>
+<td>입력</td>
+<td>TextArea</td>
+<td>미팅 메모 (예: 공정개발팀 김 팀장 미팅, 신규 라인 배지 검토…)</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-006">DATA-006</a>.raw_note</td>
+<td>10~4,000자, 글자 수 표시</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-04" class="id-anchor">SCR-004-EL-04</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>AI로 구조화</td>
+<td>로그인</td>
+<td>EL-01~03 유효</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#FR-022">FR-022</a>, 진행 중 비활성+스피너</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-05" class="id-anchor">SCR-004-EL-05</td>
+<td>표시</td>
+<td>Badge</td>
+<td>추출: Claude / 추출: 규칙 기반</td>
+<td>로그인</td>
+<td>구조화 후</td>
+<td><a href="#DATA-006">DATA-006</a>.ai_method</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-06" class="id-anchor">SCR-004-EL-06</td>
+<td>입력</td>
+<td>DiffField ×7</td>
+<td>니즈 · 관심 제품군 · 경쟁사 언급 · 불만 · 다음 단계 · 다음 접촉
+예정일 · 고객 반응(긍정/중립/부정) — 각 필드에 "AI 제안" 회색 표시와
+편집 가능한 확정값</td>
+<td>로그인</td>
+<td>구조화 후</td>
+<td><a href="#DATA-006">DATA-006</a>.ai_* → 확정 필드</td>
+<td>니즈·다음 단계·고객 반응 필수</td>
+<td>수정 시 필드 옆 "수정됨" Tag</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-07" class="id-anchor">SCR-004-EL-07</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>확정 저장</td>
+<td>로그인</td>
+<td>구조화 후, 필수 필드 유효</td>
+<td>—</td>
+<td>—</td>
+<td id="FR-023" class="id-anchor">FR-023</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-08" class="id-anchor">SCR-004-EL-08</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>취소</td>
+<td>로그인</td>
+<td>입력값 있음</td>
+<td>—</td>
+<td>—</td>
+<td>확인 Modal(<a href="#SCR-004-EL-12">SCR-004-EL-12</a>)</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-09" class="id-anchor">SCR-004-EL-09</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>최근 기록: 미팅일 · 고객 · 니즈 요약 · 상태(확정/초안) · 수정 필드
+수</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-006 본인 최신 10건</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-10" class="id-anchor">SCR-004-EL-10</td>
+<td>행동</td>
+<td>Button(text)</td>
+<td>확정 취소</td>
+<td>로그인</td>
+<td>확정 후 24시간 이내 행</td>
+<td>—</td>
+<td>—</td>
+<td id="FR-024" class="id-anchor">FR-024</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-11" class="id-anchor">SCR-004-EL-11</td>
+<td>상태</td>
+<td>ErrorBanner(warning)</td>
+<td>AI 구조화에 실패해 규칙 기반 결과로 대체했습니다. 내용을 확인해
+주세요.</td>
+<td>로그인</td>
+<td>AI 실패</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-12" class="id-anchor">SCR-004-EL-12</td>
+<td>상태</td>
+<td>Modal</td>
+<td>작성 중인 내용을 버릴까요? [계속 작성] [버리기]</td>
+<td>로그인</td>
+<td>EL-08 클릭</td>
+<td>—</td>
+<td>—</td>
+<td>버리기 → 폼 초기화</td>
+</tr>
+<tr class="odd">
+<td id="SCR-004-EL-13" class="id-anchor">SCR-004-EL-13</td>
+<td>상태</td>
+<td>FieldError</td>
+<td>고객을 선택하세요 / 미래 날짜는 입력할 수 없습니다 / 메모는 10자
+이상 입력하세요 / 필수 항목입니다</td>
+<td>로그인</td>
+<td>검증 실패</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-004-EL-14" class="id-anchor">SCR-004-EL-14</td>
+<td>상태</td>
+<td>Toast</td>
+<td>활동을 확정 저장했습니다 / 확정을 취소했습니다</td>
+<td>로그인</td>
+<td>성공</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>빈 폼, 결과 영역 안내 문구 "메모를 입력하고 AI로 구조화하세요"</td>
+<td id="SC-020" class="id-anchor">SC-020</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>EL-04 스피너, 결과 영역 Skeleton</td>
+<td id="SC-021" class="id-anchor">SC-021</td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>최근 기록 0건: "아직 기록이 없습니다."</td>
+<td><a href="#SC-021">SC-021</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>EL-14, 최근 기록 1행 추가</td>
+<td>SC-021, <a href="#SC-023">SC-023</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>EL-13</td>
+<td><a href="#SC-020">SC-020</a></td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>AI 실패 → EL-11(저장 가능). 저장 실패 → ErrorBanner "저장하지
+못했습니다" 입력값 유지</td>
+<td>SC-022, <a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>범위 밖 고객은 EL-01 목록에 없음. <code>?account=</code> 범위 밖이면
+SCR-012</td>
+<td id="SC-009" class="id-anchor">SC-009</td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-005">SCR-005 고객 목록</h3>
+<ul>
+<li>유형: 목록 · Route <code>/accounts</code> · 대상: KAM(담당),
+관리자(전체) · 목적: 고객 탐색</li>
+<li>진입: NAV-04 · 전이: 행 클릭 → <a href="#SCR-006">SCR-006</a></li>
+<li>관련: US-01 · FR-039 · SC-032 · DATA-002, DATA-003, DATA-008,
+DATA-011</li>
+<li>디자인 참고: DESIGN.md 표 패턴</li>
+<li>레이아웃: PageHeader → 검색·필터 한 줄 → DataTable. 모바일은 카드
+리스트</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-005-EL-01" class="id-anchor">SCR-005-EL-01</td>
+<td>입력</td>
+<td>SearchField</td>
+<td>고객명·별칭 검색</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-002.name, <a href="#DATA-003">DATA-003</a>.alias</td>
+<td>0~50자, 300ms 디바운스</td>
+<td>목록 필터</td>
+</tr>
+<tr class="even">
+<td id="SCR-005-EL-02" class="id-anchor">SCR-005-EL-02</td>
+<td>입력</td>
+<td>Select</td>
+<td>세그먼트: 전체/CDMO/바이오텍/제약/대학·연구소/반도체·배터리</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-002">DATA-002</a>.segment</td>
+<td>—</td>
+<td>목록 필터</td>
+</tr>
+<tr class="odd">
+<td id="SCR-005-EL-03" class="id-anchor">SCR-005-EL-03</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>고객명 · 세그먼트 · 담당 KAM · 최근 12개월 주문액(억 원) · 이탈위험
+ScoreBar · 품질 점수</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-002, DATA-007, DATA-008, <a href="#DATA-011">DATA-011</a></td>
+<td>—</td>
+<td>행 클릭 → <a href="#SCR-006">SCR-006</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-005-EL-04" class="id-anchor">SCR-005-EL-04</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>검색 결과가 없습니다.</td>
+<td>로그인</td>
+<td>0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>전체 범위 목록</td>
+<td id="SC-032" class="id-anchor">SC-032</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>표 Skeleton</td>
+<td><a href="#SC-032">SC-032</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-04</td>
+<td><a href="#SC-032">SC-032</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>목록</td>
+<td><a href="#SC-032">SC-032</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 자유 검색</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>범위 밖 고객 미표시(서버 필터)</td>
+<td><a href="#SC-009">SC-009</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-006">SCR-006 고객 360</h3>
+<ul>
+<li>유형: 상세 · Route <code>/accounts/[id]</code> · 대상: KAM(담당
+고객만), 관리자 · 목적: 신호·활동·주문·위험·추천·품질 통합 보기</li>
+<li>진입: SCR-005, SCR-002-EL-06, SCR-008 · 전이: SCR-004, SCR-007,
+SCR-009</li>
+<li>관련: US-01 · FR-040~FR-042 · SC-033, SC-009 ·
+DATA-002~DATA-011</li>
+<li>디자인 참고: REF-05(상세 페이지 상단 요약 + 2단 카드)</li>
+<li>레이아웃: PageHeader → StatTile 4개 → 좌(주문 차트, 타임라인) /
+우(위험 근거, 추천, 품질 카드). 모바일 1단</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-006-EL-01" class="id-anchor">SCR-006-EL-01</td>
+<td>표시</td>
+<td>PageHeader</td>
+<td>{고객명} · 세그먼트 Badge · 별칭 Tag들</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-002, <a href="#DATA-003">DATA-003</a>(approved)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-006-EL-02" class="id-anchor">SCR-006-EL-02</td>
+<td>표시</td>
+<td>StatTile ×4</td>
+<td>최근 3개월 주문액 · 직전 3개월 대비 증감률 · 마지막 접촉 경과일 ·
+이탈위험 점수</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-007, DATA-006, <a href="#DATA-008">DATA-008</a></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-006-EL-03" class="id-anchor">SCR-006-EL-03</td>
+<td>표시</td>
+<td>BarChart</td>
+<td>월별 주문액(최근 12개월, 억 원)</td>
+<td>로그인</td>
+<td>주문 1건 이상</td>
+<td><a href="#DATA-007">DATA-007</a></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-006-EL-04" class="id-anchor">SCR-006-EL-04</td>
+<td>표시</td>
+<td>Timeline</td>
+<td>신호·활동 통합 시간순 30건</td>
+<td>로그인</td>
+<td>항상</td>
+<td>DATA-004, <a href="#DATA-006">DATA-006</a></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-006-EL-05" class="id-anchor">SCR-006-EL-05</td>
+<td>표시</td>
+<td>Card</td>
+<td>위험 근거 상위 3개(기여 점수)</td>
+<td>로그인</td>
+<td>점수 있음</td>
+<td><a href="#DATA-008">DATA-008</a>.reasons</td>
+<td>—</td>
+<td>"위험 목록" → <a href="#SCR-008">SCR-008</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-006-EL-06" class="id-anchor">SCR-006-EL-06</td>
+<td>표시</td>
+<td>Card</td>
+<td>다음 행동 1순위 + "추천 전체 보기"</td>
+<td>로그인</td>
+<td>추천 있음</td>
+<td><a href="#DATA-009">DATA-009</a></td>
+<td>—</td>
+<td>→ <a href="#SCR-009">SCR-009</a>?account={id}</td>
+</tr>
+<tr class="odd">
+<td id="SCR-006-EL-07" class="id-anchor">SCR-006-EL-07</td>
+<td>표시</td>
+<td>Card</td>
+<td>이 고객 데이터 품질 {점수} · 열린 이슈 {n}건</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-010">DATA-010</a>, 고객 단위 계산</td>
+<td>—</td>
+<td>→ <a href="#SCR-007">SCR-007</a>?account={id}</td>
+</tr>
+<tr class="even">
+<td id="SCR-006-EL-08" class="id-anchor">SCR-006-EL-08</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>미팅 노트 작성</td>
+<td>로그인</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td>→ <a href="#SCR-004">SCR-004</a>?account={id}</td>
+</tr>
+<tr class="odd">
+<td id="SCR-006-EL-09" class="id-anchor">SCR-006-EL-09</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>주문 이력이 없습니다 / 기록된 활동이 없습니다</td>
+<td>로그인</td>
+<td>각 영역 0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>전체 위젯</td>
+<td id="SC-033" class="id-anchor">SC-033</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>위젯별 Skeleton</td>
+<td><a href="#SC-033">SC-033</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-09</td>
+<td><a href="#SC-033">SC-033</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>위젯 표시</td>
+<td><a href="#SC-033">SC-033</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 입력 없음</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>존재하지 않는 id → "고객을 찾을 수 없습니다" EmptyState + 고객 목록
+버튼</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>KAM이 범위 밖 고객 → <a href="#SCR-012">SCR-012</a></td>
+<td><a href="#SC-009">SC-009</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-007">SCR-007 데이터 품질</h3>
+<ul>
+<li>유형: 대시보드 · Route <code>/quality</code>
+(<code>?account={id}</code> 선택) · 대상: KAM(담당 범위 조회),
+관리자(전체·통합 처리) · 목적: 품질 5개 지표와 이슈, 고객명 통합</li>
+<li>진입: NAV-07, <a href="#SCR-006-EL-07">SCR-006-EL-07</a> · 전이: 같은 화면</li>
+<li>관련: US-03 · FR-027~FR-031 · SC-025~SC-027 · DATA-010, DATA-011,
+DATA-003</li>
+<li>디자인 참고: REF-06(지표 타일 + 처리 대기열)</li>
+<li>레이아웃: StatTile 6개(종합 강조) → 추세 차트 → 좌 이슈 표 / 우 통합
+대기열. 모바일 1단</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-007-EL-01" class="id-anchor">SCR-007-EL-01</td>
+<td>표시</td>
+<td>StatTile ×6</td>
+<td>종합 · 완전성 · 정확성 · 적시성 · 일관성 · 유일성 (%) — 각 타일에 ⓘ
+정의 툴팁</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-011">DATA-011</a> 최신</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-007-EL-02" class="id-anchor">SCR-007-EL-02</td>
+<td>표시</td>
+<td>LineChart</td>
+<td>최근 8개 스냅샷 추세</td>
+<td>로그인</td>
+<td>스냅샷 2개 이상</td>
+<td><a href="#DATA-011">DATA-011</a></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-007-EL-03" class="id-anchor">SCR-007-EL-03</td>
+<td>입력</td>
+<td>Select</td>
+<td>이슈 유형: 전체/필수 항목 누락/기록 지연/고객명 미해소/중복
+고객</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-010">DATA-010</a>.issue_type</td>
+<td>—</td>
+<td>필터</td>
+</tr>
+<tr class="even">
+<td id="SCR-007-EL-04" class="id-anchor">SCR-007-EL-04</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>유형 · 대상 · 설명 · 상태</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-010">DATA-010</a></td>
+<td>—</td>
+<td>대상 클릭 → 해당 화면</td>
+</tr>
+<tr class="odd">
+<td id="SCR-007-EL-05" class="id-anchor">SCR-007-EL-05</td>
+<td>표시</td>
+<td>Card list</td>
+<td>통합 대기열: "{원문 이름}" ↔︎ {후보 고객} · 유사도 {0.xx}</td>
+<td>로그인</td>
+<td>후보 1건 이상</td>
+<td><a href="#DATA-010">DATA-010</a>(unresolved_name, duplicate_account)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-007-EL-06" class="id-anchor">SCR-007-EL-06</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>같은 고객으로 통합</td>
+<td>관리자</td>
+<td>대기 항목</td>
+<td>—</td>
+<td>—</td>
+<td id="FR-030" class="id-anchor">FR-030</td>
+</tr>
+<tr class="odd">
+<td id="SCR-007-EL-07" class="id-anchor">SCR-007-EL-07</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>다른 고객</td>
+<td>관리자</td>
+<td>대기 항목</td>
+<td>—</td>
+<td>—</td>
+<td>이슈 dismissed</td>
+</tr>
+<tr class="even">
+<td id="SCR-007-EL-08" class="id-anchor">SCR-007-EL-08</td>
+<td>행동</td>
+<td>Button(text)</td>
+<td>지표 재계산</td>
+<td>로그인</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td>FR-027·FR-028</td>
+</tr>
+<tr class="odd">
+<td id="SCR-007-EL-09" class="id-anchor">SCR-007-EL-09</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>처리할 통합 후보가 없습니다.</td>
+<td>로그인</td>
+<td>대기 0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>타일·차트·표·대기열</td>
+<td id="SC-026" class="id-anchor">SC-026</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>Skeleton</td>
+<td><a href="#SC-026">SC-026</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-09, 이슈 0건 "열린 이슈가 없습니다."</td>
+<td><a href="#SC-026">SC-026</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>통합 후 Toast "통합했습니다", 지표 갱신</td>
+<td><a href="#SC-026">SC-026</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 선택형</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>KAM: EL-06·EL-07 미노출, 담당 범위만</td>
+<td id="SC-027" class="id-anchor">SC-027</td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-008">SCR-008 위험 고객</h3>
+<ul>
+<li>유형: 목록 · Route <code>/risk</code> · 대상: KAM(담당), 관리자 ·
+목적: P-2 이탈위험 점수와 근거 확인</li>
+<li>진입: NAV-05, SCR-002-EL-02 · 전이: 행 → <a href="#SCR-006">SCR-006</a></li>
+<li>관련: US-04 · FR-032~FR-035 · SC-028, SC-029 · <a href="#DATA-008">DATA-008</a></li>
+<li>디자인 참고: REF-06</li>
+<li>레이아웃: PageHeader(+재계산 버튼) → 등급 필터 → DataTable</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-008-EL-01" class="id-anchor">SCR-008-EL-01</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>고객 · 점수 ScoreBar(0~100) · 등급 Badge(고/중/저) · 근거 Tag 3개 ·
+산출 시각</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-008">DATA-008</a></td>
+<td>—</td>
+<td>행 → <a href="#SCR-006">SCR-006</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-008-EL-02" class="id-anchor">SCR-008-EL-02</td>
+<td>입력</td>
+<td>SegmentedControl</td>
+<td>전체 / 고 / 중 / 저</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-008">DATA-008</a>.grade</td>
+<td>—</td>
+<td>필터</td>
+</tr>
+<tr class="odd">
+<td id="SCR-008-EL-03" class="id-anchor">SCR-008-EL-03</td>
+<td>행동</td>
+<td>Button(text)</td>
+<td>근거 보기</td>
+<td>로그인</td>
+<td>행마다</td>
+<td>—</td>
+<td>—</td>
+<td>Modal EL-04</td>
+</tr>
+<tr class="even">
+<td id="SCR-008-EL-04" class="id-anchor">SCR-008-EL-04</td>
+<td>표시</td>
+<td>Modal</td>
+<td>5개 요인별 원값·기여 점수 표 + 계산식 설명</td>
+<td>로그인</td>
+<td>EL-03 클릭</td>
+<td><a href="#DATA-008">DATA-008</a>.reasons</td>
+<td>—</td>
+<td>닫기</td>
+</tr>
+<tr class="odd">
+<td id="SCR-008-EL-05" class="id-anchor">SCR-008-EL-05</td>
+<td>표시</td>
+<td>Badge(warning)</td>
+<td>데이터 품질 경고</td>
+<td>로그인</td>
+<td>고객 품질 점수 &lt; 70</td>
+<td>고객 단위 품질</td>
+<td>—</td>
+<td>툴팁 "입력 데이터가 부족해 점수가 낮게 나올 수 있습니다"</td>
+</tr>
+<tr class="even">
+<td id="SCR-008-EL-06" class="id-anchor">SCR-008-EL-06</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>점수 재계산</td>
+<td>로그인</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td id="FR-032" class="id-anchor">FR-032</td>
+</tr>
+<tr class="odd">
+<td id="SCR-008-EL-07" class="id-anchor">SCR-008-EL-07</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>해당 등급의 고객이 없습니다.</td>
+<td>로그인</td>
+<td>0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>점수 내림차순</td>
+<td id="SC-029" class="id-anchor">SC-029</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>표 Skeleton</td>
+<td><a href="#SC-029">SC-029</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-07</td>
+<td><a href="#SC-029">SC-029</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>재계산 후 Toast "점수를 다시 계산했습니다"</td>
+<td><a href="#SC-029">SC-029</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 선택형</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>담당 범위만(서버 필터)</td>
+<td><a href="#SC-009">SC-009</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-009">SCR-009 다음 행동 추천</h3>
+<ul>
+<li>유형: 목록·처리 · Route <code>/actions</code>
+(<code>?account={id}</code> 선택) · 대상: KAM(담당), 관리자 · 목적: O-2
+고객별 다음 행동 결정</li>
+<li>진입: NAV-06, SCR-002-EL-07, <a href="#SCR-006-EL-06">SCR-006-EL-06</a></li>
+<li>관련: US-04 · FR-036~FR-038 · SC-030, SC-031 · <a href="#DATA-009">DATA-009</a></li>
+<li>디자인 참고: REF-03</li>
+<li>레이아웃: PageHeader → Tabs → 추천 카드 리스트(우선순위순)</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-009-EL-01" class="id-anchor">SCR-009-EL-01</td>
+<td>탐색</td>
+<td>Tabs</td>
+<td>새 추천 {n} / 채택 / 보류·거절</td>
+<td>로그인</td>
+<td>항상</td>
+<td><a href="#DATA-009">DATA-009</a>.status</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-009-EL-02" class="id-anchor">SCR-009-EL-02</td>
+<td>표시</td>
+<td>Card</td>
+<td>우선순위 Badge · {고객} · {행동} · 제품군 · 채널 · 기한 · 근거 설명
+· 근거 신호 링크</td>
+<td>로그인</td>
+<td>1건 이상</td>
+<td><a href="#DATA-009">DATA-009</a>.*</td>
+<td>—</td>
+<td>근거 링크 → <a href="#SCR-006">SCR-006</a></td>
+</tr>
+<tr class="odd">
+<td id="SCR-009-EL-03" class="id-anchor">SCR-009-EL-03</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>채택</td>
+<td>로그인</td>
+<td>status=new/held</td>
+<td>—</td>
+<td>—</td>
+<td id="FR-037" class="id-anchor">FR-037</td>
+</tr>
+<tr class="even">
+<td id="SCR-009-EL-04" class="id-anchor">SCR-009-EL-04</td>
+<td>행동</td>
+<td>Button(secondary)</td>
+<td>보류</td>
+<td>로그인</td>
+<td>status=new</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#FR-037">FR-037</a></td>
+</tr>
+<tr class="odd">
+<td id="SCR-009-EL-05" class="id-anchor">SCR-009-EL-05</td>
+<td>행동</td>
+<td>Button(text)</td>
+<td>거절</td>
+<td>로그인</td>
+<td>status=new/held</td>
+<td>—</td>
+<td>EL-06 필수</td>
+<td><a href="#FR-037">FR-037</a></td>
+</tr>
+<tr class="even">
+<td id="SCR-009-EL-06" class="id-anchor">SCR-009-EL-06</td>
+<td>입력</td>
+<td>Select</td>
+<td>거절 사유: 이미 진행 중 / 시점 부적절 / 근거 부정확 / 기타</td>
+<td>로그인</td>
+<td>거절 클릭 시</td>
+<td><a href="#DATA-009">DATA-009</a>.reject_reason</td>
+<td>필수</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-009-EL-07" class="id-anchor">SCR-009-EL-07</td>
+<td>표시</td>
+<td>Badge</td>
+<td>설명: AI / 설명: 규칙</td>
+<td>로그인</td>
+<td>카드별</td>
+<td><a href="#DATA-009">DATA-009</a>.explanation_method</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-009-EL-08" class="id-anchor">SCR-009-EL-08</td>
+<td>상태</td>
+<td>Toast</td>
+<td>채택했습니다 / 보류했습니다 / 거절했습니다</td>
+<td>로그인</td>
+<td>성공</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-009-EL-09" class="id-anchor">SCR-009-EL-09</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>새 추천이 없습니다.</td>
+<td>로그인</td>
+<td>0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-009-EL-10" class="id-anchor">SCR-009-EL-10</td>
+<td>상태</td>
+<td>FieldError</td>
+<td>거절 사유를 선택하세요</td>
+<td>로그인</td>
+<td>검증 실패</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>새 추천 탭</td>
+<td id="SC-031" class="id-anchor">SC-031</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>카드 Skeleton</td>
+<td><a href="#SC-031">SC-031</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-09</td>
+<td><a href="#SC-031">SC-031</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>EL-08, 카드 탭 이동</td>
+<td><a href="#SC-031">SC-031</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>EL-10</td>
+<td><a href="#SC-031">SC-031</a></td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>ErrorBanner + 다시 시도</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>담당 범위만</td>
+<td><a href="#SC-009">SC-009</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-010">SCR-010 품질-성과 실험실</h3>
+<ul>
+<li>유형: 분석 · Route <code>/lab</code> · 대상: 관리자 · 목적: 같은
+정답 데이터에서 자동화 비율(0·25·50·75·100%)만 바꿔 품질과 P-2·O-2
+성과를 비교 시연</li>
+<li>진입: <a href="#NAV-08">NAV-08</a> · 전이: 같은 화면</li>
+<li>관련: US-05 · FR-043~FR-045 · SC-034~SC-036 · <a href="#DATA-012">DATA-012</a></li>
+<li>디자인 참고: REF-07(실험 결과 비교 표 + 차트)</li>
+<li>레이아웃: 설명 Card → 실행 버튼 → 결과 표 → 차트 → 실행 이력</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-010-EL-01" class="id-anchor">SCR-010-EL-01</td>
+<td>표시</td>
+<td>Card</td>
+<td>실험 설명: 정답 이탈 고객 6곳이 심어진 고객 30곳 데이터를, 수기 입력
+수준(0%)부터 완전 자동화(100%)까지 5단계 품질로 다시 생성해 같은
+규칙으로 평가합니다.</td>
+<td>관리자</td>
+<td>항상</td>
+<td>정적</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-010-EL-02" class="id-anchor">SCR-010-EL-02</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>실험 실행</td>
+<td>관리자</td>
+<td>실행 중 아님</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#FR-043">FR-043</a>, 실행 중 스피너</td>
+</tr>
+<tr class="odd">
+<td id="SCR-010-EL-03" class="id-anchor">SCR-010-EL-03</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>행: 종합 품질 · 이탈 탐지 재현율 · 정밀도 · 추천 적중률 / 열: 자동화
+0% · 25% · 50% · 75% · 100%</td>
+<td>관리자</td>
+<td>결과 있음</td>
+<td><a href="#DATA-012">DATA-012</a>.results</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-010-EL-04" class="id-anchor">SCR-010-EL-04</td>
+<td>표시</td>
+<td>LineChart</td>
+<td>x=자동화 비율, y=4개 지표(0~1)</td>
+<td>관리자</td>
+<td>결과 있음</td>
+<td><a href="#DATA-012">DATA-012</a>.results</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-010-EL-05" class="id-anchor">SCR-010-EL-05</td>
+<td>표시</td>
+<td>Card(callout)</td>
+<td>핵심 메시지: 자동화 100%의 재현율 {a} vs 0%의 {b} (차이 {a−b})</td>
+<td>관리자</td>
+<td>결과 있음</td>
+<td>계산값</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-010-EL-06" class="id-anchor">SCR-010-EL-06</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>실행 이력: 실행 시각 · 실행자 · 시드 · 상태</td>
+<td>관리자</td>
+<td>이력 있음</td>
+<td><a href="#DATA-012">DATA-012</a></td>
+<td>—</td>
+<td>행 클릭 → 해당 결과 표시</td>
+</tr>
+<tr class="odd">
+<td id="SCR-010-EL-07" class="id-anchor">SCR-010-EL-07</td>
+<td>상태</td>
+<td>ErrorBanner</td>
+<td>실험을 실행하지 못했습니다. 다시 시도하세요.</td>
+<td>관리자</td>
+<td>실패</td>
+<td><a href="#DATA-012">DATA-012</a>.error</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-010-EL-08" class="id-anchor">SCR-010-EL-08</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>아직 실험 결과가 없습니다. [실험 실행]을 눌러 시작하세요.</td>
+<td>관리자</td>
+<td>이력 0건</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>최신 결과 또는 EL-08</td>
+<td id="SC-035" class="id-anchor">SC-035</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>EL-02 스피너 + "5개 데이터셋 평가 중"</td>
+<td><a href="#SC-035">SC-035</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>EL-08</td>
+<td><a href="#SC-035">SC-035</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>EL-03~EL-05</td>
+<td><a href="#SC-035">SC-035</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 입력 없음</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>EL-07</td>
+<td id="SC-036" class="id-anchor">SC-036</td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>KAM → <a href="#SCR-012">SCR-012</a></td>
+<td id="SC-008" class="id-anchor">SC-008</td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-011">SCR-011 데이터 운영</h3>
+<ul>
+<li>유형: 관리 · Route <code>/admin/ops</code> · 대상: 관리자 · 목적:
+A-1 신호 수집·A-2 리드 변환 실행, 데모 초기화</li>
+<li>진입: NAV-09, <a href="#SCR-002-EL-09">SCR-002-EL-09</a></li>
+<li>관련: US-02 · FR-013~FR-016 · SC-014, SC-015 · DATA-014, DATA-004,
+DATA-005</li>
+<li>디자인 참고: DESIGN.md 설정 화면 패턴</li>
+<li>레이아웃: 작업 Card 3개(수집·변환·초기화) → AI 연결 상태 → 실행 로그
+표</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-011-EL-01" class="id-anchor">SCR-011-EL-01</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>신호 수집 실행 (A-1) · 미수집 {n}건</td>
+<td>관리자</td>
+<td>실행 중 아님</td>
+<td>피드 파일 대비 <a href="#DATA-004">DATA-004</a></td>
+<td>—</td>
+<td id="FR-013" class="id-anchor">FR-013</td>
+</tr>
+<tr class="even">
+<td id="SCR-011-EL-02" class="id-anchor">SCR-011-EL-02</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>리드 변환 실행 (A-2) · 대상 {n}건</td>
+<td>관리자</td>
+<td>실행 중 아님</td>
+<td><a href="#DATA-004">DATA-004</a>(clinical/ntis 미변환)</td>
+<td>—</td>
+<td id="FR-016" class="id-anchor">FR-016</td>
+</tr>
+<tr class="odd">
+<td id="SCR-011-EL-03" class="id-anchor">SCR-011-EL-03</td>
+<td>행동</td>
+<td>Button(destructive)</td>
+<td>데모 데이터 초기화</td>
+<td>관리자</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td>Modal EL-04</td>
+</tr>
+<tr class="even">
+<td id="SCR-011-EL-04" class="id-anchor">SCR-011-EL-04</td>
+<td>상태</td>
+<td>Modal</td>
+<td>모든 입력·처리 결과가 시드 상태로 돌아갑니다. 계속할까요? [취소]
+[초기화]</td>
+<td>관리자</td>
+<td>EL-03 클릭</td>
+<td>—</td>
+<td>—</td>
+<td>초기화 → <a href="#FR-014">FR-014</a></td>
+</tr>
+<tr class="odd">
+<td id="SCR-011-EL-05" class="id-anchor">SCR-011-EL-05</td>
+<td>표시</td>
+<td>DataTable</td>
+<td>실행 로그: 작업 · 시작 · 종료 · 결과 · 처리 건수 · 메시지</td>
+<td>관리자</td>
+<td>항상</td>
+<td><a href="#DATA-014">DATA-014</a></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-011-EL-06" class="id-anchor">SCR-011-EL-06</td>
+<td>표시</td>
+<td>Badge</td>
+<td>AI: 연결됨(Claude) / AI: 모의 응답 / AI: 꺼짐(규칙 기반)</td>
+<td>관리자</td>
+<td>항상</td>
+<td>환경 변수 <code>AI_MODE</code>, 키 존재 여부</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td id="SCR-011-EL-07" class="id-anchor">SCR-011-EL-07</td>
+<td>상태</td>
+<td>Toast</td>
+<td>신호 {n}건을 수집했습니다(중복 {m}건 제외) / 리드 {n}건을
+만들었습니다 / 초기화했습니다</td>
+<td>관리자</td>
+<td>성공</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>작업 카드 + 로그</td>
+<td id="SC-014" class="id-anchor">SC-014</td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>실행 버튼 스피너, 다른 실행 버튼 비활성</td>
+<td><a href="#SC-014">SC-014</a></td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>로그 0건 "실행 기록이 없습니다." · 미수집 0건이면 EL-01 비활성 +
+"새로 수집할 신호가 없습니다"</td>
+<td><a href="#SC-014">SC-014</a></td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>EL-07 + 로그 행</td>
+<td>SC-014, <a href="#SC-015">SC-015</a></td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 입력 없음</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>로그 행 결과 "실패" + ErrorBanner</td>
+<td><a href="#SC-040">SC-040</a></td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>KAM → <a href="#SCR-012">SCR-012</a></td>
+<td><a href="#SC-008">SC-008</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="SCR-012">SCR-012 접근 거부</h3>
+<ul>
+<li>유형: 시스템 · Route <code>/forbidden</code> · 대상: 로그인 사용자 ·
+목적: 권한 없는 접근 안내</li>
+<li>진입: 서버 권한 검사 실패 · 전이: <a href="#SCR-002">SCR-002</a></li>
+<li>관련: US-07 · FR-006, FR-007 · SC-008, <a href="#SC-009">SC-009</a></li>
+<li>디자인 참고: DESIGN.md EmptyState 패턴</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>요소 ID</th>
+<th>종류</th>
+<th>컴포넌트</th>
+<th>라벨·표시값</th>
+<th>노출</th>
+<th>조건</th>
+<th>데이터</th>
+<th>입력·검증</th>
+<th>행동·결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="SCR-012-EL-01" class="id-anchor">SCR-012-EL-01</td>
+<td>상태</td>
+<td>EmptyState</td>
+<td>이 화면을 볼 권한이 없습니다.</td>
+<td>로그인</td>
+<td>항상</td>
+<td>정적</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td id="SCR-012-EL-02" class="id-anchor">SCR-012-EL-02</td>
+<td>행동</td>
+<td>Button(primary)</td>
+<td>오늘의 브리핑으로</td>
+<td>로그인</td>
+<td>항상</td>
+<td>—</td>
+<td>—</td>
+<td>→ <a href="#SCR-002">SCR-002</a></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>상태</th>
+<th>표시</th>
+<th>검증 SC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>초기</td>
+<td>EL-01, EL-02</td>
+<td><a href="#SC-008">SC-008</a></td>
+</tr>
+<tr class="even">
+<td>로딩</td>
+<td>해당 없음 — 정적 화면</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>빈</td>
+<td>해당 없음 — 정적 화면</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>성공</td>
+<td>해당 없음 — 행동 없음</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>검증 오류</td>
+<td>해당 없음 — 입력 없음</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>시스템 오류</td>
+<td>해당 없음 — 서버 데이터 미사용</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td>이 화면 자체</td>
+<td><a href="#SC-008">SC-008</a></td>
+</tr>
+<tr class="even">
+<td>오프라인</td>
+<td>해당 없음 — localhost</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="56-반응형접근성-전-화면-공통">5.6 반응형·접근성 (전 화면
+공통)</h3>
+<ul>
+<li>뷰포트: 데스크톱 1440×900(기준), 모바일 390×844. 768px 미만에서
+SideNav → 햄버거(NAV-11), DataTable → 카드 리스트, 2단 → 1단.</li>
+<li>접근성: 모든 입력에 label 연결, 아이콘 버튼 aria-label, 색만으로
+등급 구분 금지(텍스트 병기), 키보드로 모든 행동 가능, 포커스 링 표시,
+대비 4.5:1 이상.</li>
+</ul>
+<h2 id="6-functional-requirements">6. Functional Requirements</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>판정 가능한 요구사항</th>
+<th>우선순위</th>
+<th>시나리오</th>
+<th>화면·요소</th>
+<th>데이터</th>
+<th>관련 SC</th>
+<th>검증 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="FR-001" class="id-anchor">FR-001</td>
+<td>유효한 이메일·비밀번호 제출 시 세션을 만들고 <code>next</code> 또는
+SCR-002로 이동한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-001-EL-01~03</td>
+<td>DATA-001, <a href="#DATA-013">DATA-013</a></td>
+<td>SC-002, <a href="#SC-003">SC-003</a></td>
+<td>[E2E] 로그인 후 브리핑 표시</td>
+</tr>
+<tr class="even">
+<td id="FR-002" class="id-anchor">FR-002</td>
+<td>인증 실패 시 SCR-001-EL-04를 표시하고 입력한 이메일을 유지한다. 빈
+값·형식 오류는 EL-07로 제출 전 차단한다</td>
+<td>P0 (High)</td>
+<td>US-07</td>
+<td>SCR-001-EL-04, EL-07</td>
+<td><a href="#DATA-001">DATA-001</a></td>
+<td>SC-004, <a href="#SC-005">SC-005</a></td>
+<td>[E2E] 오류 문구 표시</td>
+</tr>
+<tr class="odd">
+<td id="FR-003" class="id-anchor">FR-003</td>
+<td>세션은 생성 후 8시간 유효하며 만료 후 요청은
+<code>/login?reason=expired</code>로 이동해 EL-06을 표시한다</td>
+<td>P0 (High)</td>
+<td>US-07</td>
+<td><a href="#SCR-001-EL-06">SCR-001-EL-06</a></td>
+<td><a href="#DATA-013">DATA-013</a></td>
+<td id="SC-006" class="id-anchor">SC-006</td>
+<td>[E2E] 만료 세션 리다이렉트</td>
+</tr>
+<tr class="even">
+<td id="FR-004" class="id-anchor">FR-004</td>
+<td>로그아웃 시 세션을 삭제하고 <a href="#SCR-001">SCR-001</a>로 이동하며, 이후 보호 경로
+접근은 로그인으로 이동한다</td>
+<td>P0 (High)</td>
+<td>US-07</td>
+<td><a href="#NAV-10">NAV-10</a></td>
+<td><a href="#DATA-013">DATA-013</a></td>
+<td id="SC-007" class="id-anchor">SC-007</td>
+<td>[E2E] 로그아웃 후 보호 경로 차단</td>
+</tr>
+<tr class="odd">
+<td id="FR-005" class="id-anchor">FR-005</td>
+<td>NAV-08·NAV-09는 관리자에게만 렌더링한다</td>
+<td>P0 (High)</td>
+<td>US-05</td>
+<td>NAV-08, <a href="#NAV-09">NAV-09</a></td>
+<td><a href="#DATA-001">DATA-001</a>.role</td>
+<td>SC-002, <a href="#SC-003">SC-003</a></td>
+<td>[E2E] 역할별 메뉴 노출</td>
+</tr>
+<tr class="even">
+<td id="FR-006" class="id-anchor">FR-006</td>
+<td>비로그인의 보호 경로 접근은 <code>/login?next=</code>로, KAM의
+관리자 경로(<code>/lab</code>, <code>/admin/*</code>) 접근과 관리자 API
+호출은 서버에서 차단해 SCR-012(API는 403)로 응답한다</td>
+<td>P0 (High)</td>
+<td>US-07</td>
+<td><a href="#SCR-012-EL-01">SCR-012-EL-01</a></td>
+<td><a href="#DATA-001">DATA-001</a>.role</td>
+<td>SC-001, <a href="#SC-008">SC-008</a></td>
+<td>[E2E] 직접 URL 접근 차단</td>
+</tr>
+<tr class="odd">
+<td id="FR-007" class="id-anchor">FR-007</td>
+<td>KAM은 owner_user_id가 본인인 고객과 그 하위 데이터만 조회·수정한다.
+범위 밖 고객 상세·쓰기 요청은 SCR-012 또는 403</td>
+<td>P0 (High)</td>
+<td>US-07</td>
+<td>SCR-006, <a href="#SCR-012">SCR-012</a></td>
+<td><a href="#DATA-002">DATA-002</a>.owner_user_id</td>
+<td><a href="#SC-009">SC-009</a></td>
+<td>[E2E] 타 고객 URL 차단</td>
+</tr>
+<tr class="even">
+<td id="FR-008" class="id-anchor">FR-008</td>
+<td><code>npm run db:seed</code>는 시드 42로 결정적 합성 데이터(사용자
+3, 고객 30, 별칭, 12개월 주문, 활동 120, 신호, 피드, 정답 이탈 라벨 6)를
+만든다. 고객명은 모두 가상 이름이다</td>
+<td>P0 (High)</td>
+<td>전체</td>
+<td>해당 없음 — 시스템 동작</td>
+<td>DATA-001~DATA-011</td>
+<td id="SC-010" class="id-anchor">SC-010</td>
+<td>[통합] 2회 실행 결과 동일</td>
+</tr>
+<tr class="odd">
+<td id="FR-009" class="id-anchor">FR-009</td>
+<td><a href="#SCR-002">SCR-002</a>는 오늘(Asia/Seoul) 수집된 신호를 사용자 범위 안에서 최신순
+카드로 표시한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-002-EL-04~07</td>
+<td><a href="#DATA-004">DATA-004</a></td>
+<td><a href="#SC-011">SC-011</a></td>
+<td>[E2E] 시드 신호 카드 표시</td>
+</tr>
+<tr class="even">
+<td id="FR-010" class="id-anchor">FR-010</td>
+<td><a href="#SCR-002-EL-02">SCR-002-EL-02</a>는 오늘 신호 수, 고위험 고객 수, 검토 대기 리드 수를
+사용자 범위로 집계한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td><a href="#SCR-002-EL-02">SCR-002-EL-02</a></td>
+<td>DATA-004, DATA-008, <a href="#DATA-005">DATA-005</a></td>
+<td><a href="#SC-011">SC-011</a></td>
+<td>[E2E] 타일 값과 목록 수 일치</td>
+</tr>
+<tr class="odd">
+<td id="FR-011" class="id-anchor">FR-011</td>
+<td><a href="#SCR-002-EL-03">SCR-002-EL-03</a> 선택 시 해당 고객 신호만 표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td><a href="#SCR-002-EL-03">SCR-002-EL-03</a></td>
+<td><a href="#DATA-002">DATA-002</a></td>
+<td><a href="#SC-011">SC-011</a></td>
+<td>[E2E] 필터 적용</td>
+</tr>
+<tr class="even">
+<td id="FR-012" class="id-anchor">FR-012</td>
+<td>신호 적재 시 요약 3줄을 만든다. AI 사용 가능하면 AI-2, 실패·꺼짐이면
+원문 앞 120자를 요약으로 쓰고 summary_method=rule로 저장한다</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-002-EL-04, EL-05</td>
+<td><a href="#DATA-004">DATA-004</a>.summary, summary_method</td>
+<td id="SC-013" class="id-anchor">SC-013</td>
+<td>[E2E] AI_MODE=off 시 "규칙 요약"</td>
+</tr>
+<tr class="odd">
+<td><a href="#FR-013">FR-013</a></td>
+<td>신호 수집 실행은 <code>data/feeds/*.json</code> 중 미적재
+항목(source_id 기준)을 적재하고, 원문 기관명을 별칭 사전으로 고객에
+해소한다. 해소 실패는 DATA-010 unresolved_name 이슈를 만든다. 결과를
+DATA-014에 기록한다</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-011-EL-01, EL-05, EL-07</td>
+<td>DATA-004, DATA-010, <a href="#DATA-014">DATA-014</a></td>
+<td><a href="#SC-014">SC-014</a></td>
+<td>[E2E] 수집 후 카드 증가, 재실행 중복 0</td>
+</tr>
+<tr class="even">
+<td id="FR-014" class="id-anchor">FR-014</td>
+<td>데모 초기화는 확인 후 DB를 시드 상태로 재생성한다. 취소 시 변화
+없다</td>
+<td>P1 (Medium)</td>
+<td>US-02</td>
+<td>SCR-011-EL-03, EL-04</td>
+<td>전체</td>
+<td id="SC-015" class="id-anchor">SC-015</td>
+<td>[E2E] 초기화 전후 비교</td>
+</tr>
+<tr class="odd">
+<td id="FR-015" class="id-anchor">FR-015</td>
+<td><a href="#SCR-011-EL-06">SCR-011-EL-06</a>은 <code>AI_MODE</code>와 키 존재 여부로 AI 상태를
+표시한다</td>
+<td>P2 (Low)</td>
+<td>US-02</td>
+<td><a href="#SCR-011-EL-06">SCR-011-EL-06</a></td>
+<td>환경 변수</td>
+<td><a href="#SC-014">SC-014</a></td>
+<td>[E2E] 배지 문구</td>
+</tr>
+<tr class="even">
+<td><a href="#FR-016">FR-016</a></td>
+<td>리드 변환은 clinical·ntis 신호마다 리드 1건을 만든다. 기관명
+유사도(11.8) ≥0.85 자동 매칭, 0.60~0.85 후보, &lt;0.60 신규로 분류하고
+모달리티→추천 제품군 규칙(11.7 표 B)을 적용한다. 담당자는 매칭 고객의
+owner, 신규면 관리자</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-011-EL-02, <a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#DATA-005">DATA-005</a></td>
+<td id="SC-016" class="id-anchor">SC-016</td>
+<td>[단위] 매칭 경계값 분기</td>
+</tr>
+<tr class="odd">
+<td id="FR-017" class="id-anchor">FR-017</td>
+<td><a href="#SCR-003">SCR-003</a>은 상태 탭별 리드를 사용자 범위(KAM=본인 배정)로
+표시한다</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-003-EL-01, EL-02</td>
+<td><a href="#DATA-005">DATA-005</a></td>
+<td><a href="#SC-017">SC-017</a></td>
+<td>[E2E] 탭 전환</td>
+</tr>
+<tr class="even">
+<td><a href="#FR-018">FR-018</a></td>
+<td>수락 시 매칭 고객 확정(신규 선택이면 고객 생성,
+owner=수락자)·status=accepted·decided_by/at 기록 후 Toast</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-003-EL-03, EL-06, EL-08</td>
+<td>DATA-005, <a href="#DATA-002">DATA-002</a></td>
+<td><a href="#SC-017">SC-017</a></td>
+<td>[E2E] 수락 탭 이동</td>
+</tr>
+<tr class="odd">
+<td><a href="#FR-019">FR-019</a></td>
+<td>거절은 사유 선택이 필수이며 status=rejected와 사유를 저장한다</td>
+<td>P0 (High)</td>
+<td>US-02</td>
+<td>SCR-003-EL-04, EL-05, EL-10</td>
+<td><a href="#DATA-005">DATA-005</a>.reject_reason</td>
+<td><a href="#SC-018">SC-018</a></td>
+<td>[E2E] 사유 없으면 차단</td>
+</tr>
+<tr class="even">
+<td id="FR-020" class="id-anchor">FR-020</td>
+<td>관리자는 리드 담당자를 변경할 수 있고 KAM에게는 EL-07을 렌더링하지
+않는다</td>
+<td>P1 (Medium)</td>
+<td>US-02</td>
+<td><a href="#SCR-003-EL-07">SCR-003-EL-07</a></td>
+<td><a href="#DATA-005">DATA-005</a>.assignee_user_id</td>
+<td><a href="#SC-019">SC-019</a></td>
+<td>[E2E] 역할별 노출</td>
+</tr>
+<tr class="odd">
+<td id="FR-021" class="id-anchor">FR-021</td>
+<td>미팅 노트는 고객 필수·미팅일 필수(미래 불가)·메모 10~4,000자를
+클라이언트와 서버에서 검증한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-004-EL-01~03, EL-13</td>
+<td><a href="#DATA-006">DATA-006</a></td>
+<td><a href="#SC-020">SC-020</a></td>
+<td>[E2E] 검증 문구</td>
+</tr>
+<tr class="even">
+<td id="FR-022" class="id-anchor">FR-022</td>
+<td>구조화 요청 시 AI-1로 7개 필드를 추출해 ai_* 필드와 ai_method를
+초안(status=draft)으로 저장한다. 10초 초과·오류·스키마 불일치·꺼짐이면
+규칙 기반 추출기(11.4)로 대체하고 EL-11을 표시한다</td>
+<td>P0 (High)</td>
+<td>US-06</td>
+<td>SCR-004-EL-04~06, EL-11</td>
+<td><a href="#DATA-006">DATA-006</a>.ai_*</td>
+<td>SC-021, <a href="#SC-022">SC-022</a></td>
+<td>[E2E] mock/실패 모드</td>
+</tr>
+<tr class="odd">
+<td><a href="#FR-023">FR-023</a></td>
+<td>확정 저장 시 확정
+필드·status=confirmed·confirmed_at·recorded_at·corrected_field_count(AI값과
+다른 필드 수)·verified=1을 저장하고 폼을 초기화한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-004-EL-06, EL-07, EL-14</td>
+<td><a href="#DATA-006">DATA-006</a></td>
+<td><a href="#SC-021">SC-021</a></td>
+<td>[E2E] 수정 1필드 → 수정 수 1</td>
+</tr>
+<tr class="even">
+<td><a href="#FR-024">FR-024</a></td>
+<td>확정 후 24시간 이내 본인 기록은 확정 취소로 status=draft,
+verified=0으로 되돌린다. AI 원값은 보존한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td><a href="#SCR-004-EL-10">SCR-004-EL-10</a></td>
+<td><a href="#DATA-006">DATA-006</a></td>
+<td id="SC-023" class="id-anchor">SC-023</td>
+<td>[E2E] 상태 초안 표시</td>
+</tr>
+<tr class="odd">
+<td id="FR-025" class="id-anchor">FR-025</td>
+<td>입력값이 있는 상태의 취소는 확인 모달을 거친다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td>SCR-004-EL-08, EL-12</td>
+<td>해당 없음 — 저장 전</td>
+<td id="SC-024" class="id-anchor">SC-024</td>
+<td>[E2E] 모달 표시</td>
+</tr>
+<tr class="even">
+<td id="FR-026" class="id-anchor">FR-026</td>
+<td>최근 기록은 본인 활동 최신 10건을 표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td><a href="#SCR-004-EL-09">SCR-004-EL-09</a></td>
+<td><a href="#DATA-006">DATA-006</a></td>
+<td><a href="#SC-021">SC-021</a></td>
+<td>[E2E] 저장 후 1행 추가</td>
+</tr>
+<tr class="odd">
+<td id="FR-027" class="id-anchor">FR-027</td>
+<td>품질 5개 지표와 종합 점수를 11.5 정의로 범위(전체/사용자/고객)별
+계산한다</td>
+<td>P0 (High)</td>
+<td>US-03</td>
+<td>SCR-007-EL-01, <a href="#SCR-006-EL-07">SCR-006-EL-07</a></td>
+<td><a href="#DATA-011">DATA-011</a></td>
+<td id="SC-025" class="id-anchor">SC-025</td>
+<td>[단위] 고정 픽스처 기대값</td>
+</tr>
+<tr class="even">
+<td id="FR-028" class="id-anchor">FR-028</td>
+<td>재계산·통합·확정 저장·수집 후 스냅샷을 저장하고 최근 8개를 추세로
+표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-03</td>
+<td>SCR-007-EL-02, EL-08</td>
+<td><a href="#DATA-011">DATA-011</a></td>
+<td><a href="#SC-026">SC-026</a></td>
+<td>[E2E] 통합 후 스냅샷 증가</td>
+</tr>
+<tr class="odd">
+<td id="FR-029" class="id-anchor">FR-029</td>
+<td>품질 이슈를 유형 필터와 함께 목록으로 표시한다</td>
+<td>P0 (High)</td>
+<td>US-03</td>
+<td>SCR-007-EL-03, EL-04</td>
+<td><a href="#DATA-010">DATA-010</a></td>
+<td><a href="#SC-026">SC-026</a></td>
+<td>[E2E] 필터</td>
+</tr>
+<tr class="even">
+<td><a href="#FR-030">FR-030</a></td>
+<td>관리자가 통합 승인하면 unresolved_name은 원문 이름을 대상 고객의
+별칭(approved)으로 등록하고 같은 원문의 신호·리드를 재해소한다.
+duplicate_account는 보조 고객의 하위 데이터를 주 고객으로 이전하고 보조
+고객을 merged 처리한다. 이후 지표를 재계산한다</td>
+<td>P0 (High)</td>
+<td>US-03</td>
+<td>SCR-007-EL-05, EL-06, EL-07</td>
+<td>DATA-003, DATA-010, <a href="#DATA-002">DATA-002</a></td>
+<td><a href="#SC-026">SC-026</a></td>
+<td>[E2E] 대기열 감소·일관성 상승</td>
+</tr>
+<tr class="odd">
+<td id="FR-031" class="id-anchor">FR-031</td>
+<td>KAM에게는 담당 범위 지표·이슈만 표시하고 EL-06·EL-07을 렌더링하지
+않으며 통합 API는 403</td>
+<td>P0 (High)</td>
+<td>US-03</td>
+<td>SCR-007-EL-06, EL-07</td>
+<td><a href="#DATA-010">DATA-010</a></td>
+<td><a href="#SC-027">SC-027</a></td>
+<td>[E2E] 버튼 미노출</td>
+</tr>
+<tr class="even">
+<td><a href="#FR-032">FR-032</a></td>
+<td>이탈위험 점수를 11.6 규칙으로 고객별 0~100 계산하고 등급·근거 상위
+3개를 저장한다</td>
+<td>P0 (High)</td>
+<td>US-04</td>
+<td>SCR-008-EL-01, EL-06</td>
+<td><a href="#DATA-008">DATA-008</a></td>
+<td id="SC-028" class="id-anchor">SC-028</td>
+<td>[단위] 고정 입력 기대 점수</td>
+</tr>
+<tr class="odd">
+<td id="FR-033" class="id-anchor">FR-033</td>
+<td>위험 목록을 점수 내림차순·등급 필터로 표시한다</td>
+<td>P0 (High)</td>
+<td>US-04</td>
+<td>SCR-008-EL-01, EL-02</td>
+<td><a href="#DATA-008">DATA-008</a></td>
+<td><a href="#SC-029">SC-029</a></td>
+<td>[E2E] 필터</td>
+</tr>
+<tr class="even">
+<td id="FR-034" class="id-anchor">FR-034</td>
+<td>근거 모달은 5개 요인의 원값과 기여 점수를 표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-04</td>
+<td>SCR-008-EL-03, EL-04</td>
+<td><a href="#DATA-008">DATA-008</a>.reasons</td>
+<td><a href="#SC-029">SC-029</a></td>
+<td>[E2E] 모달 표</td>
+</tr>
+<tr class="odd">
+<td id="FR-035" class="id-anchor">FR-035</td>
+<td>고객 품질 점수 &lt; 70이면 품질 경고 Badge를 표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-04</td>
+<td><a href="#SCR-008-EL-05">SCR-008-EL-05</a></td>
+<td><a href="#DATA-011">DATA-011</a></td>
+<td><a href="#SC-029">SC-029</a></td>
+<td>[E2E] 경고 배지</td>
+</tr>
+<tr class="even">
+<td id="FR-036" class="id-anchor">FR-036</td>
+<td>추천을 11.7 규칙으로 고객당 최대 3건, 우선순위순 생성한다. 같은
+고객·행동 유형의 미결 추천은 중복 생성하지 않는다</td>
+<td>P0 (High)</td>
+<td>US-04</td>
+<td><a href="#SCR-009-EL-02">SCR-009-EL-02</a></td>
+<td><a href="#DATA-009">DATA-009</a></td>
+<td id="SC-030" class="id-anchor">SC-030</td>
+<td>[단위] 규칙 매핑·상한</td>
+</tr>
+<tr class="odd">
+<td><a href="#FR-037">FR-037</a></td>
+<td>채택·보류·거절(사유 필수)을 저장하고 탭을 이동시킨다</td>
+<td>P0 (High)</td>
+<td>US-04</td>
+<td>SCR-009-EL-03~06, EL-08, EL-10</td>
+<td><a href="#DATA-009">DATA-009</a></td>
+<td><a href="#SC-031">SC-031</a></td>
+<td>[E2E] 처리 흐름</td>
+</tr>
+<tr class="even">
+<td id="FR-038" class="id-anchor">FR-038</td>
+<td>근거 설명 문장을 AI-3으로 만들고 실패 시 템플릿 문장을 쓴다</td>
+<td>P2 (Low)</td>
+<td>US-04</td>
+<td><a href="#SCR-009-EL-07">SCR-009-EL-07</a></td>
+<td><a href="#DATA-009">DATA-009</a>.explanation</td>
+<td><a href="#SC-031">SC-031</a></td>
+<td>[E2E] AI_MODE=off "설명: 규칙"</td>
+</tr>
+<tr class="odd">
+<td id="FR-039" class="id-anchor">FR-039</td>
+<td>고객 목록은 고객명·승인 별칭 부분 일치 검색과 세그먼트 필터를
+지원한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-005-EL-01~04</td>
+<td>DATA-002, <a href="#DATA-003">DATA-003</a></td>
+<td><a href="#SC-032">SC-032</a></td>
+<td>[E2E] 별칭 검색</td>
+</tr>
+<tr class="even">
+<td id="FR-040" class="id-anchor">FR-040</td>
+<td>고객 360은 StatTile 4개·월별 주문 차트·통합 타임라인을 표시한다</td>
+<td>P0 (High)</td>
+<td>US-01</td>
+<td>SCR-006-EL-01~04, EL-09</td>
+<td>DATA-002~DATA-007</td>
+<td><a href="#SC-033">SC-033</a></td>
+<td>[E2E] 위젯 표시</td>
+</tr>
+<tr class="odd">
+<td id="FR-041" class="id-anchor">FR-041</td>
+<td>고객 360은 위험 근거·1순위 추천·품질 카드와 각 이동 링크를
+표시한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td>SCR-006-EL-05~07</td>
+<td>DATA-008, DATA-009, <a href="#DATA-011">DATA-011</a></td>
+<td><a href="#SC-033">SC-033</a></td>
+<td>[E2E] 링크 이동</td>
+</tr>
+<tr class="even">
+<td id="FR-042" class="id-anchor">FR-042</td>
+<td>"미팅 노트 작성"은 고객이 미리 선택된 <a href="#SCR-004">SCR-004</a>로 이동한다</td>
+<td>P1 (Medium)</td>
+<td>US-01</td>
+<td><a href="#SCR-006-EL-08">SCR-006-EL-08</a></td>
+<td><a href="#DATA-002">DATA-002</a>.id</td>
+<td><a href="#SC-033">SC-033</a></td>
+<td>[E2E] 고객 선택 상태</td>
+</tr>
+<tr class="odd">
+<td id="FR-043" class="id-anchor">FR-043</td>
+<td>실험 실행은 정답 데이터에서 자동화 비율 0/25/50/75/100% 데이터셋
+5개를 11.9 열화 규칙으로 메모리 생성하고, 각각 품질 지표·P-2
+재현율·정밀도(고위험=정답 이탈 판정)·O-2 적중률을 계산해 저장한다. 운영
+DB 데이터는 바꾸지 않는다</td>
+<td>P0 (High)</td>
+<td>US-05</td>
+<td><a href="#SCR-010-EL-02">SCR-010-EL-02</a></td>
+<td><a href="#DATA-012">DATA-012</a></td>
+<td id="SC-034" class="id-anchor">SC-034</td>
+<td>[통합] 단조성·격차</td>
+</tr>
+<tr class="even">
+<td id="FR-044" class="id-anchor">FR-044</td>
+<td>결과를 비교 표·선 차트·핵심 메시지로 표시한다</td>
+<td>P0 (High)</td>
+<td>US-05</td>
+<td>SCR-010-EL-03~05</td>
+<td><a href="#DATA-012">DATA-012</a></td>
+<td><a href="#SC-035">SC-035</a></td>
+<td>[E2E] 표 5열</td>
+</tr>
+<tr class="odd">
+<td id="FR-045" class="id-anchor">FR-045</td>
+<td>실행 이력을 표시하고 행 클릭 시 해당 결과를 다시 표시한다</td>
+<td>P2 (Low)</td>
+<td>US-05</td>
+<td><a href="#SCR-010-EL-06">SCR-010-EL-06</a></td>
+<td><a href="#DATA-012">DATA-012</a></td>
+<td><a href="#SC-035">SC-035</a></td>
+<td>[E2E] 이력 행</td>
+</tr>
+</tbody>
+</table>
+<h3 id="61-비기능-요구사항">6.1 비기능 요구사항</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>구분</th>
+<th>요구사항</th>
+<th>측정 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NFR-01</td>
+<td>성능</td>
+<td>시드 데이터 기준 각 화면 서버 응답 p95 1초 이내(로컬). 실험 실행
+10초 이내</td>
+<td>[통합] 응답 시간 로그</td>
+</tr>
+<tr class="even">
+<td>NFR-02</td>
+<td>보안</td>
+<td>비밀번호는 scrypt 해시 저장, 세션 토큰은 해시로 저장, 모든 권한
+검사는 서버에서 수행, API 키는 서버 환경 변수로만 사용하고 클라이언트로
+보내지 않음</td>
+<td>[단위] 해시·권한 미들웨어 테스트</td>
+</tr>
+<tr class="odd">
+<td>NFR-03</td>
+<td>접근성</td>
+<td>P0 화면 전부 axe 검사 serious·critical 위반 0건</td>
+<td>[E2E] @axe-core/playwright</td>
+</tr>
+<tr class="even">
+<td>NFR-04</td>
+<td>실행 검증</td>
+<td>E2E는 프로덕션 빌드(<code>next build &amp;&amp; next start</code>,
+포트 3100), Chromium, 뷰포트 1440×900 기본 + 반응형 SC는 390×844,
+workers=1(SQLite 단일 파일)</td>
+<td>[E2E] Playwright 설정</td>
+</tr>
+<tr class="odd">
+<td>NFR-05</td>
+<td>테스트 식별자</td>
+<td>요소 ID = <code>data-testid</code> 값. E2E 셀렉터는
+<code>data-testid</code>만 사용</td>
+<td>[수동] 코드 리뷰 + [E2E] 셀렉터 규칙</td>
+</tr>
+<tr class="even">
+<td>NFR-06</td>
+<td>상태 유도</td>
+<td>테스트 DB(<code>DATABASE_PATH=data/test.db</code>)를 매 테스트 파일
+시작 시 시드로 재생성. AI는 <code>AI_MODE=mock</code>(결정적
+응답)·<code>AI_MODE=fail</code>(강제 실패)·<code>AI_MODE=off</code>.
+시스템 오류는 Playwright route 모킹으로 500 유도. 세션 만료는 테스트
+전용 시계 오프셋 <code>TEST_NOW_OFFSET_MS</code></td>
+<td>[E2E] 상태 유도 동작</td>
+</tr>
+<tr class="odd">
+<td>NFR-07</td>
+<td>반응형</td>
+<td>390×844에서 가로 스크롤 없음, <a href="#NAV-11">NAV-11</a>로 메뉴 접근</td>
+<td>[E2E] <a href="#SC-037">SC-037</a></td>
+</tr>
+<tr class="even">
+<td>NFR-08</td>
+<td>용량</td>
+<td>SQLite 파일 50MB 이하, 시드 생성 5초 이내</td>
+<td>[통합] 파일 크기·시간</td>
+</tr>
+<tr class="odd">
+<td>NFR-09</td>
+<td>오프라인</td>
+<td>해당 없음 — localhost 단일 기기 실행. AI 외 외부 네트워크 호출
+없음</td>
+<td>[수동] 네트워크 차단 상태 실행 확인</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7-success-criteria">7. Success Criteria</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>판정 기준</th>
+<th>관련 FR·화면</th>
+<th>측정 방법</th>
+<th>현재 PRD 데이터로 검증 가능</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#SC-001">SC-001</a></td>
+<td>비로그인으로 <code>/briefing</code> 접근 시
+<code>/login?next=/briefing</code>으로 이동하고 <a href="#SCR-001">SCR-001</a>이 초기
+상태다</td>
+<td>FR-006 · <a href="#SCR-001">SCR-001</a></td>
+<td>[E2E] 직접 URL 접근</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-002">SC-002</a></td>
+<td>KAM 로그인 중 버튼이 로딩 상태가 되고, 성공 후 SCR-002가 표시되며
+NAV-08·NAV-09가 없다</td>
+<td>FR-001, FR-005 · SCR-001, <a href="#SCR-002">SCR-002</a></td>
+<td>[E2E] kam1 로그인</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td id="SC-003" class="id-anchor">SC-003</td>
+<td>관리자 로그인 후 NAV-08·NAV-09가 보인다</td>
+<td>FR-001, <a href="#FR-005">FR-005</a></td>
+<td>[E2E] admin 로그인</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td id="SC-004" class="id-anchor">SC-004</td>
+<td>틀린 비밀번호 제출 시 <a href="#SCR-001-EL-04">SCR-001-EL-04</a>가 보이고 URL이
+<code>/login</code>이며 이메일 값이 유지된다</td>
+<td><a href="#FR-002">FR-002</a></td>
+<td>[E2E] 실패 로그인</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-005">SC-005</a></td>
+<td>빈 이메일·잘못된 형식 제출 시 <a href="#SCR-001-EL-07">SCR-001-EL-07</a> 문구가 보이고 요청이
+전송되지 않는다</td>
+<td><a href="#FR-002">FR-002</a></td>
+<td>[E2E] 검증 오류</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-006">SC-006</a></td>
+<td>시계 오프셋 8시간 1분 후 보호 화면 이동 시
+<code>/login?reason=expired</code>와 <a href="#SCR-001-EL-06">SCR-001-EL-06</a>이 보인다</td>
+<td><a href="#FR-003">FR-003</a></td>
+<td>[E2E] TEST_NOW_OFFSET_MS 유도</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-007">SC-007</a></td>
+<td>로그아웃 후 <a href="#SCR-001">SCR-001</a>로 이동하고, <code>/briefing</code> 재접근 시
+다시 <a href="#SCR-001">SCR-001</a>로 이동한다</td>
+<td>FR-004 · <a href="#NAV-10">NAV-10</a></td>
+<td>[E2E] 로그아웃 흐름</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-008">SC-008</a></td>
+<td>KAM이 <code>/lab</code>, <code>/admin/ops</code> 접근 시 SCR-012가
+보이고 EL-02 클릭 시 SCR-002로 간다. 관리자 API 직접 호출은 403</td>
+<td>FR-006 · SCR-010, SCR-011, <a href="#SCR-012">SCR-012</a></td>
+<td>[E2E] 직접 URL·API 요청</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-009">SC-009</a></td>
+<td>kam1이 kam2 담당 고객
+<code>/accounts/{id}</code>·<code>/notes?account={id}</code> 접근 시
+SCR-012가 보이고, 목록 화면(SCR-005·008·009)에 범위 밖 고객이 없다</td>
+<td>FR-007 · SCR-005·006·008·009</td>
+<td>[E2E] 시드 고객 ID 사용</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-010">SC-010</a></td>
+<td>시드를 두 번 실행한 DB의 핵심 테이블 내용 해시가 같고, 고객 30·정답
+이탈 6·사용자 3이다</td>
+<td><a href="#FR-008">FR-008</a></td>
+<td>[통합] 시드 스크립트</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-011">SC-011</a></td>
+<td>kam1 로그인 시 SCR-002에 시드 신호 카드가 1건 이상, 타일 값이 목록
+수와 일치하고, 고객 필터와 "고객 360 보기"로 <a href="#SCR-006">SCR-006</a> 이동이 된다</td>
+<td>FR-009~FR-011 · <a href="#SCR-002">SCR-002</a></td>
+<td>[E2E] 브리핑 흐름</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-012">SC-012</a></td>
+<td>오늘 신호가 0건인 시드 변형에서 SCR-002-EL-08이 보이고 관리자에게만
+EL-09가 보인다</td>
+<td>FR-009 · <a href="#SCR-002">SCR-002</a></td>
+<td>[E2E] 상태 유도 시드</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-013">SC-013</a></td>
+<td>AI_MODE=off로 수집한 신호 카드의 Badge가 "규칙 요약"이다</td>
+<td>FR-012 · <a href="#SCR-002-EL-05">SCR-002-EL-05</a></td>
+<td>[E2E] AI 꺼짐</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-014">SC-014</a></td>
+<td>관리자가 수집 실행 시 로그 행이 추가되고 브리핑 카드 수가 늘며,
+재실행 시 "중복 {m}건 제외"와 신규 0건이다. AI 배지가 모드와
+일치한다</td>
+<td>FR-013, FR-015 · <a href="#SCR-011">SCR-011</a></td>
+<td>[E2E] 수집 2회</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-015">SC-015</a></td>
+<td>초기화 모달 [취소]는 변화가 없고, [초기화] 후 리드·활동 수가 시드
+값과 같다</td>
+<td>FR-014 · <a href="#SCR-011">SCR-011</a></td>
+<td>[E2E] 초기화</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-016">SC-016</a></td>
+<td>기관명 매칭이 유사도 0.85 이상은 auto, 0.60 이상 0.85 미만은
+candidate, 0.60 미만은 new를 반환하고 승인 별칭은 1.0이다</td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>[단위] 경계값</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-017">SC-017</a></td>
+<td>kam1이 검토 대기 리드를 수락하면 Toast가 보이고 해당 행이 수락 탭에
+있다. 후보 리드는 매칭 고객 선택 전 수락이 차단된다</td>
+<td>FR-017, FR-018 · <a href="#SCR-003">SCR-003</a></td>
+<td>[E2E] 수락 흐름</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-018">SC-018</a></td>
+<td>사유 없이 거절하면 SCR-003-EL-10이 보이고, 사유 선택 후 거절 탭으로
+이동한다. 모두 처리하면 EL-09가 보인다</td>
+<td>FR-019 · <a href="#SCR-003">SCR-003</a></td>
+<td>[E2E] 거절 흐름</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-019">SC-019</a></td>
+<td><a href="#SCR-003-EL-07">SCR-003-EL-07</a>이 관리자에게만 보이고, 담당자 변경 후 새 담당 KAM의
+인박스에 리드가 보인다</td>
+<td><a href="#FR-020">FR-020</a></td>
+<td>[E2E] 역할 2개</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-020">SC-020</a></td>
+<td>메모 9자·미래 날짜·고객 미선택 각각 SCR-004-EL-13 문구가 보이고
+EL-04가 비활성이다</td>
+<td>FR-021 · <a href="#SCR-004">SCR-004</a></td>
+<td>[E2E] 검증 오류</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-021">SC-021</a></td>
+<td>AI_MODE=mock에서 구조화 중 EL-04가 로딩 상태이고, 완료 후 7필드에 AI
+제안이 채워지며 Badge "추출: Claude"가 보인다. 1개 필드 수정 후 확정
+저장하면 Toast와 최근 기록 1행(수정 필드 수 1)이 보인다</td>
+<td>FR-022, FR-023, FR-026 · <a href="#SCR-004">SCR-004</a></td>
+<td>[E2E] mock 구조화</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td id="SC-022" class="id-anchor">SC-022</td>
+<td>AI_MODE=fail에서 구조화 시 EL-11과 Badge "추출: 규칙 기반"이 보이고
+확정 저장이 성공한다</td>
+<td>FR-022 · <a href="#SCR-004">SCR-004</a></td>
+<td>[E2E] 실패 유도</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-023">SC-023</a></td>
+<td>확정 직후 "확정 취소" 시 최근 기록 상태가 "초안"이 된다</td>
+<td>FR-024 · <a href="#SCR-004">SCR-004</a></td>
+<td>[E2E] 되돌리기</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-024">SC-024</a></td>
+<td>메모 입력 후 취소 시 EL-12 모달이 뜨고 [계속 작성]은 값 유지,
+[버리기]는 폼 초기화</td>
+<td>FR-025 · <a href="#SCR-004">SCR-004</a></td>
+<td>[E2E] 취소 흐름</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-025">SC-025</a></td>
+<td>고정 픽스처(활동 10건: 누락 2·지연 3·미해소 1·중복 1)에 대해 5개
+지표와 종합이 11.5 계산식의 기대값과 소수 셋째 자리까지 같다</td>
+<td><a href="#FR-027">FR-027</a></td>
+<td>[단위] 지표 함수</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-026">SC-026</a></td>
+<td>관리자가 통합 후보 1건을 승인하면 대기열이 1 줄고 일관성 지표가 승인
+전보다 높으며 스냅샷 추세 점이 1개 늘어난다</td>
+<td>FR-028~FR-030 · <a href="#SCR-007">SCR-007</a></td>
+<td>[E2E] 통합 승인</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-027">SC-027</a></td>
+<td>KAM의 SCR-007에 EL-06·EL-07이 없고 통합 API 호출이 403이다</td>
+<td>FR-031 · <a href="#SCR-007">SCR-007</a></td>
+<td>[E2E] 역할 차이</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-028">SC-028</a></td>
+<td>고정 입력(주문 50% 감소, 접촉 공백 90일, 경쟁사 언급 3, 불만 2, 위협
+신호 2)의 점수가 100, 모두 0이면 0, 근거 순서가 기여 점수
+내림차순이다</td>
+<td><a href="#FR-032">FR-032</a></td>
+<td>[단위] 점수 함수</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-029">SC-029</a></td>
+<td>SCR-008 "고" 필터 시 고등급만 보이고, 근거 모달에 5개 요인이 보이며,
+품질 70 미만 고객에 경고 Badge가 보인다. 재계산 Toast가 보인다</td>
+<td>FR-033~FR-035 · <a href="#SCR-008">SCR-008</a></td>
+<td>[E2E] 위험 화면</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-030">SC-030</a></td>
+<td>신호 유형별 추천 매핑(11.7 표 A)이 기대 행동을 내고, 한 고객에 조건
+5개가 겹쳐도 추천은 3건 이하이며 중복 미결 추천이 없다</td>
+<td><a href="#FR-036">FR-036</a></td>
+<td>[단위] 추천 함수</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-031">SC-031</a></td>
+<td>추천 채택 시 채택 탭으로 이동하고, 사유 없는 거절은 EL-10으로
+차단된다. AI_MODE=off에서 Badge "설명: 규칙"</td>
+<td>FR-037, FR-038 · <a href="#SCR-009">SCR-009</a></td>
+<td>[E2E] 추천 처리</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-032">SC-032</a></td>
+<td>고객 목록에서 시드 별칭 검색 시 해당 표준 고객이 보이고, 없는 문자열
+검색 시 <a href="#SCR-005-EL-04">SCR-005-EL-04</a>가 보인다</td>
+<td>FR-039 · <a href="#SCR-005">SCR-005</a></td>
+<td>[E2E] 검색</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-033">SC-033</a></td>
+<td>SCR-006에 EL-02 타일 4개·차트·타임라인·카드 3개가 보이고 "미팅 노트
+작성" 클릭 시 SCR-004의 고객이 미리 선택돼 있다. 주문 없는 시드 고객은
+EL-09가 보인다</td>
+<td>FR-040~FR-042 · <a href="#SCR-006">SCR-006</a></td>
+<td>[E2E] 고객 360</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-034">SC-034</a></td>
+<td>시드 42 실험에서 종합 품질이 자동화 비율에 따라 감소하지 않고(단조
+비감소), 100% 재현율 − 0% 재현율 ≥ 0.30, 100% 재현율 ≥ 0.80이다</td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>[통합] 실험 함수</td>
+<td>예 — 목표값은 [가설], 미달 시 11.9 열화율을 조정하고 13장 기록</td>
+</tr>
+<tr class="odd">
+<td><a href="#SC-035">SC-035</a></td>
+<td>관리자 실험 실행 시 로딩 표시 후 SCR-010-EL-03 표 5열·EL-04
+차트·EL-05 메시지가 보이고 이력 행이 1개 늘어난다. 이력 없음에서는
+EL-08이 보인다</td>
+<td>FR-044, FR-045 · <a href="#SCR-010">SCR-010</a></td>
+<td>[E2E] 실험 화면</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-036">SC-036</a></td>
+<td>실험 API 500 모킹 시 <a href="#SCR-010-EL-07">SCR-010-EL-07</a>이 보인다</td>
+<td>FR-043 · <a href="#SCR-010">SCR-010</a></td>
+<td>[E2E] route 모킹</td>
+<td>예</td>
+</tr>
+<tr class="odd">
+<td id="SC-037" class="id-anchor">SC-037</td>
+<td>390×844에서 NAV-11 클릭 시 메뉴가 열리고 NAV-01~07이 보이며 가로
+스크롤이 없다</td>
+<td>NFR-07 · NAV</td>
+<td>[E2E] 모바일 뷰포트</td>
+<td>예</td>
+</tr>
+<tr class="even">
+<td><a href="#SC-040">SC-040</a></td>
+<td>목록 API 500 모킹 시 SCR-002·003·005·007·008·009에 ErrorBanner와
+"다시 시도"가 보이고, 로그인 API 500 시 <a href="#SCR-001">SCR-001</a> 시스템 오류 문구가
+보인다</td>
+<td>공통</td>
+<td>[E2E] route 모킹</td>
+<td>예</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>SC-038·SC-039는 부여하지 않았다(접근성은 NFR-03, 로딩은 각 SC에
+포함).</p>
+</blockquote>
+<h2 id="8-오류경계-처리">8. 오류·경계 처리</h2>
+<table>
+<thead>
+<tr class="header">
+<th>상황</th>
+<th>발생 화면·요소</th>
+<th>사용자 표시 문구</th>
+<th>이후 동작</th>
+<th>데이터·로그</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>인증 실패</td>
+<td><a href="#SCR-001-EL-04">SCR-001-EL-04</a></td>
+<td>이메일 또는 비밀번호가 올바르지 않습니다.</td>
+<td>이메일 유지</td>
+<td>실패 횟수 서버 로그</td>
+</tr>
+<tr class="even">
+<td>세션 만료</td>
+<td><a href="#SCR-001-EL-06">SCR-001-EL-06</a></td>
+<td>세션이 만료되었습니다. 다시 로그인해 주세요.</td>
+<td>로그인 후 <code>next</code> 복귀</td>
+<td>세션 삭제</td>
+</tr>
+<tr class="odd">
+<td>권한 없음</td>
+<td><a href="#SCR-012">SCR-012</a></td>
+<td>이 화면을 볼 권한이 없습니다.</td>
+<td>브리핑으로</td>
+<td>403 로그</td>
+</tr>
+<tr class="even">
+<td>신호 없음</td>
+<td><a href="#SCR-002-EL-08">SCR-002-EL-08</a></td>
+<td>오늘 새 신호가 없습니다.</td>
+<td>관리자 안내 버튼</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>중복 신호</td>
+<td><a href="#SCR-011-EL-07">SCR-011-EL-07</a></td>
+<td>신호 {n}건을 수집했습니다(중복 {m}건 제외)</td>
+<td>건너뜀</td>
+<td><a href="#DATA-014">DATA-014</a> count</td>
+</tr>
+<tr class="even">
+<td>기관명 미해소</td>
+<td><a href="#SCR-007-EL-05">SCR-007-EL-05</a></td>
+<td>"{원문}" ↔︎ {후보}</td>
+<td>관리자 통합 대기</td>
+<td><a href="#DATA-010">DATA-010</a></td>
+</tr>
+<tr class="odd">
+<td>리드 사유 누락</td>
+<td><a href="#SCR-003-EL-10">SCR-003-EL-10</a></td>
+<td>거절 사유를 선택하세요</td>
+<td>제출 차단</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>메모 검증 실패</td>
+<td><a href="#SCR-004-EL-13">SCR-004-EL-13</a></td>
+<td>각 필드 문구</td>
+<td>제출 차단</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>AI 시간 초과·오류</td>
+<td><a href="#SCR-004-EL-11">SCR-004-EL-11</a></td>
+<td>AI 구조화에 실패해 규칙 기반 결과로 대체했습니다.</td>
+<td>저장 가능</td>
+<td>ai_method=rule, 오류 로그</td>
+</tr>
+<tr class="even">
+<td>작성 중 이탈</td>
+<td><a href="#SCR-004-EL-12">SCR-004-EL-12</a></td>
+<td>작성 중인 내용을 버릴까요?</td>
+<td>선택</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>확정 취소 기한 경과</td>
+<td><a href="#SCR-004-EL-10">SCR-004-EL-10</a></td>
+<td>버튼 미노출</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>고객 없음(잘못된 id)</td>
+<td><a href="#SCR-006">SCR-006</a></td>
+<td>고객을 찾을 수 없습니다.</td>
+<td>고객 목록 버튼</td>
+<td>404</td>
+</tr>
+<tr class="odd">
+<td>품질 낮은 고객 점수</td>
+<td><a href="#SCR-008-EL-05">SCR-008-EL-05</a></td>
+<td>데이터 품질 경고</td>
+<td>툴팁 안내</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>실험 실패</td>
+<td><a href="#SCR-010-EL-07">SCR-010-EL-07</a></td>
+<td>실험을 실행하지 못했습니다. 다시 시도하세요.</td>
+<td>재시도</td>
+<td><a href="#DATA-012">DATA-012</a>.status=failed, error</td>
+</tr>
+<tr class="odd">
+<td>서버 오류(목록)</td>
+<td>각 목록 화면 ErrorBanner</td>
+<td>일시적인 오류입니다. 잠시 후 다시 시도하세요. [다시 시도]</td>
+<td>재요청</td>
+<td>서버 로그</td>
+</tr>
+<tr class="even">
+<td>동시 실행</td>
+<td>SCR-011, <a href="#SCR-010">SCR-010</a></td>
+<td>버튼 비활성</td>
+<td>진행 중 작업 1개만</td>
+<td><a href="#DATA-014">DATA-014</a> status=running</td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-브랜드디자인">9. 브랜드·디자인</h2>
+<ul>
+<li>시각 시스템: <code>docs/DESIGN.md</code> [기본값] Apple 스타일
+디자인 시스템(이 프로젝트용으로 작성. to-prd 기본 자산
+<code>assets/apple-DESIGN.md</code>가 이 환경에 없어 같은 원칙으로 새로
+작성)</li>
+<li>폰트: <strong>Pretendard</strong> 단일(가변 폰트, CDN
+<code>cdn.jsdelivr.net/gh/orioncactus/pretendard</code>)</li>
+<li>톤: 차분하고 정확한 업무 도구. 숫자는 탭 숫자(tabular-nums), 등급은
+색+텍스트 병기</li>
+<li>브랜드 표기: "Sensing CRM" 텍스트 로고만. 실제 기업 상표
+미사용(<a href="#NG-07">NG-07</a>)</li>
+</ul>
+<h3 id="91-토큰-요약-designmd-발췌">9.1 토큰 요약 (DESIGN.md 발췌)</h3>
+<table>
+<thead>
+<tr class="header">
+<th>토큰</th>
+<th>값</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>배경 / 표면 / 테두리</td>
+<td>#F5F5F7 / #FFFFFF / #D2D2D7</td>
+</tr>
+<tr class="even">
+<td>본문 / 보조 텍스트</td>
+<td>#1D1D1F / #6E6E73</td>
+</tr>
+<tr class="odd">
+<td>강조(Primary)</td>
+<td>#0071E3</td>
+</tr>
+<tr class="even">
+<td>위험 고/중/저</td>
+<td>#D70015 / #B25000 / #248A3D</td>
+</tr>
+<tr class="odd">
+<td>반경</td>
+<td>카드 18px, 입력·버튼 10px</td>
+</tr>
+<tr class="even">
+<td>간격</td>
+<td>4px 단위(4·8·12·16·24·32·48)</td>
+</tr>
+<tr class="odd">
+<td>글자</td>
+<td>제목 28/34 600, 섹션 20/28 600, 본문 15/22 400, 보조 13/18</td>
+</tr>
+</tbody>
+</table>
+<h3 id="92-컴포넌트-목록">9.2 컴포넌트 목록</h3>
+<p>AppShell, TopNav, SideNav, PageHeader,
+Button(primary/secondary/text/destructive), IconButton, TextField,
+PasswordField, SearchField, DateField, TextArea, Select,
+SegmentedControl, Tabs, Badge, Tag, Card, StatTile, ScoreBar, DataTable,
+Timeline, BarChart, LineChart, DiffField, Modal, Toast, ErrorBanner,
+FieldError, EmptyState, Skeleton</p>
+<h3 id="93-참고-레퍼런스">9.3 참고 레퍼런스</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>참고 대상</th>
+<th>참고할 점</th>
+<th>따라 하지 않을 점</th>
+<th>적용 화면</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>REF-01</td>
+<td>Apple ID 로그인 화면 패턴</td>
+<td>중앙 단일 카드, 최소 입력</td>
+<td>다단계 인증 흐름</td>
+<td><a href="#SCR-001">SCR-001</a></td>
+</tr>
+<tr class="even">
+<td>REF-02</td>
+<td>뉴스 앱 카드 피드 패턴</td>
+<td>출처·시각을 작게, 요약을 크게</td>
+<td>이미지 썸네일</td>
+<td><a href="#SCR-002">SCR-002</a></td>
+</tr>
+<tr class="odd">
+<td>REF-03</td>
+<td>메일 인박스 패턴</td>
+<td>탭별 상태, 행 단위 빠른 처리</td>
+<td>스와이프 제스처</td>
+<td>SCR-003, <a href="#SCR-009">SCR-009</a></td>
+</tr>
+<tr class="even">
+<td>REF-04</td>
+<td>문서 비교(diff) 편집기 패턴</td>
+<td>AI 제안과 확정값 나란히</td>
+<td>실시간 협업 커서</td>
+<td><a href="#SCR-004">SCR-004</a></td>
+</tr>
+<tr class="odd">
+<td>REF-05</td>
+<td>CRM 고객 상세(레코드 페이지) 패턴</td>
+<td>상단 요약 타일 + 2단 카드</td>
+<td>과도한 탭 중첩</td>
+<td><a href="#SCR-006">SCR-006</a></td>
+</tr>
+<tr class="even">
+<td>REF-06</td>
+<td>관측성 대시보드 패턴</td>
+<td>지표 타일 + 이슈 목록 + 처리 대기열</td>
+<td>실시간 자동 새로고침</td>
+<td>SCR-007, <a href="#SCR-008">SCR-008</a></td>
+</tr>
+<tr class="odd">
+<td>REF-07</td>
+<td>A/B 테스트 결과 화면 패턴</td>
+<td>조건별 열 비교, 핵심 차이 강조</td>
+<td>통계 유의성 표기</td>
+<td><a href="#SCR-010">SCR-010</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-범위와-일정">10. 범위와 일정</h2>
+<table>
+<thead>
+<tr class="header">
+<th>단계</th>
+<th>범위</th>
+<th>목표일</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MVP</td>
+<td>14장 feature 9개 전부 (P0·P1 FR)</td>
+<td>미지정 — 강의 일정 확정 시 기입(D-03)</td>
+</tr>
+<tr class="even">
+<td>v1</td>
+<td>P2 FR, 공공 API 실호출(NG-02), 간단한 ML 모델(<a href="#NG-04">NG-04</a>)</td>
+<td>미지정</td>
+</tr>
+<tr class="odd">
+<td>이후</td>
+<td>시뮬레이션 S-1~S-5(<a href="#NG-03">NG-03</a>)</td>
+<td>미지정</td>
+</tr>
+</tbody>
+</table>
+<p>비범위는 3.2 비목표(NG-01~NG-09)를 따른다.</p>
+<h2 id="11-레벨스택시스템-가정">11. 레벨·스택·시스템 가정</h2>
+<h3 id="111-레벨스택테스트">11.1 레벨·스택·테스트</h3>
+<ul>
+<li>레벨·스택: <strong>Dynamic</strong> — Next.js 15(App Router) +
+TypeScript + SQLite(<code>better-sqlite3</code>, 파일
+<code>data/sensing.db</code>) + Recharts +
+<code>@anthropic-ai/sdk</code>. Node 22.
+<code>http://localhost:3000</code></li>
+<li>실행: <code>npm install</code> → <code>npm run setup</code>(DB
+생성·시드) → <code>npm run dev</code></li>
+<li>테스트: 단위 <strong>Vitest</strong> <code>npm run test</code> · E2E
+<strong>Playwright</strong>(+ @axe-core/playwright)
+<code>npm run test:e2e</code> (프로덕션 빌드 후 포트 3100,
+<code>AI_MODE=mock</code>, <code>DATABASE_PATH=data/test.db</code>)</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>역할</th>
+<th>테스트 계정</th>
+<th>시드 방법</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>비로그인</td>
+<td>해당 없음</td>
+<td>쿠키 없음</td>
+</tr>
+<tr class="even">
+<td>일반 사용자(KAM)</td>
+<td><code>kam1@demo.local</code>(담당 고객 12),
+<code>kam2@demo.local</code>(담당 고객 12)</td>
+<td><code>npm run db:seed</code>, 비밀번호는 환경 변수
+<code>SEED_PASSWORD</code></td>
+</tr>
+<tr class="odd">
+<td>관리자</td>
+<td><code>admin@demo.local</code>(담당 6 + 전체 열람)</td>
+<td>같음</td>
+</tr>
+</tbody>
+</table>
+<h3 id="112-시스템-가정">11.2 시스템 가정</h3>
+<table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>칸</th>
+<th>상태</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>데이터 저장 위치와 수명</td>
+<td>[확정]</td>
+<td>로컬 SQLite 파일. 데모 초기화 또는 파일 삭제 전까지 유지. 사용자
+요청 "SQLite"</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>로그인·열람·편집 주체와 권한</td>
+<td>[기본값]</td>
+<td>4.1 역할표. 시드 계정 3개</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>호스팅·배포 환경</td>
+<td>[확정]</td>
+<td>localhost 전용. 사용자 요청 "localhost"</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>시간대·로케일</td>
+<td>[기본값]</td>
+<td>Asia/Seoul, ko-KR, 날짜 <code>YYYY년 M월 D일</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>통화·환율·기준일</td>
+<td>[기본값]</td>
+<td>KRW, 억 원 단위 표시. 환율 미사용</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>지원 언어</td>
+<td>[기본값]</td>
+<td>한국어만(<a href="#NG-09">NG-09</a>)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>콘텐츠 출처와 권한</td>
+<td>[확정]</td>
+<td>모든 고객·주문·활동·신호는 합성 데이터. 이미지 미사용. 실제 상표
+미사용</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>외부 서비스 실패 시 동작</td>
+<td>[기본값]</td>
+<td>외부 서비스는 Claude API 하나. 10초 타임아웃 후 규칙 기반
+대체(11.4)</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>성능·용량·접근성 기준</td>
+<td>[기본값]</td>
+<td>NFR-01·03·08</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>수치·외부 사실의 출처와 기준일</td>
+<td>[기본값]</td>
+<td>2장 배경 수치는 [조사·기준일] 표기, 부록 B. 앱 안 수치는 모두
+합성</td>
+</tr>
+</tbody>
+</table>
+<h3 id="113-실행-환경-변수">11.3 실행 환경 변수</h3>
+<p><code>DATABASE_PATH</code>(기본 <code>data/sensing.db</code>) ·
+<code>SEED_PASSWORD</code> ·
+<code>AI_MODE</code>(<code>live</code>|<code>mock</code>|<code>fail</code>|<code>off</code>,
+기본: 키 있으면 live, 없으면 mock) ·
+<code>ANTHROPIC_API_KEY</code>(선택) · <code>AI_MODEL</code>(기본
+<code>claude-sonnet-5-5</code>) · <code>TEST_NOW_OFFSET_MS</code>(테스트
+전용). 값은 <code>.env.local</code>에 두고 저장소에는
+<code>.env.example</code>(이름만)만 커밋한다.</p>
+<h3 id="114-ai-판정-계약">11.4 AI 판정 계약</h3>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>AI 기능</th>
+<th>입력</th>
+<th>출력</th>
+<th>사람 확정 주체·화면</th>
+<th>되돌리기</th>
+<th>AI 실패 시 동작</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AI-1</td>
+<td>미팅 메모 구조화(A-5)</td>
+<td>메모 원문, 고객명, 제품군 목록</td>
+<td>JSON 7필드(needs, products[], competitors[], complaints, next_step,
+next_contact_date, sentiment) + confidence 0~1</td>
+<td>KAM이 <a href="#SCR-004">SCR-004</a>에서 필드별 확인·수정 후 "확정 저장"</td>
+<td>확정 후 24시간 이내 "확정 취소"(<a href="#FR-024">FR-024</a>). AI 원값(ai_*)은 별도 필드로
+보존</td>
+<td>규칙 기반 추출기: 제품군·경쟁사 사전 키워드 매칭, 날짜 정규식,
+부정어 사전으로 sentiment, 첫 문장=needs, "다음/예정/검토" 포함
+문장=next_step. EL-11 표시</td>
+</tr>
+<tr class="even">
+<td>AI-2</td>
+<td>신호 요약(A-1)</td>
+<td>신호 제목·본문</td>
+<td>3줄 요약(각 60자 이내)</td>
+<td>확정 없음 — 읽기 전용 참고 정보이며 "AI 요약" 라벨과 원문 링크를
+항상 함께 표시</td>
+<td>해당 없음 — 원문 불변</td>
+<td>원문 앞 120자, summary_method=rule</td>
+</tr>
+<tr class="odd">
+<td>AI-3</td>
+<td>추천 근거 설명(O-2)</td>
+<td>규칙 엔진이 만든 추천 + 근거 신호</td>
+<td>1~2문장 설명</td>
+<td>KAM이 <a href="#SCR-009">SCR-009</a>에서 채택/보류/거절</td>
+<td>보류·거절 후 다시 채택 가능</td>
+<td>템플릿 "{근거 신호 요약} 때문에 {기한}까지 {채널}로 {행동}을
+권합니다."</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>판정 원칙: AI 출력은 <strong>제안값</strong>이며 품질 지표의
+정확성·검증(verified)은 사람 확정값으로만 계산한다. 추천과 이탈 점수
+자체는 결정적 규칙이며 AI는 문장만 만든다.</li>
+<li><code>AI_MODE=mock</code>은 메모 해시 기반의 결정적 고정 응답을
+돌려준다(테스트·키 없는 시연용).</li>
+</ul>
+<h3 id="115-데이터-품질-지표-정의">11.5 데이터 품질 지표 정의</h3>
+<p>범위(전체/사용자/고객) 안의 레코드로 계산하며 0~1(화면은 %).</p>
+<table>
+<thead>
+<tr class="header">
+<th>지표</th>
+<th>계산식</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>완전성</td>
+<td>확정·초안 활동의 필수 필드(needs, next_step, sentiment, competitors
+확인 여부, next_contact_date) 채움 수 ÷ 필수 필드 총수</td>
+</tr>
+<tr class="even">
+<td>정확성</td>
+<td>활동 중 verified=1(사람 확정 또는 시드 기준값 일치) 비율</td>
+</tr>
+<tr class="odd">
+<td>적시성</td>
+<td>recorded_at − meeting_date ≤ 2일인 활동 비율</td>
+</tr>
+<tr class="even">
+<td>일관성</td>
+<td>account_id가 해소된 신호·리드 수 ÷ 신호·리드 총수</td>
+</tr>
+<tr class="odd">
+<td>유일성</td>
+<td>1 − (open 상태 duplicate_account 이슈 대상 고객 수 ÷ 고객 수)</td>
+</tr>
+<tr class="even">
+<td>종합</td>
+<td>5개 지표 산술 평균</td>
+</tr>
+</tbody>
+</table>
+<h3 id="116-이탈위험-점수-규칙-p-2">11.6 이탈위험 점수 규칙 (P-2)</h3>
+<p>기준일 = 오늘. 각 요인은 0~1로 정규화 후 가중치를 곱해 합산(0~100,
+반올림).</p>
+<table>
+<thead>
+<tr class="header">
+<th>요인</th>
+<th>원값</th>
+<th>정규화</th>
+<th>가중치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>주문 감소</td>
+<td>(직전 3개월 주문액 − 최근 3개월) ÷ 직전 3개월</td>
+<td>min(max(값,0)/0.5, 1)</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td>접촉 공백</td>
+<td>마지막 확정 활동 이후 경과일</td>
+<td>min(일수/90, 1)</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>경쟁사 언급</td>
+<td>최근 90일 확정 활동의 competitors 언급 수</td>
+<td>min(수/3, 1)</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>불만·부정</td>
+<td>최근 90일 complaints 존재 또는 sentiment=부정 활동 수</td>
+<td>min(수/2, 1)</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>위협 신호</td>
+<td>최근 90일 경쟁사 평가·국산화 유형 신호 수</td>
+<td>min(수/2, 1)</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>등급: 고 ≥ 60, 중 35~59, 저 &lt; 35. 근거 = 기여 점수 상위 3개(0
+제외).</p>
+<h3 id="117-다음-행동-추천-규칙-o-2">11.7 다음 행동 추천 규칙 (O-2)</h3>
+<p>표 A — 조건 → 행동 (우선순위 높은 순, 고객당 상위 3건)</p>
+<table>
+<thead>
+<tr class="header">
+<th>우선</th>
+<th>조건</th>
+<th>행동</th>
+<th>제품군</th>
+<th>채널</th>
+<th>기한</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>이탈위험 등급 고</td>
+<td>경영진 리뷰 미팅·장기 공급계약 제안</td>
+<td>주력 구매 제품군</td>
+<td>방문</td>
+<td>3일</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>최근 90일 경쟁사 언급</td>
+<td>비교 기술자료 전달·기술 세미나 초청</td>
+<td>언급된 제품군</td>
+<td>이메일</td>
+<td>7일</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>최근 30일 증설·수주 신호</td>
+<td>증설 라인 소모품 공급 제안</td>
+<td>세포배양 배지·일회용 백</td>
+<td>방문</td>
+<td>7일</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>다음 접촉 예정일이 7일 이내</td>
+<td>예정 후속 연락</td>
+<td>직전 활동 제품군</td>
+<td>전화</td>
+<td>예정일</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>수락된 임상 리드(최근 60일)</td>
+<td>공정개발 지원 제안</td>
+<td>표 B 추천 제품군</td>
+<td>이메일+방문</td>
+<td>14일</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>수락된 국가 과제 리드(최근 60일)</td>
+<td>장비 데모 제안</td>
+<td>표 B 추천 제품군</td>
+<td>방문</td>
+<td>30일</td>
+</tr>
+</tbody>
+</table>
+<p>표 B — 모달리티 → 추천 제품군: 항체 → 세포배양 배지·크로마토그래피
+레진 / 세포·유전자치료 → 세포치료 배지·자동화 세포처리 장비 / mRNA·핵산
+→ 효소·정제 시약 / 백신 → 일회용 바이오리액터 백 / 저분자 → 질량분석기 /
+소재·배터리 → 전자현미경·분광 분석기 / 기타 → 실험실 소모품</p>
+<h3 id="118-기관명-매칭">11.8 기관명 매칭</h3>
+<p>정규화(공백·괄호·법인 표기 "(주)", "주식회사", "Co., Ltd." 제거,
+소문자, 한글 자모 분해 없이 음절 비교) 후 승인 별칭과 정확 일치하면 1.0,
+아니면 고객명·별칭과 Jaro-Winkler 최댓값을 유사도로 쓴다.</p>
+<h3 id="119-실험-열화-규칙">11.9 실험 열화 규칙</h3>
+<p>자동화 비율 r에서 각 열화 확률 p = 수기값 × (1 − r) + 자동값 × r.
+난수 시드 42 고정.</p>
+<table>
+<thead>
+<tr class="header">
+<th>열화</th>
+<th>수기값(r=0)</th>
+<th>자동값(r=1)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>필수 필드 누락</td>
+<td>0.35</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td>경쟁사 언급 누락</td>
+<td>0.50</td>
+<td>0.05</td>
+</tr>
+<tr class="odd">
+<td>기록 지연(&gt;2일)</td>
+<td>0.40</td>
+<td>0.05</td>
+</tr>
+<tr class="even">
+<td>고객명 미해소</td>
+<td>0.30</td>
+<td>0.05</td>
+</tr>
+<tr class="odd">
+<td>중복 고객 생성</td>
+<td>0.10</td>
+<td>0.01</td>
+</tr>
+<tr class="even">
+<td>확정 검토 누락(verified=0)</td>
+<td>0.60</td>
+<td>0.10</td>
+</tr>
+</tbody>
+</table>
+<p>재현율 = 고등급 중 정답 이탈 수 ÷ 정답 이탈 6. 정밀도 = 고등급 중
+정답 이탈 수 ÷ 고등급 수(0이면 0). 추천 적중률 = 정답 "다음 필요 행동"이
+상위 3 추천에 포함된 고객 비율.</p>
+<h2 id="12-구현자-결정-이슈">12. 구현자 결정 이슈</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>이슈</th>
+<th>[구현자] 기본값</th>
+<th>재확인 시점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>I-01</td>
+<td>차트 라이브러리</td>
+<td>Recharts</td>
+<td>Design</td>
+</tr>
+<tr class="even">
+<td>I-02</td>
+<td>문자열 유사도 구현</td>
+<td>자체 Jaro-Winkler 함수(의존성 없음)</td>
+<td>Design</td>
+</tr>
+<tr class="odd">
+<td>I-03</td>
+<td>비밀번호 해시</td>
+<td><code>node:crypto</code> scrypt</td>
+<td>Design</td>
+</tr>
+<tr class="even">
+<td>I-04</td>
+<td>DB 접근</td>
+<td><code>better-sqlite3</code> + SQL 파일 마이그레이션(ORM 없음)</td>
+<td>Design</td>
+</tr>
+<tr class="odd">
+<td>I-05</td>
+<td>스타일</td>
+<td>CSS 변수(DESIGN.md 토큰) + CSS Modules</td>
+<td>Design</td>
+</tr>
+<tr class="even">
+<td>I-06</td>
+<td>피드 파일 형식</td>
+<td>공공데이터 응답을 단순화한 JSON 배열(source_id, org_name, type,
+title, body, url, published_at, modality, stage, budget_krw)</td>
+<td>Design</td>
+</tr>
+</tbody>
+</table>
+<h2 id="13-작성자-결정-요청">13. 작성자 결정 요청</h2>
+<table>
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>상태</th>
+<th>이슈</th>
+<th>선택지</th>
+<th>추천</th>
+<th>fallback(무응답 시)</th>
+<th>연쇄 영향</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D-01</td>
+<td>미결(비차단)</td>
+<td>고객사 이름을 가상 이름으로 할지 실제 기업명으로 할지</td>
+<td>① 가상 이름(예: 송도바이오텍) ② 실제 기업명</td>
+<td>① — 합성 주문 데이터가 실제 기업 정보로 오인될 위험 제거</td>
+<td>① 가상 이름</td>
+<td>시드 데이터, <a href="#SC-032">SC-032</a> 별칭 예시</td>
+</tr>
+<tr class="even">
+<td>D-02</td>
+<td>미결(비차단)</td>
+<td>강의 시연 때 Claude API를 실제 호출할지</td>
+<td>① 키가 있으면 live ② 항상 mock</td>
+<td>① — 실제 AI 구조화를 보여 주되 키 없으면 자동 mock</td>
+<td>키 유무에 따라 자동(11.3)</td>
+<td>SCR-004·SCR-011 배지, 강의 준비물</td>
+</tr>
+<tr class="odd">
+<td>D-03</td>
+<td>미결(비차단)</td>
+<td>강의 일정(MVP 목표일)</td>
+<td>날짜 입력</td>
+<td>강의 1주 전 리허설</td>
+<td>날짜 미기입 유지</td>
+<td>10장 일정</td>
+</tr>
+</tbody>
+</table>
+<h2 id="14-feature-분해">14. Feature 분해</h2>
+<table>
+<thead>
+<tr class="header">
+<th>순서</th>
+<th>feature</th>
+<th>포함 화면</th>
+<th>FR</th>
+<th>SC</th>
+<th>데이터</th>
+<th>의존</th>
+<th>규모</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>foundation-auth</td>
+<td>SCR-001, SCR-012, NAV-01~NAV-12</td>
+<td>FR-001~FR-008</td>
+<td>SC-001~SC-010, SC-037, <a href="#SC-040">SC-040</a></td>
+<td>DATA-001, DATA-002, DATA-003, DATA-007, <a href="#DATA-013">DATA-013</a></td>
+<td>없음</td>
+<td>M</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>signal-briefing</td>
+<td>SCR-002, <a href="#SCR-011">SCR-011</a></td>
+<td>FR-009~FR-015</td>
+<td>SC-011~SC-015</td>
+<td>DATA-004, DATA-010, <a href="#DATA-014">DATA-014</a></td>
+<td>foundation-auth</td>
+<td>M</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>lead-inbox</td>
+<td><a href="#SCR-003">SCR-003</a></td>
+<td>FR-016~FR-020</td>
+<td>SC-016~SC-019</td>
+<td><a href="#DATA-005">DATA-005</a></td>
+<td>signal-briefing</td>
+<td>M</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>meeting-note</td>
+<td><a href="#SCR-004">SCR-004</a></td>
+<td>FR-021~FR-026</td>
+<td>SC-020~SC-024</td>
+<td><a href="#DATA-006">DATA-006</a></td>
+<td>foundation-auth</td>
+<td>M</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>data-quality</td>
+<td><a href="#SCR-007">SCR-007</a></td>
+<td>FR-027~FR-031</td>
+<td>SC-025~SC-027</td>
+<td>DATA-010, <a href="#DATA-011">DATA-011</a></td>
+<td>meeting-note, signal-briefing</td>
+<td>M</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>churn-risk</td>
+<td><a href="#SCR-008">SCR-008</a></td>
+<td>FR-032~FR-035</td>
+<td>SC-028, <a href="#SC-029">SC-029</a></td>
+<td><a href="#DATA-008">DATA-008</a></td>
+<td>data-quality</td>
+<td>S</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>next-best-action</td>
+<td><a href="#SCR-009">SCR-009</a></td>
+<td>FR-036~FR-038</td>
+<td>SC-030, <a href="#SC-031">SC-031</a></td>
+<td><a href="#DATA-009">DATA-009</a></td>
+<td>churn-risk, lead-inbox</td>
+<td>S</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>account-360</td>
+<td>SCR-005, <a href="#SCR-006">SCR-006</a></td>
+<td>FR-039~FR-042</td>
+<td>SC-032, <a href="#SC-033">SC-033</a></td>
+<td>DATA-002, DATA-003, <a href="#DATA-007">DATA-007</a></td>
+<td>churn-risk, next-best-action</td>
+<td>M</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>quality-lab</td>
+<td><a href="#SCR-010">SCR-010</a></td>
+<td>FR-043~FR-045</td>
+<td>SC-034~SC-036</td>
+<td><a href="#DATA-012">DATA-012</a></td>
+<td>churn-risk, next-best-action, data-quality</td>
+<td>M</td>
+</tr>
+</tbody>
+</table>
+<h2 id="15-bkit-실행-계약">15. bkit 실행 계약</h2>
+<ul>
+<li>계약 버전: [검증 기준] 이 환경에 bkit 설치본과 to-prd
+<code>references/bkit-contract.md</code>가 없어 확인하지 못했다. 설치 후
+<code>bkit.config.json</code>과 로컬 템플릿이 다르면 로컬을 우선하고
+부록 B에 기록한다.</li>
+<li>설정: <code>matchRateThreshold</code> 90 [검증 기준]</li>
+<li>명령 순서(feature마다, 14장 순서): <code>/pdca plan {feature}</code>
+→ <code>/pdca design {feature}</code> → <code>/pdca do {feature}</code>
+→ <code>/pdca analyze {feature}</code> → (미달 시
+<code>/pdca iterate {feature}</code>) →
+<code>/pdca report {feature}</code></li>
+<li>첫 명령: <code>/pdca plan foundation-auth</code></li>
+<li>완료 조건(두 관문):
+<ol type="1">
+<li>gap 분석 match rate 90% 이상</li>
+<li>Check 단계에서 <code>npm run test</code>와
+<code>npm run test:e2e</code>를 <strong>실제로 실행</strong>해 해당
+feature SC가 모두 통과하고, 결과를 analysis 문서에 기록</li>
+</ol></li>
+<li>gap-detector는 설계와 코드를 비교할 뿐 테스트를 실행하지 않으므로
+match rate만으로 완료를 판정하지 않는다.</li>
+</ul>
+<hr />
+<h2 id="부록-a-데이터-계약">부록 A. 데이터 계약</h2>
+<blockquote>
+<p>저장 위치: SQLite(<code>DATABASE_PATH</code>). 수명: 데모 초기화
+전까지. 출처 라벨: 시드·입력 데이터는 모두 <a href="합성">가설</a>,
+계산값은 해당 절 규칙.</p>
+</blockquote>
+<h3 id="DATA-001">DATA-001 user</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>전역</td>
+<td>시드</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>email</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>unique, 이메일 형식</td>
+<td>SCR-001-EL-01, <a href="#NAV-10">NAV-10</a></td>
+<td>시드</td>
+<td>[가설] 합성</td>
+</tr>
+<tr class="odd">
+<td>name</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>1~20자</td>
+<td>NAV-10, <a href="#SCR-003-EL-07">SCR-003-EL-07</a></td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="even">
+<td>role</td>
+<td>text</td>
+<td>예</td>
+<td>kam</td>
+<td>kam·admin</td>
+<td>NAV, 권한 검사</td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>password_hash</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>scrypt</td>
+<td>서버만</td>
+<td>시드</td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-002">DATA-002 account</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>전역</td>
+<td>시드, <a href="#SCR-003-EL-03">SCR-003-EL-03</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>name</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>2~40자, 가상 이름(D-01)</td>
+<td>SCR-002·003·005·006·008·009</td>
+<td>시드, 리드 수락(신규)</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>segment</td>
+<td>text</td>
+<td>예</td>
+<td>기타</td>
+<td>CDMO·바이오텍·제약·대학·연구소·반도체·배터리·기타</td>
+<td>SCR-005-EL-02/03, <a href="#SCR-006-EL-01">SCR-006-EL-01</a></td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="even">
+<td>owner_user_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>user.id</td>
+<td>권한 검사, <a href="#SCR-005">SCR-005</a></td>
+<td>시드, 리드 수락</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>status</td>
+<td>text</td>
+<td>예</td>
+<td>active</td>
+<td>active·merged</td>
+<td>목록 필터</td>
+<td><a href="#FR-030">FR-030</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>merged_into_id</td>
+<td>integer</td>
+<td>아니오</td>
+<td>null</td>
+<td>account.id</td>
+<td>서버</td>
+<td><a href="#FR-030">FR-030</a></td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>truth_churn</td>
+<td>integer</td>
+<td>예</td>
+<td>0</td>
+<td>0·1, UI 비노출(실험·평가 전용)</td>
+<td>실험</td>
+<td>시드</td>
+<td>[가설] 정답 라벨</td>
+</tr>
+<tr class="even">
+<td>truth_next_action</td>
+<td>text</td>
+<td>아니오</td>
+<td>null</td>
+<td>11.7 행동 유형, UI 비노출</td>
+<td>실험</td>
+<td>시드</td>
+<td>[가설] 정답 라벨</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-003">DATA-003 account_alias</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>account_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>account.id</td>
+<td><a href="#SCR-006-EL-01">SCR-006-EL-01</a>, 매칭</td>
+<td>시드, <a href="#FR-030">FR-030</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>alias</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>정규화 후 unique</td>
+<td>SCR-005-EL-01 검색, <a href="#SCR-006-EL-01">SCR-006-EL-01</a></td>
+<td>시드, <a href="#FR-030">FR-030</a></td>
+<td>[가설]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-004">DATA-004 signal</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>source_type</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>disclosure·news·clinical·ntis</td>
+<td><a href="#SCR-002-EL-04">SCR-002-EL-04</a></td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>[가설] 샘플 피드</td>
+</tr>
+<tr class="odd">
+<td>source_id</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>unique(중복 판정)</td>
+<td>서버</td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드</td>
+</tr>
+<tr class="even">
+<td>raw_org_name</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#SCR-007-EL-05">SCR-007-EL-05</a></td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드</td>
+</tr>
+<tr class="odd">
+<td>account_id</td>
+<td>integer FK</td>
+<td>아니오</td>
+<td>null</td>
+<td>해소 결과</td>
+<td>SCR-002, <a href="#SCR-006-EL-04">SCR-006-EL-04</a></td>
+<td>FR-013, <a href="#FR-030">FR-030</a></td>
+<td>계산</td>
+</tr>
+<tr class="even">
+<td>signal_type</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>공시·수주·증설·인사·임상·과제·경쟁사평가·국산화</td>
+<td>SCR-002-EL-04 Badge, 11.6·11.7</td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드</td>
+</tr>
+<tr class="odd">
+<td>title / body / url</td>
+<td>text</td>
+<td>예/예/아니오</td>
+<td>—</td>
+<td>title ≤ 120자</td>
+<td><a href="#SCR-002-EL-04">SCR-002-EL-04</a></td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드</td>
+</tr>
+<tr class="even">
+<td>modality / stage / budget_krw</td>
+<td>text/text/integer</td>
+<td>아니오</td>
+<td>null</td>
+<td>clinical·ntis만</td>
+<td>리드 변환</td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드</td>
+</tr>
+<tr class="odd">
+<td>published_at / collected_at</td>
+<td>text(ISO)</td>
+<td>예</td>
+<td>— / 현재</td>
+<td>—</td>
+<td><a href="#SCR-002-EL-04">SCR-002-EL-04</a></td>
+<td><a href="#FR-013">FR-013</a></td>
+<td>피드/시스템</td>
+</tr>
+<tr class="even">
+<td>summary / summary_method</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>method: ai·rule</td>
+<td>SCR-002-EL-04/05</td>
+<td><a href="#FR-012">FR-012</a></td>
+<td>AI-2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-005">DATA-005 lead</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>signal_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>unique</td>
+<td>서버</td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>org_name</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>피드</td>
+</tr>
+<tr class="even">
+<td>matched_account_id</td>
+<td>integer</td>
+<td>아니오</td>
+<td>null</td>
+<td>account.id</td>
+<td>SCR-003-EL-02/06</td>
+<td>FR-016, <a href="#FR-018">FR-018</a></td>
+<td>계산·사람</td>
+</tr>
+<tr class="odd">
+<td>match_score / match_status</td>
+<td>real / text</td>
+<td>예</td>
+<td>—</td>
+<td>0~1 / auto·candidate·new</td>
+<td><a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>11.8</td>
+</tr>
+<tr class="even">
+<td>modality / stage / budget_krw</td>
+<td>text/text/integer</td>
+<td>아니오</td>
+<td>null</td>
+<td>—</td>
+<td><a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>피드</td>
+</tr>
+<tr class="odd">
+<td>recommended_products</td>
+<td>text(JSON)</td>
+<td>예</td>
+<td>[]</td>
+<td>11.7 표 B</td>
+<td><a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>규칙</td>
+</tr>
+<tr class="even">
+<td>confidence</td>
+<td>real</td>
+<td>예</td>
+<td>—</td>
+<td>0~1 = match_score×0.7 + 필드 완비율×0.3</td>
+<td><a href="#SCR-003-EL-02">SCR-003-EL-02</a></td>
+<td><a href="#FR-016">FR-016</a></td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>status</td>
+<td>text</td>
+<td>예</td>
+<td>pending</td>
+<td>pending·accepted·rejected</td>
+<td><a href="#SCR-003-EL-01">SCR-003-EL-01</a></td>
+<td>FR-018, <a href="#FR-019">FR-019</a></td>
+<td>사람</td>
+</tr>
+<tr class="even">
+<td>reject_reason</td>
+<td>text</td>
+<td>조건</td>
+<td>null</td>
+<td>rejected면 필수</td>
+<td><a href="#SCR-003">SCR-003</a></td>
+<td><a href="#FR-019">FR-019</a></td>
+<td>사람</td>
+</tr>
+<tr class="odd">
+<td>assignee_user_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>user.id</td>
+<td>권한 필터</td>
+<td>FR-016, <a href="#FR-020">FR-020</a></td>
+<td>규칙·사람</td>
+</tr>
+<tr class="even">
+<td>decided_by / decided_at</td>
+<td>integer / text</td>
+<td>아니오</td>
+<td>null</td>
+<td>—</td>
+<td>—</td>
+<td>FR-018, <a href="#FR-019">FR-019</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-006">DATA-006 activity</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>account_id / author_user_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>범위 내</td>
+<td>SCR-004-EL-09, <a href="#SCR-006-EL-04">SCR-006-EL-04</a></td>
+<td><a href="#SCR-004-EL-01">SCR-004-EL-01</a></td>
+<td>사람</td>
+</tr>
+<tr class="odd">
+<td>meeting_date</td>
+<td>text(date)</td>
+<td>예</td>
+<td>—</td>
+<td>≤ 오늘</td>
+<td><a href="#SCR-004-EL-09">SCR-004-EL-09</a></td>
+<td><a href="#SCR-004-EL-02">SCR-004-EL-02</a></td>
+<td>사람</td>
+</tr>
+<tr class="even">
+<td>raw_note</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>10~4,000자</td>
+<td>서버</td>
+<td><a href="#SCR-004-EL-03">SCR-004-EL-03</a></td>
+<td>사람</td>
+</tr>
+<tr class="odd">
+<td>ai_needs, ai_products, ai_competitors, ai_complaints, ai_next_step,
+ai_next_contact_date, ai_sentiment</td>
+<td>text(JSON 배열은 products·competitors)</td>
+<td>아니오</td>
+<td>null</td>
+<td>AI-1 스키마</td>
+<td><a href="#SCR-004-EL-06">SCR-004-EL-06</a>(AI 제안)</td>
+<td><a href="#FR-022">FR-022</a></td>
+<td>AI-1</td>
+</tr>
+<tr class="even">
+<td>ai_method / ai_confidence</td>
+<td>text / real</td>
+<td>아니오</td>
+<td>null</td>
+<td>claude·rule / 0~1</td>
+<td><a href="#SCR-004-EL-05">SCR-004-EL-05</a></td>
+<td><a href="#FR-022">FR-022</a></td>
+<td>AI-1</td>
+</tr>
+<tr class="odd">
+<td>needs, products, competitors, complaints, next_step,
+next_contact_date, sentiment</td>
+<td>위와 같음</td>
+<td>needs·next_step·sentiment 확정 시 필수</td>
+<td>null</td>
+<td>sentiment: 긍정·중립·부정</td>
+<td>SCR-004-EL-06/09, 11.5·11.6</td>
+<td>SCR-004-EL-06/07</td>
+<td>사람 확정</td>
+</tr>
+<tr class="even">
+<td>status</td>
+<td>text</td>
+<td>예</td>
+<td>draft</td>
+<td>draft·confirmed</td>
+<td><a href="#SCR-004-EL-09">SCR-004-EL-09</a></td>
+<td>FR-022~FR-024</td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>corrected_field_count</td>
+<td>integer</td>
+<td>예</td>
+<td>0</td>
+<td>0~7</td>
+<td><a href="#SCR-004-EL-09">SCR-004-EL-09</a></td>
+<td><a href="#FR-023">FR-023</a></td>
+<td>계산</td>
+</tr>
+<tr class="even">
+<td>verified</td>
+<td>integer</td>
+<td>예</td>
+<td>0</td>
+<td>0·1</td>
+<td>11.5</td>
+<td>FR-023, <a href="#FR-024">FR-024</a></td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>recorded_at / confirmed_at</td>
+<td>text(ISO)</td>
+<td>예 / 아니오</td>
+<td>현재 / null</td>
+<td>—</td>
+<td>11.5 적시성</td>
+<td>FR-022, <a href="#FR-023">FR-023</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-007">DATA-007 order</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>account_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td>SCR-005-EL-03, SCR-006-EL-02/03</td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>product_family</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>11.7 표 B 제품군</td>
+<td>11.7</td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="even">
+<td>order_month</td>
+<td>text(YYYY-MM)</td>
+<td>예</td>
+<td>—</td>
+<td>최근 12개월</td>
+<td><a href="#SCR-006-EL-03">SCR-006-EL-03</a></td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+<tr class="odd">
+<td>amount_krw</td>
+<td>integer</td>
+<td>예</td>
+<td>—</td>
+<td>≥ 0</td>
+<td>SCR-005, SCR-006, 11.6</td>
+<td>시드</td>
+<td>[가설]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-008">DATA-008 risk_score</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>account_id</td>
+<td>integer PK/FK</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td>SCR-005·006·008</td>
+<td><a href="#FR-032">FR-032</a></td>
+<td>계산</td>
+</tr>
+<tr class="even">
+<td>score / grade</td>
+<td>integer / text</td>
+<td>예</td>
+<td>—</td>
+<td>0~100 / 고·중·저</td>
+<td>SCR-008-EL-01/02</td>
+<td><a href="#FR-032">FR-032</a></td>
+<td>11.6</td>
+</tr>
+<tr class="odd">
+<td>reasons</td>
+<td>text(JSON)</td>
+<td>예</td>
+<td>[]</td>
+<td>5요인 원값·기여, 상위 3 표시</td>
+<td>SCR-008-EL-04, <a href="#SCR-006-EL-05">SCR-006-EL-05</a></td>
+<td><a href="#FR-032">FR-032</a></td>
+<td>11.6</td>
+</tr>
+<tr class="even">
+<td>computed_at</td>
+<td>text(ISO)</td>
+<td>예</td>
+<td>현재</td>
+<td>—</td>
+<td><a href="#SCR-008-EL-01">SCR-008-EL-01</a></td>
+<td><a href="#FR-032">FR-032</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-009">DATA-009 recommendation</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>account_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td>SCR-009-EL-02, <a href="#SCR-006-EL-06">SCR-006-EL-06</a></td>
+<td><a href="#FR-036">FR-036</a></td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>action_type / product_family / channel / due_date / priority</td>
+<td>text×4 / integer</td>
+<td>예</td>
+<td>—</td>
+<td>11.7 표 A</td>
+<td><a href="#SCR-009-EL-02">SCR-009-EL-02</a></td>
+<td><a href="#FR-036">FR-036</a></td>
+<td>11.7</td>
+</tr>
+<tr class="even">
+<td>basis_signal_ids</td>
+<td>text(JSON)</td>
+<td>예</td>
+<td>[]</td>
+<td>—</td>
+<td><a href="#SCR-009-EL-02">SCR-009-EL-02</a> 링크</td>
+<td><a href="#FR-036">FR-036</a></td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>explanation / explanation_method</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>ai·rule</td>
+<td>SCR-009-EL-02/07</td>
+<td><a href="#FR-038">FR-038</a></td>
+<td>AI-3</td>
+</tr>
+<tr class="even">
+<td>status / reject_reason</td>
+<td>text</td>
+<td>예 / 조건</td>
+<td>new / null</td>
+<td>new·adopted·held·rejected / rejected면 필수</td>
+<td><a href="#SCR-009-EL-01">SCR-009-EL-01</a></td>
+<td><a href="#FR-037">FR-037</a></td>
+<td>사람</td>
+</tr>
+<tr class="odd">
+<td>decided_by / decided_at</td>
+<td>integer / text</td>
+<td>아니오</td>
+<td>null</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#FR-037">FR-037</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-010">DATA-010 dq_issue</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>issue_type</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>missing_field·late_entry·unresolved_name·duplicate_account</td>
+<td>SCR-007-EL-03/04</td>
+<td>FR-013, <a href="#FR-027">FR-027</a></td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>entity / entity_id</td>
+<td>text / integer</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#SCR-007-EL-04">SCR-007-EL-04</a></td>
+<td>같음</td>
+<td>계산</td>
+</tr>
+<tr class="even">
+<td>description</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td>SCR-007-EL-04/05</td>
+<td>같음</td>
+<td>계산</td>
+</tr>
+<tr class="odd">
+<td>candidate_account_id / similarity</td>
+<td>integer / real</td>
+<td>아니오</td>
+<td>null</td>
+<td>통합 유형만</td>
+<td><a href="#SCR-007-EL-05">SCR-007-EL-05</a></td>
+<td>같음</td>
+<td>11.8</td>
+</tr>
+<tr class="even">
+<td>status</td>
+<td>text</td>
+<td>예</td>
+<td>open</td>
+<td>open·resolved·dismissed</td>
+<td><a href="#SCR-007">SCR-007</a></td>
+<td><a href="#FR-030">FR-030</a></td>
+<td>사람</td>
+</tr>
+<tr class="odd">
+<td>resolved_by / resolved_at</td>
+<td>integer / text</td>
+<td>아니오</td>
+<td>null</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#FR-030">FR-030</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-011">DATA-011 dq_snapshot</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>scope</td>
+<td>text</td>
+<td>예</td>
+<td>all</td>
+<td>all·user:{id}</td>
+<td><a href="#SCR-007">SCR-007</a></td>
+<td><a href="#FR-028">FR-028</a></td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>completeness, accuracy, timeliness, consistency, uniqueness,
+overall</td>
+<td>real</td>
+<td>예</td>
+<td>—</td>
+<td>0~1</td>
+<td>SCR-007-EL-01/02, <a href="#SCR-005-EL-03">SCR-005-EL-03</a></td>
+<td>FR-027, <a href="#FR-028">FR-028</a></td>
+<td>11.5</td>
+</tr>
+<tr class="even">
+<td>computed_at</td>
+<td>text(ISO)</td>
+<td>예</td>
+<td>현재</td>
+<td>—</td>
+<td><a href="#SCR-007-EL-02">SCR-007-EL-02</a></td>
+<td><a href="#FR-028">FR-028</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-012">DATA-012 lab_run</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td><a href="#SCR-010-EL-06">SCR-010-EL-06</a></td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>run_at / run_by</td>
+<td>text / integer</td>
+<td>예</td>
+<td>현재 / —</td>
+<td>—</td>
+<td><a href="#SCR-010-EL-06">SCR-010-EL-06</a></td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>seed</td>
+<td>integer</td>
+<td>예</td>
+<td>42</td>
+<td>—</td>
+<td><a href="#SCR-010-EL-06">SCR-010-EL-06</a></td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>results</td>
+<td>text(JSON)</td>
+<td>조건</td>
+<td>null</td>
+<td>비율 5개 × {quality, recall, precision, nba_hit}</td>
+<td>SCR-010-EL-03~05</td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>11.9</td>
+</tr>
+<tr class="odd">
+<td>status / error</td>
+<td>text</td>
+<td>예 / 아니오</td>
+<td>running / null</td>
+<td>running·done·failed</td>
+<td>SCR-010-EL-06/07</td>
+<td><a href="#FR-043">FR-043</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-013">DATA-013 session</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>token_hash</td>
+<td>text PK</td>
+<td>예</td>
+<td>—</td>
+<td>SHA-256</td>
+<td>미들웨어</td>
+<td>FR-001, <a href="#FR-004">FR-004</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>user_id</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td>미들웨어</td>
+<td><a href="#FR-001">FR-001</a></td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>expires_at</td>
+<td>text(ISO)</td>
+<td>예</td>
+<td>생성+8h</td>
+<td>—</td>
+<td><a href="#FR-003">FR-003</a></td>
+<td><a href="#FR-001">FR-001</a></td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h3 id="DATA-014">DATA-014 job_run</h3>
+<table>
+<thead>
+<tr class="header">
+<th>필드</th>
+<th>타입</th>
+<th>필수</th>
+<th>기본값</th>
+<th>검증·제약</th>
+<th>읽기</th>
+<th>쓰기</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>id</td>
+<td>integer PK</td>
+<td>예</td>
+<td>자동</td>
+<td>—</td>
+<td><a href="#SCR-011-EL-05">SCR-011-EL-05</a></td>
+<td>FR-013, FR-014, <a href="#FR-016">FR-016</a></td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>job</td>
+<td>text</td>
+<td>예</td>
+<td>—</td>
+<td>collect_signals·convert_leads·reset</td>
+<td><a href="#SCR-011-EL-05">SCR-011-EL-05</a></td>
+<td>같음</td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>started_at / finished_at</td>
+<td>text(ISO)</td>
+<td>예 / 아니오</td>
+<td>현재 / null</td>
+<td>—</td>
+<td><a href="#SCR-011-EL-05">SCR-011-EL-05</a></td>
+<td>같음</td>
+<td>시스템</td>
+</tr>
+<tr class="even">
+<td>status / count / skipped / message</td>
+<td>text / integer / integer / text</td>
+<td>예</td>
+<td>running / 0 / 0 / ''</td>
+<td>running·done·failed</td>
+<td>SCR-011-EL-05/07</td>
+<td>같음</td>
+<td>시스템</td>
+</tr>
+<tr class="odd">
+<td>run_by</td>
+<td>integer FK</td>
+<td>예</td>
+<td>—</td>
+<td>—</td>
+<td><a href="#SCR-011-EL-05">SCR-011-EL-05</a></td>
+<td>같음</td>
+<td>시스템</td>
+</tr>
+</tbody>
+</table>
+<h2 id="부록-b-외부-사실">부록 B. 외부 사실</h2>
+<table>
+<thead>
+<tr class="header">
+<th>사실</th>
+<th>출처</th>
+<th>기준일</th>
+<th>재확인 시점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>글로벌 원부자재 4개사 한국 합산 매출 약 1.63조 원, 약 80%가 단일
+CDMO</td>
+<td>바이오북 "95% of Bioprocess Materials Are Imported" (GlobalData 발표
+인용)</td>
+<td>2026-10-08</td>
+<td>강의 자료 작성 시</td>
+</tr>
+<tr class="even">
+<td>바이오 원부자재 수입 의존도 약 95%, 단계적 국산화 제안</td>
+<td>같음</td>
+<td>2026-10-08</td>
+<td>같음</td>
+</tr>
+<tr class="odd">
+<td>DART OpenAPI, 공공데이터포털 식약처 임상시험 승인 정보, NTIS 공개
+API가 존재</td>
+<td>[추정] 공식 사이트 미확인</td>
+<td>2026-11-09</td>
+<td>v1(<a href="#NG-02">NG-02</a>) 착수 전</td>
+</tr>
+<tr class="even">
+<td>bkit 명령·경로·matchRateThreshold</td>
+<td>[검증 기준] 설치본 미확인</td>
+<td>2026-11-09</td>
+<td>bkit 설치 직후</td>
+</tr>
+<tr class="odd">
+<td>Claude 모델 ID <code>claude-sonnet-5-5</code></td>
+<td>실행 환경 안내</td>
+<td>2026-11-09</td>
+<td>구현 착수 시</td>
+</tr>
+</tbody>
+</table>
+<h2 id="개정-이력">개정 이력</h2>
+<table>
+<thead>
+<tr class="header">
+<th>개정</th>
+<th>일자</th>
+<th>변경</th>
+<th>출처</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>v1.0</td>
+<td>2026-11-09</td>
+<td>최초 작성(신규 모드). 대화의 요구사항 A-1·A-2·A-5·P-2·O-2와 사용자
+결정(강의용·SQLite·localhost)을 화면 계약으로 변환</td>
+<td>현재 대화</td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
