@@ -45,7 +45,7 @@ export function Badge({ tone, children, testId, title }: { tone?: 'primary' | 'h
   return <span className={`badge ${tone ?? ''}`} data-testid={testId} title={title}>{children}</span>;
 }
 export function Tag({ children, testId }: { children: React.ReactNode } & TI) { return <span className="tag" data-testid={testId}>{children}</span>; }
-export function Card({ children, testId, className, title, ...rest }: { children: React.ReactNode; className?: string; title?: React.ReactNode } & TI & React.HTMLAttributes<HTMLDivElement>) {
+export function Card({ children, testId, className, title, ...rest }: { children: React.ReactNode; className?: string; title?: React.ReactNode } & TI & Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>) {
   return <section className={`card ${className ?? ''}`} data-testid={testId} {...rest}>{title && <h2>{title}</h2>}{children}</section>;
 }
 export function StatTile({ label, value, sub, testId, onClick, subTone }: { label: string; value: React.ReactNode; sub?: React.ReactNode; onClick?: () => void; subTone?: 'up' | 'down' } & TI) {
