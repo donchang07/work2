@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<title>CEO Hermes Agent 실습 교재</title>
+<style>
+/* Layout: black cover → white body (left TOC rail on desktop, single column on phone) → black closing.
+   Tokens follow the author's own "Apple 스타일 디자인 시스템": one blue accent, Pretendard only, no shadows. */
+:root{
+  --ink:#1d1d1f; --gray:#6e6e73; --gray-soft:#86868b; --light:#d2d2d7; --surface:#f5f5f7;
+  --blue:#0071e3; --black:#000; --white:#fff; --code-ink:#1d1d1f;
+  --sans:"Pretendard","Helvetica Neue",Arial,system-ui,sans-serif;
+  --radius:14px; --gutter:max(16px, env(safe-area-inset-left, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+
+/* Cover & closing (black) */
+.dark{background:var(--black);color:var(--white)}
+.dark-inner{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:96px 88px;text-align:center}
+.cover-eyebrow{color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.cover h1{font-size:clamp(44px,8vw,92px);line-height:1.05;letter-spacing:-.02em;font-weight:700;margin:20px 0 18px;text-wrap:balance}
+.cover .sub{font-size:clamp(18px,2.4vw,24px);color:#d2d2d7;margin:0 auto;max-width:34ch;text-wrap:balance}
+.cover .author{margin-top:56px;color:var(--gray-soft);font-size:14px;line-height:1.8}
+.cover .meta{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;margin-top:40px;font-size:14px;color:#d2d2d7}
+.cover .meta b{color:var(--white);font-weight:600}
+
+/* Body layout */
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:56px 80px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 24px);align-self:start;max-height:calc(100vh - 48px);overflow:auto;font-size:14px;line-height:1.5}
+nav.toc .toc-title{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--blue);margin-bottom:12px}
+nav.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{display:block;color:var(--ink);padding:6px 10px;border-radius:8px}
+nav.toc a:hover{background:var(--surface);text-decoration:none}
+nav.toc a .n{color:var(--gray);display:inline-block;min-width:2.2em;font-variant-numeric:tabular-nums}
+main{min-width:0}
+@media (max-width:900px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:32px;padding-block:32px 64px}
+  nav.toc{position:static;max-height:none;background:var(--surface);border-radius:var(--radius);padding:20px}
+}
+
+/* Sections */
+section.part{padding-block:48px 8px;border-top:1px solid var(--light)}
+section.part:first-child{border-top:0;padding-top:0}
+.eyebrow{color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.08em;margin:0 0 6px}
+h2{font-size:clamp(28px,4vw,38px);line-height:1.2;letter-spacing:-.01em;margin:0 0 16px;text-wrap:balance}
+h3{font-size:22px;line-height:1.35;margin:40px 0 10px;text-wrap:balance}
+h4{font-size:13px;letter-spacing:.06em;color:var(--blue);margin:28px 0 6px}
+p{margin:0 0 14px;max-width:70ch}
+.lead{font-size:18px;color:var(--ink);max-width:62ch}
+.muted{color:var(--gray)}
+small,.caption{font-size:13px;color:var(--gray)}
+ul.dots{margin:0 0 16px;padding-left:1.1em;max-width:70ch}
+ul.dots li{margin:4px 0}
+ul.dots li::marker{color:var(--blue)}
+strong{font-weight:700}
+.kbd{display:inline-block;border:1px solid var(--light);border-bottom-width:2px;border-radius:6px;padding:0 6px;font-size:13px;line-height:1.6;background:var(--white)}
+code.i{font-family:var(--sans);font-weight:600;background:var(--surface);padding:1px 6px;border-radius:6px;font-size:.92em}
+
+/* Cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 8px}
+.card{background:var(--surface);border-radius:var(--radius);padding:24px;min-width:0}
+.card .big{font-size:44px;font-weight:700;color:var(--blue);line-height:1;letter-spacing:-.02em}
+.card h5{font-size:18px;margin:10px 0 6px}
+.card p{font-size:15px;margin:0;color:var(--ink)}
+
+/* Callout */
+.callout{background:var(--surface);border-radius:var(--radius);padding:20px 24px;margin:18px 0}
+.callout .tag{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--blue);display:block;margin-bottom:4px}
+.callout p:last-child,.callout ul:last-child{margin-bottom:0}
+.callout.warn .tag::before{content:"주의 · "}
+.callout.fix .tag::before{content:"정정 · "}
+
+/* Steps */
+.step{display:grid;grid-template-columns:88px minmax(0,1fr);gap:20px;padding-block:22px;border-top:1px solid var(--light)}
+.step:first-of-type{border-top:0}
+.step .sn{font-size:13px;font-weight:700;color:var(--blue);letter-spacing:.06em;padding-top:4px}
+.step .sb{min-width:0}
+.step .sb h5{font-size:19px;margin:0 0 6px}
+@media (max-width:560px){.step{grid-template-columns:minmax(0,1fr);gap:4px}}
+
+/* Code */
+.code{position:relative;background:var(--surface);border-radius:12px;margin:12px 0 16px;border:1px solid #e5e5ea}
+.code .bar{display:flex;justify-content:space-between;align-items:center;padding:8px 10px 0 16px;font-size:12px;color:var(--gray);font-weight:600;letter-spacing:.04em}
+.code pre{margin:0;padding:8px 16px 16px;overflow-x:auto;font-family:var(--sans);font-size:15px;line-height:1.65;color:var(--code-ink);white-space:pre;tab-size:2}
+.code pre .c{color:var(--gray)}
+.copy{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--blue);background:var(--white);border:1px solid var(--light);border-radius:980px;padding:4px 12px;cursor:pointer}
+.copy:hover{border-color:var(--blue)}
+.copy.done{color:var(--white);background:var(--blue);border-color:var(--blue)}
+
+/* Tables */
+.tbl{overflow-x:auto;margin:14px 0 20px;border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px}
+th{background:var(--ink);color:var(--white);text-align:left;font-weight:600;padding:12px 14px}
+td{padding:12px 14px;border-bottom:1px solid var(--light);vertical-align:top}
+tr:nth-child(even) td{background:var(--surface)}
+td code.i{background:var(--white)}
+tr:nth-child(odd) td code.i{background:var(--surface)}
+td.b{color:var(--blue);font-weight:700}
+
+/* Screen mock (terminal answer) */
+.screen{background:var(--surface);border-radius:12px;padding:16px 18px;font-size:14px;line-height:1.6;white-space:pre-wrap;margin:10px 0 14px;overflow-x:auto}
+.screen .you{color:var(--blue);font-weight:700}
+
+/* Checklist */
+.check{list-style:none;padding:0;margin:8px 0 18px;display:grid;gap:8px;max-width:70ch}
+.check li{display:flex;gap:10px;align-items:flex-start}
+.check input{margin-top:6px;accent-color:var(--blue);width:18px;height:18px;flex:none}
+.check label{cursor:pointer}
+
+/* Why Hermes */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:24px 0 8px}
+.pillar{background:var(--surface);border-radius:var(--radius);padding:28px 24px;min-width:0}
+.pillar .k{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--blue)}
+.pillar .v{font-size:34px;font-weight:700;line-height:1.15;letter-spacing:-.02em;margin:8px 0 12px}
+.pillar p{font-size:15px;margin:0 0 8px}
+.pillar p:last-child{margin-bottom:0}
+.trig{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:16px 0}
+.trig div{border-top:2px solid var(--ink);padding-top:12px;min-width:0}
+.trig b{display:block;font-size:18px;margin-bottom:4px}
+.trig span{font-size:15px;color:var(--gray)}
+table.agents td:first-child{font-weight:700;font-size:17px;white-space:nowrap}
+table.agents tr.hl td{font-weight:600}
+table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
+.yes{color:var(--blue);font-weight:700}
+
+/* Closing */
+.closing h2{color:var(--white);font-size:clamp(32px,5vw,54px)}
+.closing p{color:#d2d2d7;margin-left:auto;margin-right:auto}
+.closing .src{margin-top:40px;font-size:13px;color:var(--gray-soft);text-align:left;max-width:760px;margin-left:auto;margin-right:auto}
+.closing .src a{color:#4ea3ff}
+</style>
+</head>
+<body>
+
+<header class="dark cover" id="top">
+  <div class="dark-inner">
+    <div class="cover-eyebrow">CEO · 임원 실습 교재 · Windows PowerShell 편</div>
+    <h1>Hermes Agent<br>설치와 활용</h1>
+    <p class="sub">무료 오픈소스, 스스로 배우며 성장하는 AI 비서를 내 노트북에 띄우고 텔레그램으로 일을 시키는 데까지</p>
+    <div class="meta">
+      <span><b>대상</b> CEO · 임원 (코딩 경험 불필요)</span>
+      <span><b>소요</b> 설치 60분 + 실습 60분</span>
+      <span><b>환경</b> Windows 10 / 11</span>
+      <span><b>버전</b> v1.2</span>
+      <span><b>기준일</b> 2026년 11월 10일</span>
+    </div>
+    <div class="author">장동인<br>KAIST 김재철AI대학원 책임교수 · AIBB LAB 대표</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="목차">
+    <div class="toc-title">목차</div>
+    <ul>
+      <li><a href="#why"><span class="n">·</span>왜 Hermes인가 · 7종 비교</a></li>
+      <li><a href="#cost"><span class="n">·</span>요금 비교 · 총비용</a></li>
+      <li><a href="#pickle"><span class="n">·</span>피클(Pickle) 깊이 보기</a></li>
+      <li><a href="#p0"><span class="n">0</span>오늘의 목표와 준비물</a></li>
+      <li><a href="#p1"><span class="n">1</span>Hermes Agent 한 장 이해</a></li>
+      <li><a href="#p2"><span class="n">2</span>사전 준비 (텔레그램·API 키)</a></li>
+      <li><a href="#p3"><span class="n">3</span>PowerShell 기초 5분</a></li>
+      <li><a href="#p4"><span class="n">4</span>설치 명령 한 줄씩</a></li>
+      <li><a href="#p5"><span class="n">5</span>설치 마법사 답변표</a></li>
+      <li><a href="#p6"><span class="n">6</span>설치 확인</a></li>
+      <li><a href="#p7"><span class="n">7</span>첫 대화</a></li>
+      <li><a href="#p8"><span class="n">8</span>내 비서 길들이기</a></li>
+      <li><a href="#p9"><span class="n">9</span>CEO 실습 6가지</a></li>
+      <li><a href="#p10"><span class="n">10</span>안전 수칙</a></li>
+      <li><a href="#p11"><span class="n">11</span>운영 · 업데이트 · 백업</a></li>
+      <li><a href="#p12"><span class="n">12</span>문제 해결</a></li>
+      <li><a href="#pa"><span class="n">A</span>명령어 치트시트</a></li>
+      <li><a href="#pb"><span class="n">B</span>강사 노트: 기존 자료 정정</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- WHY -->
+    <section class="part" id="why">
+      <p class="eyebrow">INTRO · 왜 HERMES인가</p>
+      <h2>AI는 언제 먼저 움직이는가 — 먼저 말을 거는 에이전트 7종과 Hermes</h2>
+      <p class="lead">ChatGPT 같은 챗봇은 물어봐야 답합니다. 요즘 나오는 <b>프로액티브 에이전트</b>는 정해진 시간이나 외부 신호에 맞춰 <b>먼저 일하고 먼저 보고</b>합니다. 그중 Hermes Agent는 세 가지 점에서 CEO 실습용으로 고를 만합니다.</p>
+
+      <div class="pillars">
+        <div class="pillar">
+          <div class="k">FREE · 무료 오픈소스</div>
+          <div class="v">라이선스 비용 0원</div>
+          <p>MIT 라이선스 오픈소스입니다. 설치·사용·수정·사내 배포에 비용이 들지 않고, 구독료나 좌석당 요금이 없습니다.</p>
+          <p class="caption"><b>단, AI 모델 비용은 별도입니다.</b> API 키 종량제, Nous Portal 정액($20부터), 기존 구독 재활용, 무료·로컬 모델 중에서 고릅니다. 아래 <a href="#cost">요금 비교</a>를 참고하십시오.</p>
+        </div>
+        <div class="pillar">
+          <div class="k">SELF-IMPROVING · 스스로 성장</div>
+          <div class="v">쓸수록 일을 더 잘합니다</div>
+          <p>공식 소개가 “self-improving AI agent”입니다. 여러 단계로 된 일을 해내거나 대표님께 방법을 교정받으면 그 절차를 <b>스킬(SKILL.md)로 스스로 저장</b>하고, 다음에 같은 일을 할 때 꺼내 쓰며 고쳐 나갑니다.</p>
+          <p>대표님에 대한 기억(USER.md), 배운 사실(MEMORY.md), 지난 대화 검색이 쌓이고, 큐레이터가 주기적으로 오래된 스킬을 정리합니다.</p>
+        </div>
+        <div class="pillar">
+          <div class="k">ON MY PC · 내 컴퓨터에서 작동</div>
+          <div class="v">데이터가 내 PC에</div>
+          <p>대화 기록·기억·스킬·설정이 모두 대표님 노트북(<code class="i">%LOCALAPPDATA%\hermes</code>)에 저장됩니다. Hermes 자체는 사용 통계를 보내지 않으며, 대화 내용은 설정한 모델 회사로만 갑니다.</p>
+          <p class="caption">대신 <b>노트북이 켜져 있어야</b> 일합니다. 꺼지거나 절전이면 텔레그램에 답하지 않고 예약 작업도 쉽니다. 설치·업데이트·백업·보안도 내 책임입니다. 24시간이 필요하면 사내 서버나 클라우드 VM에 설치합니다.</p>
+        </div>
+      </div>
+
+      <h3>먼저 움직이는 세 가지 방식</h3>
+      <div class="trig">
+        <div><b>스케줄</b><span>정해진 시각에 실행. 예: 평일 오전 8시 브리핑</span></div>
+        <div><b>이벤트</b><span>외부 신호가 오면 실행. 예: 새 GitHub 이슈, 슬랙 멘션, 웹훅</span></div>
+        <div><b>셀프 웨이크</b><span>에이전트가 다음 확인 시점을 스스로 정함. 예: 미완료 작업 재확인</span></div>
+      </div>
+
+      <div class="callout"><span class="tag">한국인이 만든 에이전트 · 피클(Pickle)</span>
+        <p><b>피클</b>은 창업자가 모두 한국인인 미국 샌프란시스코 스타트업 <b>Pickle, Inc.</b>(박채근 대표)가 만든 <b>휴대폰용 개인 AI 에이전트 앱</b>입니다. Y Combinator 2025년 겨울 프로그램을 거쳤고 2025년 6월 약 60억 원의 시드 투자를 받았습니다. 스스로를 “아시아를 위한 개인 AI 에이전트 네트워크”라고 소개하며, 2026년 11월 10일 기준 국내 앱스토어 생산성 무료 앱 다운로드 1위에 올랐습니다. <b>한국 계정은 무료</b>(하루 사용량 한도)입니다. 자세한 내용은 바로 뒤 <a href="#pickle">피클 깊이 보기</a>에 정리했습니다.</p>
+        <ul>
+          <li><b>하는 일</b> — 말로 시키면 전화 걸기, 기차표 예매, 주문, 친구와 약속 잡기를 대신합니다. 네이버 메일·정부24·코레일(KTX)·캐치테이블·요기요·쿠팡 등 <b>한국 서비스와의 연결</b>이 강점입니다.</li>
+          <li><b>먼저 움직이는 방식</b> — 예약 작업(Scheduled)을 1회·매일·매주·매월로 걸 수 있고(예: “매일 아침 메일 훑고 챙길 것 알려줘”), 맡긴 일을 추적하려고 <b>피클이 스스로 예약 작업을 만들기도</b> 합니다. 재입고 확인 같은 후속 알림도 먼저 보냅니다.</li>
+          <li><b>피클끼리 대화</b> — 친구도 피클을 쓰면 두 비서가 서로 메시지를 주고받으며 일정을 조율합니다.</li>
+          <li><b>안전장치</b> — 비밀번호·카드번호는 휴대폰에서 만든 키로 암호화해 Vault에 두고 AI에게 넘기지 않습니다. 결제·예약처럼 되돌리기 어려운 일은 먼저 내용과 금액을 보여 주고 동의한 범위에서만 실행합니다.</li>
+        </ul>
+        <p class="caption"><b>Hermes와 다른 점:</b> 피클은 설치·서버 관리가 필요 없는 <b>클라우드 서비스형 생활 비서</b>이고, Hermes는 내 PC에 설치해 데이터·모델을 직접 통제하는 <b>업무용 오픈소스 비서</b>입니다. 피클의 대화와 기억은 피클 서버에 저장되며, 회사 공식 설명상 권한 있는 직원이 운영·안전 목적으로 열람할 수 있고 모든 열람은 기록됩니다. 언론 시험 사용에서는 AI 음성 전화를 상대가 스팸으로 여겨 끊거나, 사용자 동의 없이 지인·식당에 전화했다는 불만 후기도 보도됐습니다.</p>
+      </div>
+
+      <h3>프로액티브 에이전트 7종 비교</h3>
+      <div class="tbl"><table class="agents">
+        <thead><tr><th>에이전트</th><th>시작 조건</th><th>작동 방식과 차이</th><th>실행 환경</th></tr></thead>
+        <tbody>
+          <tr><td>피클 (Pickle)<br><span class="caption">한국인 창업팀</span></td><td>예약 작업과 셀프 예약</td><td>사용자가 1회·반복 예약을 걸거나, 맡긴 일(답장 대기 메일 등)을 추적하려고 스스로 예약을 생성. 전화·예매·주문을 대신 실행하고 결제 전 확인</td><td>피클 클라우드 · iOS/Android 앱</td></tr>
+          <tr><td>Dots</td><td>셀프 웨이크</td><td>다음 확인 시점을 스스로 정하고, ChatGPT Work와 Codex 작업을 추적</td><td>OpenAI 클라우드</td></tr>
+          <tr><td>Muse</td><td>크론과 선제 제안</td><td>Sentinel이 권한을 관리하고, 작업 실행과 자격증명 처리를 분리</td><td>개인 전용 VM</td></tr>
+          <tr><td>Grok Bot</td><td>스케줄과 이벤트</td><td>Slack 멘션과 웹훅 등으로 시작, 예약 간격은 최소 5분</td><td>계정 단위 Cursor 클라우드</td></tr>
+          <tr><td>Instinct</td><td>먼저 보내는 문자</td><td>문자와 전화로 이용. 구체적 트리거는 원문상 미공개</td><td>자체 폰과 컴퓨터</td></tr>
+          <tr><td>OpenClaw</td><td>하트비트와 크론</td><td>기본 30분마다 확인, NO_REPLY면 알림 생략</td><td>직접 실행 · Node.js 게이트웨이</td></tr>
+          <tr class="hl"><td>Hermes</td><td>스케줄과 웹훅</td><td>60초마다 실행할 작업이 있는지 확인(60초마다 모델을 부르는 것은 아님). 결과가 [SILENT]면 전달 생략, 모니터 작업은 변화가 없으면 모델 호출 자체를 생략</td><td>직접 실행 · Python 게이트웨이 (내 PC·서버)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">출처: Lightning Developer, Medium (원문 기준 2026-10-31)을 최재훈 님이 재구성한 비교표. Hermes 항목은 Hermes 공식 문서(Cron, Skills, Curator)와 대조해 일치함을 확인했습니다. 다른 5종의 작동 방식은 독자적으로 검증하지 않았습니다. 피클 행은 피클 공식 도움말(Manage scheduled tasks, 확인일 2026-11-10)을 바탕으로 이 교재에서 추가했습니다.</p>
+
+      <h3 id="cost">요금 비교 — 모델 비용까지 합친 총비용</h3>
+      <p>Hermes는 소프트웨어가 무료지만 <b>AI 모델 비용은 반드시 나옵니다.</b> 그래서 비교는 “Hermes + 모델 비용”의 합계로 해야 공정합니다.</p>
+
+      <h4>Hermes의 모델 비용 내는 방식 다섯 가지</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>방식</th><th>월 비용</th><th>특징</th><th>주의할 점</th></tr></thead>
+        <tbody>
+          <tr><td><b>① API 키 종량제</b><br><span class="caption">이 교재의 기본 경로</span></td><td>쓴 만큼<br>가볍게 쓰면 약 $20~40 (추정)</td><td>좋은 모델을 골라 쓰고, 콘솔에서 월 한도를 걸 수 있음</td><td>청구액이 매달 달라짐</td></tr>
+          <tr><td><b>② Nous Portal 정액</b></td><td>Plus $20<br>Super $100 · Ultra $200</td><td>모델 300여 개, 웹 검색·이미지·음성·클라우드 브라우저 도구, 클라우드 호스팅(Plus는 4GB RAM)까지 포함</td><td>Plus의 정확한 사용 한도는 공개되지 않음. 넘치면 추가 결제</td></tr>
+          <tr><td><b>③ 기존 구독 재활용</b></td><td>추가 0원일 수 있음</td><td>ChatGPT 요금제, SuperGrok·X Premium+ 계정으로 로그인</td><td>ChatGPT는 구독 사용량 차감 방식이 문서에 없음. xAI는 로그인 후 403 오류가 날 수 있음. Claude Pro는 불가, Claude Max는 추가 구매 크레딧에서만 차감</td></tr>
+          <tr><td><b>④ 무료 모델</b></td><td>$0</td><td>Nous Portal Free 요금제 (무료 모델만)</td><td>성능 한계로 업무 품질이 떨어질 수 있음</td></tr>
+          <tr><td><b>⑤ 로컬 모델</b> (Ollama)</td><td>$0 (전기료 제외)</td><td>데이터가 PC 밖으로 나가지 않음</td><td>공식 권장 <code class="i">gemma4:31b</code>는 메모리 24GB 이상 필요</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">①의 추정 가정: Claude Sonnet 5.5(입력 $2·출력 $10 / 100만 토큰), 작업 1건당 입력 10만·출력 4천 토큰, 월 약 150건. 작업 크기에 따라 몇 배씩 달라지므로 실습 1주 뒤 <code class="i">hermes insights --days 7</code>로 실제 사용량을 확인하십시오.</p>
+
+      <h4>다른 서비스 요금</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>서비스</th><th>필요한 요금제</th><th>월 요금</th><th>원화 (월)</th></tr></thead>
+        <tbody>
+          <tr><td>피클 (한국 계정)</td><td>무료 · 유료 요금제 없음<br><span class="caption">하루 사용량 한도, 매일 새벽 4시 초기화. 한도 초기화 티켓은 앱에서 구매 가능</span></td><td>$0</td><td>0원</td></tr>
+          <tr><td>피클 (미국 등 해외 계정)</td><td>Plus / Pro / Max / Ultra<br><span class="caption">주간 한도, 매주 월요일 초기화</span></td><td>$20 / $50 / $100 / $200</td><td>약 2.8만 / 7만 / 14만 / 28만 원</td></tr>
+          <tr><td>Dots</td><td>ChatGPT Pro 100 / 200 / 500</td><td>$100 / $200 / $500</td><td>약 14만 / 28만 / 70만 원</td></tr>
+          <tr><td>Dots (회사 계정)</td><td>ChatGPT Business Premium 좌석</td><td>1인당 $125 (연간 결제 시 $100)</td><td>약 17.5만 원 (연간 14만 원)</td></tr>
+          <tr><td>Grok Bot</td><td>X Subscription Premium / Super / Ultra<br><span class="caption">Plus($8)에는 미포함</span></td><td>$30 / $100 / $200<br><span class="caption">연간 $300 / $1,000 / $2,000</span></td><td>약 4.2만 / 14만 / 28만 원</td></tr>
+          <tr><td>Muse</td><td>무료(한도 있음) / Power / Maximum</td><td>$0 / $20 / $100</td><td>0 / 약 2.8만 / 14만 원</td></tr>
+          <tr><td>Instinct</td><td>초대제 시험 기간</td><td>공개된 요금 없음</td><td>—</td></tr>
+          <tr><td>OpenClaw</td><td>MIT 오픈소스 (Hermes와 같은 구조)</td><td>$0 + 모델 비용</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+
+      <h4>임원 1명이 가볍게 쓸 때 월 총비용</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>선택지</th><th>월 비용</th><th>비용 성격</th></tr></thead>
+        <tbody>
+          <tr><td>Hermes + 로컬 모델</td><td>$0</td><td>고정 (고성능 PC 필요)</td></tr>
+          <tr><td>피클 (한국 계정)</td><td>$0</td><td>고정 (하루 한도, 휴대폰 앱 전용)</td></tr>
+          <tr><td>Muse 무료</td><td>$0</td><td>고정 (한국 사용 가능 여부 미확인)</td></tr>
+          <tr><td><b>Hermes + Nous Portal Plus</b></td><td><b>$20</b></td><td>고정 + 넘치면 추가 결제</td></tr>
+          <tr><td>Muse Power</td><td>$20</td><td>고정</td></tr>
+          
+          <tr><td><b>Hermes + Claude API 키</b></td><td><b>약 $20~40</b> (추정)</td><td>변동</td></tr>
+          <tr><td>Grok Bot (X Premium)</td><td>$30</td><td>고정</td></tr>
+          <tr><td>Dots (ChatGPT Pro 100)</td><td>$100</td><td>고정</td></tr>
+        </tbody>
+      </table></div>
+      <div class="callout"><span class="tag">비용만 보면 Hermes가 가장 싸지는 않습니다</span>
+        <p>Muse·Grok Bot과 비슷한 수준이고 Dots보다는 쌉니다. 한국에서는 <b>피클이 무료</b>라 생활 심부름 용도로는 피클이 가장 쌉니다. Hermes를 고르는 이유는 가격보다 <b>모델을 골라 쓸 수 있고</b>(한 회사에 묶이지 않음), <b>스스로 성장하며</b>(스킬과 기억이 내 자산으로 쌓임), <b>데이터를 내가 통제한다</b>는 데 있습니다. 반대로 이미 ChatGPT Pro나 X Premium을 쓰고 있다면 Dots·Grok Bot은 추가 비용이 0원입니다.</p>
+      </div>
+      <p class="caption">요금 출처 (확인일 2026-11-06): OpenAI Help Center “About ChatGPT Pro tiers”, OpenAI “Introducing dots”, OpenAI “Premium seats are coming to ChatGPT Business”, xAI Docs “The X Subscription Pricing”, Meta Help Center “About Muse subscriptions”, Hermes Agent 공식 홈페이지 Nous Portal 요금표, Claude Platform Docs, 피클 도움말 “Check your plan”(확인일 2026-11-10). 환율 1달러 = 1,400원 가정. 한국 결제 시 부가세 10%나 앱스토어 가격이 적용되어 실제 청구액이 더 높을 수 있습니다. Dots·Muse·Grok Bot의 한국 사용 가능 여부는 확인하지 못했습니다. Instinct 요금은 공식 발표가 없습니다. 피클은 한국어 요금 도움말 기준 한국 계정 무료(하루 한도), 영문 도움말 기준 해외 계정 $20~$200이며 “앱의 요금제 화면이 우선”이라고 안내합니다. 예전 월 구독 “피클 플러스”는 판매가 중단됐습니다.</p>
+
+      <h3>CEO 관점에서 읽는 법</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>질문</th><th>Hermes의 답</th></tr></thead>
+        <tbody>
+          <tr><td>비용 구조는?</td><td><span class="yes">소프트웨어 무료</span> + 모델 비용. 종량제(API 키)나 정액(Nous Portal $20부터) 중 고르고, 종량제는 콘솔에서 월 한도를 걸 수 있습니다</td></tr>
+          <tr><td>쓸수록 나아지는가?</td><td><span class="yes">예</span>. 스킬 자동 생성·개선과 기억 누적. 반복 업무가 회사 자산(스킬 파일)으로 남습니다</td></tr>
+          <tr><td>회사 데이터는 어디에?</td><td>내 PC·내 서버. 모델 회사로 보내는 내용만 관리하면 됩니다</td></tr>
+          <tr><td>특정 회사에 묶이는가?</td><td>아니요. Claude·GPT·Gemini·로컬 모델 중 골라 쓰고 언제든 바꿉니다 (<code class="i">hermes model</code>)</td></tr>
+          <tr><td>알림 피로는?</td><td>할 말이 없으면 조용히 넘어갑니다 ([SILENT], 변화 없음 감지)</td></tr>
+          <tr><td>감수할 점은?</td><td>PC가 켜져 있어야 하고, 설치·보안·백업을 직접 챙겨야 합니다. 이 교재가 그 방법을 다룹니다</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- PICKLE -->
+    <section class="part" id="pickle">
+      <p class="eyebrow">INTRO 2 · 한국인이 만든 에이전트</p>
+      <h2>피클(Pickle) 깊이 보기 — 휴대폰에서 생활 심부름을 맡기는 AI</h2>
+      <p class="lead">Hermes가 <b>내 PC에서 회사 일</b>을 하는 비서라면, 피클은 <b>휴대폰에서 예약·주문·전화·서류 발급</b>을 대신하는 비서입니다. 대표님이 직접 써 보시거나 임직원이 이미 쓰고 있을 가능성이 높으므로, 작동 구조와 위험을 함께 알아 두십시오.</p>
+
+      <h3>시작 조건</h3>
+      <ul class="dots">
+        <li><b>앱 전용</b> — 아이폰(iOS 17 이상)·안드로이드 앱 “피클: 나만의 AI 에이전트”. PC 프로그램과 웹 버전은 없습니다.</li>
+        <li><b>초대제</b> — 이미 쓰는 사람의 초대 링크로 바로 가입하고, 링크가 없으면 대기 명단에 오릅니다. 모르는 사람이 올린 초대 링크는 <code class="i">pickle.com</code> 주소인지 먼저 확인합니다(피싱 주의).</li>
+        <li><b>가입 연령</b> — 블로그 정리는 만 18세 이상, 위키독스 매뉴얼은 한국어 약관상 만 16세 이상(만 19세 미만은 법정대리인 동의)으로 적고 있어 출처가 다릅니다. 가입 전 최신 약관을 확인하십시오.</li>
+        <li><b>이름 혼동</b> — 공동구독 플랫폼 “피클플러스”(서울)와 다른 회사입니다.</li>
+      </ul>
+
+      <h3>작동 구조 — 내 폰이 아니라 피클의 클라우드 브라우저</h3>
+      <p>피클은 휴대폰의 앱을 조작하지 않습니다. 회사 클라우드 서버의 <b>자체 브라우저</b>로 사이트에 들어가 사람처럼 클릭하고 입력합니다. 그래서 폰에서 쿠팡에 로그인되어 있어도 피클은 따로 로그인해야 합니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>연결 방식</th><th>대상</th><th>피클이 받는 것</th></tr></thead>
+        <tbody>
+          <tr><td>계정 권한 연결</td><td>구글, 마이크로소프트, 슬랙, 노션</td><td>메일·일정 등 허용한 범위의 접근 권한</td></tr>
+          <tr><td>휴대폰 데이터</td><td>연락처, 기본 캘린더</td><td>폰에서 허용한 항목</td></tr>
+          <tr><td>사이트 로그인</td><td>쿠팡, 코레일, 정부24 등</td><td>금고(Vault)에 저장한 아이디·비밀번호</td></tr>
+          <tr><td>메일 프로그램 연결</td><td>네이버 메일</td><td>IMAP 설정과 앱 비밀번호</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="dots">
+        <li><b>금고</b> — 비밀번호·카드번호는 폰에서 암호화되어 입력 순간에만 풀리고 AI에게는 가려집니다. 다만 아이디와 카드번호 끝 4자리는 AI가 읽을 수 있습니다.</li>
+        <li><b>사람이 하는 단계</b> — 캡차, 인증번호, PASS 인증, 카카오페이 최종 승인, 결제 비밀번호는 사용자가 직접 합니다. 결제 전에는 품목과 금액을 보여 주고, 금액이 오르면 다시 묻습니다.</li>
+        <li><b>전화</b> — 피클 전용 번호로 걸고, 통화는 녹음 대신 글로 바뀌어 채팅에 실시간 표시된 뒤 요약됩니다.</li>
+        <li><b>먼저 움직이는 기능</b> — 사용자가 건 예약 작업 외에 피클이 스스로 하는 <b>아침 루틴(브리핑)</b>이 있으며, 이것은 하루 한도를 쓰지 않습니다.</li>
+      </ul>
+
+      <h3>무엇이 되고 무엇이 막혔나 — 보도·후기 사례</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>분야</th><th>잘된 일</th><th>막히거나 틀린 일</th></tr></thead>
+        <tbody>
+          <tr><td>쇼핑·결제</td><td>단백질 음료 최저가 구매: 분할 결제로 쿠폰을 각각 적용해 2만9,530원 (요청~결제 약 2시간 18분). 쿠팡 재주문을 지난번보다 4,170원 싸게</td><td>본인 쿠팡 계정 연결 실패 사례, 배달비를 보고 사람이 주문 중단</td></tr>
+          <tr><td>예약·예매</td><td>“24일 용산→전주 오후 2시쯤”만 말해도 콘센트 있는 순방향 창가석 KTX 예매(약 20분, 하루 한도 8%p 사용). 치과 전화로 예약 변경</td><td>다른 필자 시험에서는 KTX 로그인, SRT 좌석 선택 단계에서 막힘. 공연 티켓팅 대기열은 통과 불가</td></tr>
+          <tr><td>공공 서류</td><td>정부24 주민등록등본 PDF 발급(사람은 PASS 인증만). 여권 재발급 신청, 홈택스 근로장려금 조회</td><td>처음엔 예전 주소로 신청해 한 번 막힘. 안내한 지원 사업이 이미 마감</td></tr>
+          <tr><td>메일·일정</td><td>광고 메일 1만5,640통 정리하며 금융·영수증 255통 보존, 잘못된 숙소 날짜 발견. 매일 06:30 날씨·일정·메일 브리핑</td><td>조사한 장소 1곳 주소·가격 오류. “알림 등록” 이 실제 구글 캘린더가 아닌 피클 내부 알림</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">“솔직히 직접 하는 편이 훨씬 빠르다”는 평이 많습니다. 피클의 가치는 속도보다 <b>화면을 붙잡고 있지 않아도 된다</b>는 데 있습니다. 빨리 끝내야 하는 일보다 신경 쓰기 싫은 일부터 맡기십시오.</p>
+
+      <div class="callout warn"><span class="tag">보도된 사고와 데이터 위치</span>
+        <ul class="dots">
+          <li><b>지시하지 않은 전화</b> — 아침 브리핑을 준비하던 피클이 “자체 판단”으로 근처 식당 여러 곳에 전화(10월 27일 후기, 방송 보도). 일본에서는 호텔 조건을 물었을 뿐인데 호텔에 두 번 전화하고, 두 번째에는 사람 비서처럼 자신을 소개.</li>
+          <li><b>개인정보 추론</b> — 메일함의 자녀 계정 보안 알림, 넷플릭스 프로필, 연락처를 엮어 말한 적 없는 자녀의 이름과 생일을 파악(11월 9일 보도).</li>
+          <li><b>해외 IP 로그인 알림</b> — 쇼핑을 맡긴 뒤 네이버에서 해외 IP 로그인 알림 메일 5통. 피클 클라우드 브라우저의 접속 기록입니다.</li>
+          <li><b>데이터</b> — 미국 서버에 저장. 답변 생성에 구글·오픈AI·앤트로픽·xAI 모델을 쓰고 대화로 모델을 학습하지 않는다고 밝힙니다. 권한 있는 직원이 운영·안전 목적으로 열람할 수 있고 열람은 기록됩니다.</li>
+          <li><b>약관</b> — 자동화 접근을 금지하는 사이트에서 써도 되는지 확인할 책임은 이용자에게 있습니다.</li>
+        </ul>
+        <p><b>CEO 시사점:</b> 회사 메일·사내 슬랙·법인카드를 피클에 연결하는 것은 회사 정보를 미국 서버의 제3자 서비스로 보내는 일입니다. 임직원 사용 지침을 먼저 정하십시오.</p>
+      </div>
+
+      <h3>맡기기 전에 정할 다섯 가지</h3>
+      <ol>
+        <li>첫 대화에서 <b>“전화, 메시지, 메일 발송은 반드시 내 승인을 받은 뒤에 해”</b>라고 지시합니다.</li>
+        <li>앱은 맡길 일에 필요한 것부터 <b>하나씩</b> 연결합니다. 한꺼번에 연결하면 하루 한도가 연결에만 쓰이고, 피클이 볼 수 있는 정보도 늘어납니다.</li>
+        <li>결과는 <b>원래 서비스에서</b> 확인합니다(예매는 코레일 웹, 일정은 실제 캘린더, 주소·가격은 공식 페이지).</li>
+        <li>가족·지인에게 전화를 맡길 때는 미리 알려 둡니다(보이스피싱으로 오해해 끊은 사례).</li>
+        <li>쓰지 않는 연결은 끊고, 중요한 계정은 그 사이트의 로그인 기기 목록에서 피클 브라우저 접속도 정리합니다. 연결을 끊어도 대화와 기억은 남습니다.</li>
+      </ol>
+
+      <h3>요청 공식 — 목표 + 조건 + 결과 형식 + 금지 행동 + 승인 시점 + 완료 증거</h3>
+      <p>돈이나 다른 사람과의 약속이 걸리면 뒤의 세 항목(금지 행동, 승인 시점, 완료 증거)이 특히 중요합니다. 부담이 작은 일부터 단계를 올리십시오.</p>
+      <div class="code"><div class="bar">피클 채팅 · 1단계 후보만 찾기<button class="copy" type="button">복사</button></div><pre>토요일 오후 6시쯤 2명이 갈 식당 후보 세 곳을 찾아줘. 1인당 예산은 5만 원 이내야.
+위치, 가격대, 예약 가능 여부와 취소 조건을 표로 비교해 줘. 연락이나 예약 확정은 하지 마.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 2단계 조건부 예약<button class="copy" type="button">복사</button></div><pre>후보 중 A 식당의 토요일 오후 6시 2명 자리를 예약해 줘.
+예약금이 없고 취소 수수료가 없는 조건일 때만 진행해 줘. 조건이 다르면 승인 전에 다시 알려 줘.
+완료 뒤 예약 번호와 확인 화면을 보여 줘.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 정기 요약 (CEO용)<button class="copy" type="button">복사</button></div><pre>매주 월요일 오전에 이번 주 일정에서 내가 직접 결정해야 할 일만 요약해 줘.
+다른 사람에게 메시지를 보내거나 일정을 바꾸지는 마.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 작업 중단과 상태 확인<button class="copy" type="button">복사</button></div><pre>이 주문 작업을 중단해 줘. 결제와 주문이 이미 접수됐는지, 아직 남은 단계가 무엇인지 구분해서 알려 줘.
+확인 전에는 다시 결제하지 마.</pre></div>
+
+      <h3>Hermes와 피클, 어떻게 나눠 쓰나</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>피클</th><th>Hermes</th></tr></thead>
+        <tbody>
+          <tr><td>잘하는 일</td><td>국내 사이트 예약·주문·결제, 전화 대행, 정부24 서류</td><td>회사 문서 요약, 회의록, 경쟁사 감시, 엑셀 분석, 반복 업무 스킬화</td></tr>
+          <tr><td>실행 위치</td><td>피클 클라우드(미국 서버), 휴대폰 앱</td><td>내 PC·사내 서버</td></tr>
+          <tr><td>비용(한국)</td><td>무료, 하루 한도</td><td>소프트웨어 무료 + 모델 비용</td></tr>
+          <tr><td>설치·관리</td><td>앱 설치만 (초대 필요)</td><td>설치·업데이트·백업 직접</td></tr>
+          <tr><td>데이터 통제</td><td>회사 서버에 저장, 직원 열람 가능(기록)</td><td>내 PC에 저장, 모델 회사로 가는 내용만 관리</td></tr>
+          <tr><td>권장 용도</td><td><b>개인 생활 심부름</b></td><td><b>회사 업무</b></td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">출처 (확인일 2026-11-10): 피클 공식 도움말(pickle.com/help — Check your plan, Usage limit, Scheduled tasks, FAQ), 준이아빠(홍승협) “피클(Pickle) AI 사용법과 후기: 초대, 무료 한도, 보안” digitalmarketer.co.kr (2026-11-10, 공식 정보 11-10 기준·사례 11-09까지), hae02y “처음 쓰는 피클 AI: 개인 에이전트 사용 매뉴얼” 위키독스 (비공식, 2026-11-02 기준), 중앙일보 [팩플] (2026-11-10). 사용 사례는 기자 체험기와 이용자 후기를 블로그가 정리한 것으로, 이 교재가 직접 재현하지 않았습니다.</p>
+    </section>
+
+    <!-- 0 -->
+    <section class="part" id="p0">
+      <p class="eyebrow">PART 0</p>
+      <h2>오늘의 목표와 준비물</h2>
+      <p class="lead">오늘 끝나면 대표님 노트북에서 Hermes Agent가 24시간 대기하고, 휴대폰 텔레그램으로 “내일 아침 7시에 브리핑 보내줘” 같은 지시를 할 수 있습니다.</p>
+      <div class="cards">
+        <div class="card"><div class="big">1</div><h5>설치</h5><p>PowerShell 명령 한 줄로 설치하고 마법사 질문에 답합니다.</p></div>
+        <div class="card"><div class="big">2</div><h5>연결</h5><p>Claude 모델(API 키)과 텔레그램 봇을 연결합니다.</p></div>
+        <div class="card"><div class="big">3</div><h5>활용</h5><p>브리핑, 문서 요약, 회의록, 모니터링을 직접 시켜 봅니다.</p></div>
+      </div>
+      <h3>준비물 체크리스트</h3>
+      <ul class="check">
+        <li><input type="checkbox" id="c0-1"><label for="c0-1">Windows 10 또는 11 노트북 (관리자 권한은 필요 없습니다)</label></li>
+        <li><input type="checkbox" id="c0-2"><label for="c0-2">휴대폰에 텔레그램 앱 설치, 본인 번호로 가입 완료</label></li>
+        <li><input type="checkbox" id="c0-3"><label for="c0-3">Anthropic(Claude) API 키를 만들 수 있는 계정과 결제 카드</label></li>
+        <li><input type="checkbox" id="c0-4"><label for="c0-4">안정적인 인터넷 (설치 중 약 1GB 내외를 내려받습니다. 추정치이며 환경에 따라 다릅니다)</label></li>
+        <li><input type="checkbox" id="c0-5"><label for="c0-5">회사 보안 프로그램이 스크립트 실행을 막는지 IT 담당자에게 사전 확인</label></li>
+      </ul>
+      <div class="callout"><span class="tag">이 교재를 보는 방법</span>
+        <p>회색 상자의 명령은 오른쪽 위 <b>복사</b> 버튼을 누른 뒤, PowerShell 창에서 <b>마우스 오른쪽 클릭</b>으로 붙여넣고 <span class="kbd">Enter</span>를 누르면 됩니다. <code class="i">#</code>으로 시작하는 줄은 설명이며 실행되지 않습니다.</p>
+      </div>
+    </section>
+
+    <!-- 1 -->
+    <section class="part" id="p1">
+      <p class="eyebrow">PART 1</p>
+      <h2>Hermes Agent 한 장 이해</h2>
+      <p>Hermes Agent는 Nous Research가 MIT 라이선스로 공개한 오픈소스 AI 에이전트입니다. 내 컴퓨터에서 상시 실행되면서 텔레그램·슬랙 등으로 지시를 받고, 대화에서 배운 것을 기억하며, 정해진 시간에 스스로 일을 합니다. 모델은 Claude, GPT, Gemini 등 원하는 것을 연결합니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>Claude Code</th><th>Hermes Agent</th></tr></thead>
+        <tbody>
+          <tr><td>주 용도</td><td>프로덕트 개발 (코드 작성·테스트)</td><td>대표 업무 (브리핑·요약·모니터링·초안)</td></tr>
+          <tr><td>부르는 곳</td><td>터미널</td><td>터미널 + 텔레그램·슬랙·이메일 등 메신저</td></tr>
+          <tr><td>일하는 시점</td><td>내가 명령할 때</td><td>명령할 때 + 예약한 시간에 자동 (크론)</td></tr>
+          <tr><td>기억</td><td>프로젝트의 CLAUDE.md</td><td>SOUL.md(말투) · USER.md(나) · MEMORY.md(사실) · AGENTS.md(작업 폴더 지침)</td></tr>
+          <tr><td>성장</td><td>사람이 규칙을 고침</td><td>반복 작업을 Skill로 저장해 재사용</td></tr>
+        </tbody>
+      </table></div>
+      <h3>대표님이 기억할 네 가지 파일</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>파일</th><th>역할</th><th>Windows 위치</th></tr></thead>
+        <tbody>
+          <tr><td class="b">SOUL.md</td><td>비서의 정체성과 말투 (예: 한국어 존대말, 결론 먼저)</td><td><code class="i">%LOCALAPPDATA%\hermes\SOUL.md</code></td></tr>
+          <tr><td class="b">USER.md</td><td>대표님에 대한 기억 (이름, 선호, 일하는 방식). 비서가 스스로 기록</td><td><code class="i">%LOCALAPPDATA%\hermes\memories\USER.md</code></td></tr>
+          <tr><td class="b">MEMORY.md</td><td>비서가 배운 사실과 환경 메모. 비서가 스스로 기록</td><td><code class="i">%LOCALAPPDATA%\hermes\memories\MEMORY.md</code></td></tr>
+          <tr><td class="b">AGENTS.md</td><td>특정 작업 폴더의 지침 (회사 개요, KPI 정의 등). Hermes를 그 폴더에서 실행할 때 읽힘</td><td>작업 폴더 (이 교재에서는 <code class="i">C:\Users\내이름\hermes</code>)</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">USER.md는 약 1,375자, MEMORY.md는 약 2,200자 한도가 있어 핵심만 남도록 설계되어 있습니다 (공식 문서 Persistent Memory 기준).</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="part" id="p2">
+      <p class="eyebrow">PART 2</p>
+      <h2>사전 준비 — 설치 전에 세 가지를 손에 쥐고 시작합니다</h2>
+      <p>설치 마법사는 중간에 <b>API 키</b>, <b>텔레그램 봇 토큰</b>, <b>내 텔레그램 숫자 ID</b>를 묻습니다. 미리 메모장에 모아 두면 설치가 끊기지 않습니다.</p>
+
+      <h3>2-1. PC용 텔레그램 설치와 휴대폰 연결</h3>
+      <div class="step"><div class="sn">단계 1</div><div class="sb"><h5>텔레그램 데스크톱 설치</h5><p><a href="https://desktop.telegram.org/" target="_blank" rel="noopener">desktop.telegram.org</a>에서 Windows용을 받아 설치합니다. 실행하면 QR 코드가 나옵니다.</p></div></div>
+      <div class="step"><div class="sn">단계 2</div><div class="sb"><h5>휴대폰으로 QR 스캔</h5><p>휴대폰 텔레그램 → <b>설정</b> → <b>기기</b> → <b>데스크톱 기기 연결(기기 추가)</b> → PC 화면의 QR을 찍으면 PC에 내 대화방이 그대로 열립니다.</p><p class="caption">PC에서 하는 이유: 봇 토큰처럼 긴 문자열을 복사·붙여넣기 하기 쉽습니다.</p></div></div>
+
+      <h3>2-2. 내 텔레그램 숫자 ID 확인</h3>
+      <p>Hermes는 <b>허락된 사람만</b> 봇을 쓰도록 숫자 ID로 문을 잠급니다. 이 ID는 사용자 이름(@아이디)도, 봇 이름도 아닌 <b>숫자</b>입니다.</p>
+      <div class="step"><div class="sn">단계 1</div><div class="sb"><h5>@userinfobot 검색</h5><p>텔레그램 검색창에 <code class="i">@userinfobot</code>을 입력해 들어가 <b>시작(Start)</b>을 누릅니다.</p></div></div>
+      <div class="step"><div class="sn">단계 2</div><div class="sb"><h5>Id 숫자 메모</h5><p>답장으로 오는 <code class="i">Id: 123456789</code> 같은 숫자를 메모장에 적어 둡니다.</p></div></div>
+
+      <h3>2-3. BotFather로 내 비서 봇 만들기</h3>
+      <div class="step"><div class="sn">단계 1</div><div class="sb"><h5>@BotFather 열기</h5><p>검색창에 <code class="i">@BotFather</code> (파란 체크 표시가 있는 공식 계정) → 시작.</p></div></div>
+      <div class="step"><div class="sn">단계 2</div><div class="sb"><h5>/newbot 입력</h5><div class="screen"><span class="you">나:</span> /newbot
+<span class="you">BotFather:</span> Alright, a new bot. How are we going to call it?
+<span class="you">나:</span> 장동인 비서            ← 표시 이름 (아무 이름이나)
+<span class="you">BotFather:</span> Now let's choose a username for your bot. It must end in `bot`.
+<span class="you">나:</span> hermes_donchang_bot     ← 전 세계에서 유일해야 함, bot으로 끝남</div></div></div>
+      <div class="step"><div class="sn">단계 3</div><div class="sb"><h5>토큰 복사</h5><p>BotFather가 <code class="i">8788282020:AAF…</code>처럼 <b>숫자:영문</b> 형태의 토큰을 줍니다. 메모장에 붙여 둡니다.</p></div></div>
+      <div class="callout warn"><span class="tag">토큰은 봇의 열쇠입니다</span><p>토큰을 아는 사람은 누구나 봇을 조종할 수 있습니다. 슬라이드·단톡방에 올리지 마십시오. 노출되었다면 BotFather에서 <code class="i">/revoke</code>로 즉시 폐기하고 새로 받습니다.</p></div>
+
+      <h3>2-4. Anthropic API 키 만들기</h3>
+      <div class="step"><div class="sn">단계 1</div><div class="sb"><h5>Claude Console 로그인</h5><p><a href="https://console.anthropic.com/" target="_blank" rel="noopener">console.anthropic.com</a>에 로그인 → <b>Billing</b>에서 결제 수단 등록과 크레딧 충전.</p></div></div>
+      <div class="step"><div class="sn">단계 2</div><div class="sb"><h5>지출 한도 설정</h5><p><b>Limits</b>(사용량 한도)에서 월 지출 상한을 정합니다. 첫 달은 실험 예산으로 작게 시작하길 권합니다.</p></div></div>
+      <div class="step"><div class="sn">단계 3</div><div class="sb"><h5>API Key 발급</h5><p><b>API Keys</b> → <b>Create Key</b> → 이름 <code class="i">hermes-노트북</code> → <code class="i">sk-ant-api…</code>로 시작하는 키를 복사합니다. 이 화면을 닫으면 다시 볼 수 없습니다.</p></div></div>
+      <div class="callout"><span class="tag">왜 구독(OAuth)이 아니라 API 키인가</span><p>Hermes 공식 문서에 따르면 Anthropic OAuth 경로는 <b>Claude Max 요금제 + 추가 사용량 크레딧</b>이 있을 때만 동작하고, <b>Claude Pro 구독자는 쓸 수 없습니다</b>. API 키는 쓴 만큼만 과금되고 콘솔에서 한도를 걸 수 있어 임원 실습에 적합합니다. 메뉴 이름은 Anthropic 콘솔 개편에 따라 달라질 수 있습니다.</p></div>
+      <h4>메모장에 모일 세 가지</h4>
+      <div class="screen">API 키      : sk-ant-api03-……
+봇 토큰     : 8788282020:AAF……
+내 숫자 ID  : 123456789</div>
+    </section>
+
+    <!-- 3 -->
+    <section class="part" id="p3">
+      <p class="eyebrow">PART 3</p>
+      <h2>PowerShell 기초 5분</h2>
+      <p>PowerShell은 Windows에 기본으로 들어 있는 “명령을 글자로 치는 창”입니다. 오늘 쓸 동작은 다섯 가지뿐입니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>하고 싶은 것</th><th>방법</th></tr></thead>
+        <tbody>
+          <tr><td>PowerShell 열기</td><td><span class="kbd">Win</span> 키 → <b>powershell</b> 입력 → <b>Windows PowerShell</b> 클릭 (관리자 실행 불필요)</td></tr>
+          <tr><td>붙여넣기</td><td>창 안에서 <b>마우스 오른쪽 클릭</b> 또는 <span class="kbd">Ctrl</span>+<span class="kbd">V</span></td></tr>
+          <tr><td>실행</td><td><span class="kbd">Enter</span></td></tr>
+          <tr><td>실행 중인 것 멈추기</td><td><span class="kbd">Ctrl</span>+<span class="kbd">C</span></td></tr>
+          <tr><td>설정 반영</td><td>창을 닫고 <b>새 창</b>을 엽니다 (설치 직후 꼭 필요)</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Windows Terminal 설치 (권장)</h3>
+      <p>Windows 11에는 기본 설치되어 있습니다. Windows 10이거나 없을 때만 실행합니다. 한글·이모지 표시와 <span class="kbd">Ctrl</span>+<span class="kbd">Enter</span> 줄바꿈이 잘 됩니다.</p>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre>winget install --id Microsoft.WindowsTerminal -e</pre></div>
+      <p class="caption">설치 후 PowerShell을 닫고, 시작 메뉴에서 <b>터미널(Terminal)</b>을 엽니다. 처음 실행 시 약관 동의(Y)를 물으면 <code class="i">Y</code>를 입력합니다.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="part" id="p4">
+      <p class="eyebrow">PART 4</p>
+      <h2>설치 명령 한 줄씩</h2>
+      <p class="lead">아래 블록을 <b>위에서부터 한 블록씩</b> 붙여넣고 Enter를 누릅니다. 각 줄이 무엇을 하는지 바로 아래에 적어 두었습니다.</p>
+
+      <h3>4-1. 작업 폴더 만들기</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 내 홈 폴더(C:\Users\내이름)로 이동</span>
+cd ~
+<span class="c"># 비서 작업 폴더 만들기 — 이후 AGENTS.md와 작업 파일을 여기에 둡니다</span>
+mkdir hermes
+cd hermes</pre></div>
+      <p class="caption">이미 폴더가 있다는 오류가 나도 괜찮습니다. 그대로 <code class="i">cd hermes</code>만 하면 됩니다.</p>
+
+      <h3>4-2. 한글이 깨지지 않게 창 설정</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 이 창의 문자 코드를 UTF-8로 (한글·이모지 깨짐 방지)</span>
+chcp 65001
+$env:PYTHONIOENCODING="utf-8"
+$env:LANG="ko_KR.UTF-8"
+<span class="c"># 콘솔 색상·커서 제어 코드를 켜기 (내 계정에만 적용, 관리자 불필요)</span>
+Set-ItemProperty -Path "HKCU:\Console" -Name "VirtualTerminalLevel" -Type DWord -Value 1</pre></div>
+      <p class="caption">Hermes는 실행할 때 스스로 UTF-8로 전환하므로 이 단계는 <b>보험</b>입니다. 오래된 콘솔에서 설치 메시지가 깨지는 것을 막습니다.</p>
+
+      <h3>4-3. Hermes 설치 (핵심 한 줄)</h3>
+      <div class="code"><div class="bar">PowerShell · 공식 설치 스크립트<button class="copy" type="button">복사</button></div><pre>irm https://hermes-agent.nousresearch.com/install.ps1 | iex</pre></div>
+      <ul class="dots">
+        <li><code class="i">irm</code> = 인터넷에서 설치 스크립트를 내려받기, <code class="i">iex</code> = 그 스크립트를 실행하기.</li>
+        <li>관리자 권한이 필요 없습니다. 설치 위치는 <code class="i">%LOCALAPPDATA%\hermes</code> (보통 <code class="i">C:\Users\내이름\AppData\Local\hermes</code>)입니다.</li>
+        <li>Git, uv, Python, Node.js, ripgrep, FFmpeg, 브라우저 도구를 알아서 설치합니다. 미리 깔아 둘 것은 없습니다.</li>
+        <li>설치가 끝나면 이어서 <b>설치 마법사</b>가 질문을 시작합니다 → <a href="#p5">PART 5</a>로.</li>
+      </ul>
+      <p>회사 망에서 위 주소가 막혀 있으면 같은 스크립트의 GitHub 원본 주소를 씁니다.</p>
+      <div class="code"><div class="bar">PowerShell · 대체 주소 (GitHub)<button class="copy" type="button">복사</button></div><pre>irm https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.ps1 | iex</pre></div>
+      <div class="callout warn"><span class="tag">설치 중에는 창을 닫지 마십시오</span><p>단계마다 한 줄씩 진행 상황이 표시됩니다. 10~20분 걸릴 수 있습니다(인터넷 속도에 따라 다름). 실패하면 마지막 몇 줄과 로그 위치(<code class="i">%LOCALAPPDATA%\hermes\logs\install.log</code>)가 나옵니다. 같은 명령을 다시 실행하면 이어서 복구합니다.</p></div>
+      <h4>참고 — 질문 없이 설치만 먼저 하고 싶을 때</h4>
+      <div class="code"><div class="bar">PowerShell · 비대화형 설치<button class="copy" type="button">복사</button></div><pre>&amp; ([scriptblock]::Create((irm https://hermes-agent.nousresearch.com/install.ps1))) -NonInteractive</pre></div>
+      <p class="caption">이 경우 설치 후 새 창에서 <code class="i">hermes setup</code>을 실행해 같은 마법사를 시작합니다.</p>
+    </section>
+
+    <!-- 5 -->
+    <section class="part" id="p5">
+      <p class="eyebrow">PART 5</p>
+      <h2>설치 마법사 답변표</h2>
+      <p>화살표 키나 번호로 고르고 <span class="kbd">Enter</span>로 확정합니다. <b>번호는 버전마다 바뀔 수 있으니 항목 이름을 보고 고르십시오.</b> 표에 없는 질문은 기본값(Enter)으로 넘어가면 됩니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>화면에 나오는 질문</th><th>선택</th><th>이유</th></tr></thead>
+        <tbody>
+          <tr><td>How would you like to set up Hermes?</td><td class="b">Full Setup<br>(직접 설정)</td><td>Anthropic API 키를 쓰기 위해. Quick Setup은 Nous Portal 구독용입니다</td></tr>
+          <tr><td>Select provider</td><td class="b">Anthropic</td><td>Claude 모델 사용. 목록이 40개쯤 되니 이름으로 찾습니다</td></tr>
+          <tr><td>Running 'claude setup-token' … Setup-token (or Enter to cancel)</td><td class="b">Enter</td><td>구독 로그인용 안내입니다. 우리는 API 키를 쓰므로 넘어갑니다</td></tr>
+          <tr><td>Choose authentication method</td><td class="b">Anthropic API key (pay-per-token)</td><td>쓴 만큼 과금, 한도 설정 가능</td></tr>
+          <tr><td>API key 입력</td><td class="b">sk-ant-api… 붙여넣기</td><td>붙여넣어도 화면에 글자가 안 보일 수 있습니다. 정상입니다. Enter</td></tr>
+          <tr><td>Select default model</td><td class="b">Sonnet 계열</td><td>업무 비서 용도에서 비용 대비 성능이 좋습니다. 나중에 <code class="i">hermes model</code>로 언제든 변경</td></tr>
+          <tr><td>Select terminal backend</td><td class="b">Keep current (local)</td><td>내 노트북에서 실행. 그대로 Enter</td></tr>
+          <tr><td>Connect a messaging platform?</td><td class="b">Set up messaging now</td><td>지금 텔레그램을 연결합니다</td></tr>
+          <tr><td>Select platforms to configure</td><td class="b">Telegram 체크 후 Enter</td><td>번호로 체크(토글)한 뒤 Enter. 가장 설정이 쉽습니다</td></tr>
+          <tr><td>Telegram bot token</td><td class="b">봇 토큰 붙여넣기</td><td>2-3에서 받은 <code class="i">숫자:영문</code></td></tr>
+          <tr><td>Allowed user IDs (comma-separated…)</td><td class="b">내 숫자 ID</td><td>2-2의 <code class="i">123456789</code>. <b>봇 이름이 아닙니다.</b> 비워 두지 마십시오</td></tr>
+          <tr><td>Use your user ID as the home channel? [Y/n]</td><td class="b">Y</td><td>예약 작업 결과와 알림을 받을 기본 대화방</td></tr>
+          <tr><td>Install the gateway as a Scheduled Task service? [Y/n]</td><td class="b">Y</td><td>창을 닫아도 백그라운드에서 텔레그램을 받습니다</td></tr>
+          <tr><td>Start the gateway now after install? [Y/n]</td><td class="b">Y</td><td>바로 실행</td></tr>
+          <tr><td>Start the gateway automatically on Windows login…? [Y/n]</td><td class="b">Y</td><td>로그인할 때마다 자동 시작 (작업 스케줄러 <code class="i">Hermes_Gateway</code>)</td></tr>
+        </tbody>
+      </table></div>
+      <h4>성공하면 이런 화면이 나옵니다</h4>
+      <div class="screen">✓ Telegram allowlist configured - only listed users can use the bot
+✓ Telegram home channel set to 123456789
+✓ Messaging platforms configured!
+✓ Created Scheduled Task 'Hermes_Gateway'
+ℹ Gateway auto-start installed for Windows login.
+✓ Gateway started via direct spawn (PID 22956)
+✓ Messaging Platforms (Gateway) configuration complete!</div>
+      <div class="callout"><span class="tag">마법사를 다시 하고 싶을 때</span><p>새 창에서 <code class="i">hermes setup</code> (전체), <code class="i">hermes model</code> (모델만), <code class="i">hermes gateway setup</code> (메신저만)을 실행하면 됩니다.</p></div>
+    </section>
+
+    <!-- 6 -->
+    <section class="part" id="p6">
+      <p class="eyebrow">PART 6</p>
+      <h2>설치 확인</h2>
+      <p><b>반드시 터미널 창을 닫고 새로 연 뒤</b> 아래를 실행합니다. 설치가 PATH(명령 검색 경로)를 바꿨기 때문입니다.</p>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># hermes 명령이 어디 있는지 — ...\AppData\Local\hermes\bin\hermes.exe 가 나오면 성공</span>
+Get-Command hermes
+<span class="c"># 버전 확인</span>
+hermes --version
+<span class="c"># 종합 진단 — 빨간 항목이 있으면 메시지대로 조치</span>
+hermes doctor
+<span class="c"># 모델·인증·메신저 연결 상태 한눈에</span>
+hermes status
+<span class="c"># 텔레그램 게이트웨이가 백그라운드에서 돌고 있는지</span>
+hermes gateway status</pre></div>
+      <h3>로그 보기</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 게이트웨이(텔레그램) 로그 최근 50줄</span>
+hermes logs gateway
+<span class="c"># 실시간으로 계속 보기 — 멈출 때는 Ctrl+C</span>
+hermes logs gateway -f
+<span class="c"># 최근 1시간의 경고·오류만</span>
+hermes logs --level WARNING --since 1h</pre></div>
+      <h3>설치 폴더 열어 보기</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 탐색기로 Hermes 데이터 폴더 열기 (.env, config.yaml, SOUL.md, memories, skills, logs)</span>
+explorer "$env:LOCALAPPDATA\hermes"</pre></div>
+    </section>
+
+    <!-- 7 -->
+    <section class="part" id="p7">
+      <p class="eyebrow">PART 7</p>
+      <h2>첫 대화 — 터미널과 텔레그램에서</h2>
+      <h3>7-1. 화면 언어를 한국어로</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 승인 질문·안내 문구 등 화면 UI를 한국어로 (Hermes에 한국어 언어팩 내장)</span>
+hermes config set display.language ko</pre></div>
+      <p class="caption">UI 문구만 바뀝니다. 비서의 <b>답변 언어</b>는 SOUL.md(PART 8)에서 정합니다.</p>
+
+      <h3>7-2. 터미널에서 첫 대화</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 작업 폴더에서 실행 (AGENTS.md를 읽게 하려면 이 폴더에서 시작)</span>
+cd ~\hermes
+<span class="c"># 최신 화면(TUI)으로 시작 — 마우스 선택, 팝업 메뉴 지원</span>
+hermes --tui
+<span class="c"># 또는 고전 화면</span>
+hermes</pre></div>
+      <p>시작 화면에 모델 이름이 보이면 다음을 입력해 봅니다.</p>
+      <div class="screen"><span class="you">❯</span> 안녕하세요. 지금 연결된 모델 이름과, 당신이 할 수 있는 일 5가지를 한국어로 짧게 알려주세요.
+<span class="you">❯</span> 이 컴퓨터의 C 드라이브 남은 용량을 알려주세요.</div>
+      <div class="tbl"><table>
+        <thead><tr><th>터미널 안에서</th><th>동작</th></tr></thead>
+        <tbody>
+          <tr><td><code class="i">/</code></td><td>쓸 수 있는 명령 목록이 자동완성으로 뜹니다</td></tr>
+          <tr><td><code class="i">/help</code></td><td>명령 도움말</td></tr>
+          <tr><td><code class="i">/model</code></td><td>모델 바꾸기</td></tr>
+          <tr><td><code class="i">/usage</code></td><td>이번 대화의 토큰 사용량과 예상 비용</td></tr>
+          <tr><td><code class="i">/new</code></td><td>새 대화 시작</td></tr>
+          <tr><td><span class="kbd">Ctrl</span>+<span class="kbd">Enter</span> 또는 <span class="kbd">Alt</span>+<span class="kbd">Enter</span></td><td>여러 줄 입력 (줄바꿈)</td></tr>
+          <tr><td>새 메시지 입력 후 Enter / <span class="kbd">Ctrl</span>+<span class="kbd">C</span></td><td>작업 중단하고 새 지시로 전환</td></tr>
+          <tr><td><code class="i">/exit</code></td><td>종료</td></tr>
+        </tbody>
+      </table></div>
+      <p>다음에 이어서 하려면:</p>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 가장 최근 대화 이어가기</span>
+hermes -c
+<span class="c"># 지난 대화 목록</span>
+hermes sessions list</pre></div>
+
+      <h3>7-3. 텔레그램에서 첫 대화</h3>
+      <div class="step"><div class="sn">단계 1</div><div class="sb"><h5>내 봇 찾기</h5><p>텔레그램 검색창에 만든 봇 아이디(예: <code class="i">@hermes_donchang_bot</code>) → <b>시작</b>.</p></div></div>
+      <div class="step"><div class="sn">단계 2</div><div class="sb"><h5>인사하기</h5><div class="screen"><span class="you">나:</span> 안녕하세요, 테스트입니다. 오늘 날짜와 요일을 알려주세요.</div><p>답이 오면 설치가 완성된 것입니다. 이제 휴대폰만 있으면 어디서든 부를 수 있습니다.</p></div></div>
+      <div class="step"><div class="sn">단계 3</div><div class="sb"><h5>홈 채널 확인</h5><p>봇 대화방에서 <code class="i">/sethome</code>을 보내면 이 대화방이 예약 작업 결과를 받는 곳으로 지정됩니다 (마법사에서 Y를 했다면 이미 지정되어 있습니다).</p></div></div>
+      <div class="callout"><span class="tag">노트북이 꺼져 있으면</span><p>Hermes는 대표님 노트북에서 돌아갑니다. 노트북이 꺼지거나 절전 상태면 봇이 답하지 않습니다. 실습 중에는 <b>전원 연결 + 절전 해제</b>를 권합니다. 24시간 운영이 필요하면 클라우드 VM 배치를 별도로 검토합니다.</p></div>
+    </section>
+
+    <!-- 8 -->
+    <section class="part" id="p8">
+      <p class="eyebrow">PART 8</p>
+      <h2>내 비서 길들이기 — SOUL · 기억 · AGENTS</h2>
+
+      <h3>8-1. SOUL.md — 말투와 원칙 정하기</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 메모장으로 SOUL.md 열기 (없으면 새로 만들지 묻습니다 → 예)</span>
+notepad "$env:LOCALAPPDATA\hermes\SOUL.md"</pre></div>
+      <p>아래 예시를 붙여넣고 회사에 맞게 고친 뒤 저장합니다.</p>
+      <div class="code"><div class="bar">SOUL.md 예시<button class="copy" type="button">복사</button></div><pre># 나는 ○○주식회사 대표의 업무 비서다
+
+## 말하는 방식
+- 항상 한국어 존대말로 답한다.
+- 결론을 먼저, 근거는 그다음 3줄 이내.
+- 숫자는 단위와 기준일을 함께 쓴다.
+- 모르는 것은 모른다고 말하고, 추정이면 "추정"이라고 밝힌다.
+
+## 일하는 원칙
+- 이메일 발송, 결제, 파일 공유, 외부 게시처럼 밖으로 나가는 일은 실행 전에 반드시 내 승인을 받는다.
+- 고객·임직원 개인정보는 요약에 실명 대신 이니셜로 쓴다.
+- 보고서는 1페이지를 넘기지 않는다.</pre></div>
+      <p class="caption">저장 후 새 대화(<code class="i">/new</code>)부터 적용됩니다. 메모장에서 저장할 때 인코딩은 <b>UTF-8</b>(기본값)을 유지합니다.</p>
+
+      <h3>8-2. 기억시키기 — USER.md · MEMORY.md</h3>
+      <p>두 파일은 비서가 대화 중에 스스로 기록합니다. 대표님은 말로 알려주면 됩니다.</p>
+      <div class="screen"><span class="you">나:</span> 기억해 주세요. 저는 ○○주식회사 대표 장동인입니다. 보고는 결론 먼저, 표로 받는 걸 선호합니다.
+     매주 월요일 9시 임원회의가 있고, 주요 KPI는 월 매출·신규 고객 수·이탈률입니다.</div>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 비서가 나에 대해 기억한 내용 확인</span>
+notepad "$env:LOCALAPPDATA\hermes\memories\USER.md"
+<span class="c"># 비서가 배운 사실·환경 메모 확인</span>
+notepad "$env:LOCALAPPDATA\hermes\memories\MEMORY.md"</pre></div>
+      <p class="caption">기억은 <b>다음 대화부터</b> 반영됩니다. 같은 대화 안에서 “기억했나요?”라고 확인하면 헷갈릴 수 있으니 <code class="i">/new</code> 후 “제 이름과 선호하는 보고 방식이 뭐죠?”로 확인합니다.</p>
+
+      <h3>8-3. AGENTS.md — 회사 컨텍스트를 작업 폴더에</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre>notepad "$HOME\hermes\AGENTS.md"</pre></div>
+      <div class="code"><div class="bar">AGENTS.md 예시<button class="copy" type="button">복사</button></div><pre># 회사 컨텍스트
+
+## 회사 개요
+- 회사: ○○주식회사 / 업종: B2B SaaS / 임직원 120명
+- 핵심 제품: ○○ (제조 현장 품질 데이터 분석)
+
+## 고객과 경쟁
+- 핵심 고객군: 매출 1,000억 이상 제조사 품질팀
+- 경쟁사: A사, B사, C사
+
+## KPI 정의
+- 월 매출(MRR): 월 구독 매출 합계, 원 단위
+- 신규 고객: 해당 월 첫 결제 고객 수
+- 이탈률: 전월 고객 중 해당 월 미갱신 비율
+
+## 폴더 규칙
+- 보고서는 reports\ 폴더에 YYYYMMDD_제목.md 로 저장</pre></div>
+      <p class="caption">AGENTS.md는 Hermes를 <b>그 폴더에서 시작할 때</b> 읽힙니다 (<code class="i">cd ~\hermes</code> 후 <code class="i">hermes</code>). SOUL.md와 기억은 어디서 시작하든 항상 적용됩니다.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="part" id="p9">
+      <p class="eyebrow">PART 9</p>
+      <h2>CEO 실습 6가지</h2>
+      <p class="lead">모두 <b>텔레그램에 자연어로</b> 보내면 됩니다. 명령어를 외울 필요가 없습니다. 실습마다 “확인할 것”으로 결과를 검증합니다.</p>
+
+      <h3>실습 1 · 매일 아침 7시 브리핑 예약</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> 평일 아침 7시(한국 시간)마다 다음을 1페이지로 정리해서 이 대화방으로 보내주세요.
+1) 우리 업계(제조 AI·품질 분석) 주요 뉴스 5건과 한 줄 시사점
+2) 경쟁사 A사·B사·C사의 새 소식
+3) 원/달러 환율과 전일 대비 변화
+마지막에 "오늘 대표가 결정할 것" 한 줄을 붙여주세요.</div>
+      <p>예약이 잘 됐는지 확인하고, 내일까지 기다리지 말고 지금 한 번 돌려 봅니다.</p>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 예약 작업 목록 (ID와 다음 실행 시각 확인)</span>
+hermes cron list
+<span class="c"># 지금 즉시 한 번 실행 — &lt;ID&gt;를 목록의 ID나 이름으로 바꿉니다</span>
+hermes cron run &lt;ID&gt;</pre></div>
+      <p>PowerShell에서 직접 예약할 수도 있습니다. 이때는 결과를 텔레그램으로 보내라고 <code class="i">--deliver telegram</code>을 꼭 붙입니다 (터미널에서 만든 예약의 기본 전달처는 내 PC 파일입니다).</p>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre>hermes cron create "0 7 * * 1-5" "업계 뉴스 5건, 경쟁사 소식, 환율을 1페이지로 요약" --timezone Asia/Seoul --name "아침브리핑" --deliver telegram</pre></div>
+      <p class="caption"><code class="i">"0 7 * * 1-5"</code> = 분 0, 시 7, 매일, 매월, 월~금. 시간대를 빠뜨리면 노트북 설정 시간대를 따릅니다.</p>
+      <ul class="check">
+        <li><input type="checkbox" id="c9-1"><label for="c9-1"><code class="i">hermes cron list</code>에 작업이 보이고 다음 실행 시각이 07:00인가</label></li>
+        <li><input type="checkbox" id="c9-2"><label for="c9-2"><code class="i">hermes cron run</code>으로 텔레그램에 브리핑이 도착하는가</label></li>
+        <li><input type="checkbox" id="c9-3"><label for="c9-3">뉴스 항목에 출처 링크가 있는가 (없으면 “출처 링크를 붙여주세요”로 수정 지시)</label></li>
+      </ul>
+
+      <h3>실습 2 · 보고서 PDF를 1페이지로</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> (PDF 파일 첨부) 이 보고서를 임원회의용 1페이지로 요약해 주세요.
+형식: 핵심 결론 3줄 / 숫자 표 / 우리 회사에 주는 시사점 3가지 / 원문 쪽수 표시.</div>
+      <ul class="check"><li><input type="checkbox" id="c9-4"><label for="c9-4">요약의 숫자를 원문 쪽수에서 2개 이상 직접 대조했는가</label></li></ul>
+
+      <h3>실습 3 · 음성 메모로 회의록</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> (마이크 버튼을 길게 눌러 1~2분 음성 메모)
+"오늘 영업회의 내용입니다. 3분기 목표 대비 85퍼센트, 대형 고객 두 곳 계약 지연..."
+<span class="you">이어서 →</span> 방금 음성을 회의록으로 정리해 주세요. 결정사항 / 후속조치(담당·기한) 표로.</div>
+      <p class="caption">음성은 PC에서 로컬로 받아쓰기(Faster-Whisper)되어 별도 키가 필요 없습니다. 첫 사용 때 모델(약 150MB)을 내려받아 조금 느립니다. Windows ARM 노트북에서는 로컬 받아쓰기가 지원되지 않습니다.</p>
+
+      <h3>실습 4 · 경쟁사 감시 (주 1회)</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> 매주 금요일 오후 5시에 A사·B사·C사의 홈페이지 보도자료, 채용 공고, 가격 변경을 확인해서
+"영향도 높음/중간/낮음"으로 분류해 보내주세요. 높음이 없으면 "특이사항 없음" 한 줄만.</div>
+      <p class="caption">웹 검색은 키 없이도 무료 계층으로 동작합니다. 사용량이 많아지면 속도 제한이 걸릴 수 있어, 상시 운영 시 유료 검색 키 등록을 검토합니다(<code class="i">hermes tools</code>).</p>
+
+      <h3>실습 5 · 엑셀 숫자 분석</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> (월별매출.xlsx 첨부) 최근 12개월 매출 추이를 차트 이미지로 그리고,
+전월 대비 10% 이상 변한 달과 그 원인 가설 3개를 적어 주세요.</div>
+      <ul class="check"><li><input type="checkbox" id="c9-5"><label for="c9-5">차트의 최고·최저 달을 엑셀 원본과 대조했는가</label></li></ul>
+
+      <h3>실습 6 · 반복 업무를 Skill로 저장</h3>
+      <div class="screen"><span class="you">텔레그램 →</span> 방금 회의록 만든 방식을 "회의록정리"라는 스킬로 저장해 주세요.
+다음부터는 음성만 보내면 이 형식으로 정리되게 해 주세요.</div>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 설치된 스킬 목록</span>
+hermes skills list
+<span class="c"># 공식 허브에서 스킬 검색 (예: 구글 워크스페이스 연동)</span>
+hermes skills search google</pre></div>
+      <p class="caption">저장된 스킬은 <code class="i">/회의록정리</code>처럼 슬래시 명령으로도 부를 수 있습니다. 스킬 파일은 <code class="i">%LOCALAPPDATA%\hermes\skills\</code>에 SKILL.md로 쌓여 나중에 신규 직원 매뉴얼의 원천이 됩니다.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="part" id="p10">
+      <p class="eyebrow">PART 10</p>
+      <h2>안전 수칙 — 임원 노트북이라면 꼭</h2>
+      <p>Hermes는 대표님 계정 권한으로 명령을 실행합니다. 기본값도 안전하게 설계되어 있지만(위험 명령 승인, 민감 파일 쓰기 차단, 비밀값 가림, 응답 없으면 거부), 업무 PC라면 한 단계 더 조입니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>기본으로 켜져 있는 보호</th><th>의미</th></tr></thead>
+        <tbody>
+          <tr><td>위험 명령 승인 (smart)</td><td>삭제·디스크 조작 같은 위험 명령은 실행 전 판단, 애매하면 승인 요청</td></tr>
+          <tr><td>무응답 = 거부</td><td>승인 요청에 300초 동안 답이 없으면 실행하지 않음</td></tr>
+          <tr><td>민감 경로 쓰기 차단</td><td>.ssh, .aws, .env 등 자격증명 파일은 고칠 수 없음</td></tr>
+          <tr><td>비밀값 가림</td><td>API 키·토큰처럼 보이는 문자열은 로그와 대화에서 가려짐</td></tr>
+          <tr><td>메신저 허용 목록</td><td>허용 ID가 없으면 모든 사용자를 거부</td></tr>
+          <tr><td>원격 수집 없음</td><td>Hermes 자체는 사용 통계를 보내지 않음. 대화는 설정한 모델 제공사로만 전송</td></tr>
+        </tbody>
+      </table></div>
+      <h3>추가로 조이기</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 위험 명령은 항상 내가 직접 승인 (자동 판단 끄기)</span>
+hermes config set approvals.mode manual
+<span class="c"># 파일 수정 전 자동 스냅샷 → 대화 중 /rollback 으로 되돌리기</span>
+hermes config set checkpoints.enabled true
+<span class="c"># 설정 파일을 직접 보고 싶을 때</span>
+notepad "$env:LOCALAPPDATA\hermes\config.yaml"</pre></div>
+      <p>절대 실행되면 안 되는 명령은 <code class="i">config.yaml</code>에 금지 목록으로 넣습니다.</p>
+      <div class="code"><div class="bar">config.yaml 에 추가<button class="copy" type="button">복사</button></div><pre>approvals:
+  mode: manual
+  deny:
+    - "git push --force*"
+    - "*curl*|*sh*"
+    - "dd if=* of=/dev/*"</pre></div>
+      <p class="caption">Hermes는 Windows에서도 명령을 Git Bash로 실행하므로 금지 패턴은 bash 명령 기준으로 씁니다. 패턴은 반드시 따옴표로 감쌉니다. 저장하면 재시작 없이 바로 적용됩니다.</p>
+      <h3>텔레그램에서 승인하기</h3>
+      <p>비서가 위험 작업 승인을 요청하면 봇 대화방에서 <code class="i">/approve</code>(이번만 승인) 또는 <code class="i">/deny</code>(거절)로 답합니다. <code class="i">/yolo</code>(모든 승인 생략)는 쓰지 마십시오.</p>
+      <div class="callout warn"><span class="tag">하지 말 것 세 가지</span>
+        <ul class="dots">
+          <li>허용 사용자 목록을 비우거나 <code class="i">GATEWAY_ALLOW_ALL_USERS=true</code> 설정 — 봇 아이디만 알면 누구나 대표님 PC에 명령할 수 있게 됩니다.</li>
+          <li>API 키·봇 토큰을 Windows 사용자 환경변수에 넣기 — 모든 프로그램이 볼 수 있습니다. <code class="i">.env</code>에만 둡니다.</li>
+          <li>고객 개인정보·미공개 실적을 검증 없이 외부 모델에 대량 투입 — 사내 정보보호 규정을 먼저 확인합니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="part" id="p11">
+      <p class="eyebrow">PART 11</p>
+      <h2>운영 · 업데이트 · 백업</h2>
+      <div class="code"><div class="bar">PowerShell · 매주 한 번<button class="copy" type="button">복사</button></div><pre><span class="c"># 최신 안정 버전으로 업데이트 (게이트웨이를 잠시 멈췄다 자동 재시작)</span>
+hermes update
+<span class="c"># 지난 7일 사용량·비용 분석</span>
+hermes insights --days 7
+<span class="c"># 전체 백업 (기본 저장: C:\Users\내이름\hermes-backup-날짜.zip)</span>
+hermes backup
+<span class="c"># 예약 작업 상태 점검 (실패·누락 확인)</span>
+hermes cron doctor</pre></div>
+      <h3>게이트웨이(텔레그램 수신) 관리</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre>hermes gateway status     <span class="c"># 상태</span>
+hermes gateway restart    <span class="c"># 설정 바꾼 뒤 재시작</span>
+hermes gateway stop       <span class="c"># 잠시 멈춤</span>
+hermes gateway start      <span class="c"># 다시 시작</span></pre></div>
+      <h3>비상 정지</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 모든 예약 작업을 일시 정지 (실행 중인 것은 끝까지, 새 실행은 보류)</span>
+hermes pause --reason "출장 중 점검"
+<span class="c"># 재개 — 보류된 작업은 재개 후 처리</span>
+hermes resume</pre></div>
+      <h3>API 키 교체</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 비밀값은 자동으로 %LOCALAPPDATA%\hermes\.env 에 저장됩니다</span>
+hermes config set ANTHROPIC_API_KEY sk-ant-api03-새키
+hermes gateway restart</pre></div>
+      <h3>제거</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre><span class="c"># 무엇이 지워질지 먼저 확인</span>
+hermes uninstall --dry-run
+<span class="c"># 프로그램 제거 (대화·기억·설정 데이터는 남김)</span>
+hermes uninstall
+<span class="c"># 데이터까지 전부 제거 — 먼저 hermes backup 권장</span>
+hermes uninstall --full</pre></div>
+    </section>
+
+    <!-- 12 -->
+    <section class="part" id="p12">
+      <p class="eyebrow">PART 12</p>
+      <h2>문제 해결</h2>
+      <p>막히면 이 순서로 확인합니다: <code class="i">hermes doctor</code> → <code class="i">hermes status</code> → <code class="i">hermes gateway status</code> → <code class="i">hermes logs errors</code>.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>증상</th><th>원인</th><th>해결</th></tr></thead>
+        <tbody>
+          <tr><td>설치 직후 <code class="i">hermes</code>를 인식하지 못함</td><td>열려 있던 창은 새 PATH를 모름</td><td>창을 닫고 새로 열기. 급하면 <code class="i">&amp; "$env:LOCALAPPDATA\hermes\bin\hermes.exe"</code></td></tr>
+          <tr><td>스크립트 실행이 차단됨 / 백신이 막음</td><td>회사 보안 정책·백신</td><td>IT 담당자에게 <code class="i">%LOCALAPPDATA%\hermes\bin</code> 예외 등록 요청. 보안 프로그램을 임의로 끄지 마십시오</td></tr>
+          <tr><td>irm 주소 접속 실패</td><td>회사 망 차단</td><td>PART 4의 GitHub 대체 주소 사용, 또는 IT에 허용 요청</td></tr>
+          <tr><td>텔레그램 봇이 답이 없음</td><td>게이트웨이 정지, 노트북 절전, 허용 ID 오류</td><td><code class="i">hermes gateway status</code> → <code class="i">hermes gateway restart</code>. 허용 ID가 숫자인지 확인</td></tr>
+          <tr><td>봇이 “권한 없음”으로 거부</td><td>허용 ID에 봇 이름 등 잘못된 값</td><td><code class="i">notepad "$env:LOCALAPPDATA\hermes\.env"</code>에서 <code class="i">TELEGRAM_ALLOWED_USERS=내숫자ID</code>로 고친 뒤 재시작</td></tr>
+          <tr><td>답이 비거나 오류 (401·인증)</td><td>API 키 오타·잔액 부족</td><td>Console에서 잔액 확인 → <code class="i">hermes model</code> 다시 설정</td></tr>
+          <tr><td>한글이 <code class="i">?</code>로 보임</td><td>오래된 콘솔</td><td>Windows Terminal 사용. <code class="i">HERMES_DISABLE_WINDOWS_UTF8</code>가 설정되어 있지 않은지 확인</td></tr>
+          <tr><td>아침 브리핑이 안 옴</td><td>노트북 꺼짐, 전달처가 local</td><td><code class="i">hermes cron list</code>로 전달처 확인, <code class="i">hermes cron doctor</code>. 노트북 절전 해제</td></tr>
+          <tr><td>로그인 후 게이트웨이가 자동 시작 안 됨</td><td>그룹 정책이 작업 스케줄러 차단</td><td><code class="i">schtasks /Query /TN Hermes_Gateway /V /FO LIST</code>로 원인 확인</td></tr>
+          <tr><td><code class="i">/edit</code>를 눌러도 편집기가 안 뜸</td><td>편집기 미지정</td><td>기본은 메모장. VS Code를 쓰려면 <code class="i">$env:EDITOR = "code --wait"</code></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- A -->
+    <section class="part" id="pa">
+      <p class="eyebrow">APPENDIX A</p>
+      <h2>명령어 치트시트</h2>
+      <h3>PowerShell에서 (hermes CLI)</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>명령</th><th>하는 일</th></tr></thead>
+        <tbody>
+          <tr><td><code class="i">hermes</code> / <code class="i">hermes --tui</code></td><td>대화 시작 (고전 / 최신 화면)</td></tr>
+          <tr><td><code class="i">hermes -c</code></td><td>최근 대화 이어가기</td></tr>
+          <tr><td><code class="i">hermes setup</code></td><td>설치 마법사 전체 다시</td></tr>
+          <tr><td><code class="i">hermes model</code></td><td>모델·제공사 변경</td></tr>
+          <tr><td><code class="i">hermes tools</code></td><td>쓸 도구 켜고 끄기 (웹 검색 제공사 등)</td></tr>
+          <tr><td><code class="i">hermes gateway setup</code></td><td>메신저 추가 (슬랙·디스코드 등)</td></tr>
+          <tr><td><code class="i">hermes gateway status | restart</code></td><td>텔레그램 수신 상태·재시작</td></tr>
+          <tr><td><code class="i">hermes config set 키 값</code></td><td>설정 변경 (비밀값은 .env로 자동 분리)</td></tr>
+          <tr><td><code class="i">hermes cron list | run | pause | resume | remove</code></td><td>예약 작업 관리</td></tr>
+          <tr><td><code class="i">hermes skills list | search | install</code></td><td>스킬 관리</td></tr>
+          <tr><td><code class="i">hermes sessions list</code></td><td>지난 대화 목록</td></tr>
+          <tr><td><code class="i">hermes insights --days 7</code></td><td>사용량·비용 분석</td></tr>
+          <tr><td><code class="i">hermes doctor</code> / <code class="i">hermes status</code></td><td>진단 / 상태</td></tr>
+          <tr><td><code class="i">hermes logs gateway -f</code></td><td>로그 실시간 보기</td></tr>
+          <tr><td><code class="i">hermes update</code> / <code class="i">hermes backup</code></td><td>업데이트 / 백업</td></tr>
+          <tr><td><code class="i">hermes pause</code> / <code class="i">hermes resume</code></td><td>예약 작업 비상 정지 / 재개</td></tr>
+        </tbody>
+      </table></div>
+      <h3>대화창 안에서 (슬래시 명령 · 터미널과 텔레그램 공통)</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>명령</th><th>하는 일</th></tr></thead>
+        <tbody>
+          <tr><td><code class="i">/help</code></td><td>명령 목록</td></tr>
+          <tr><td><code class="i">/new</code></td><td>새 대화 (SOUL·기억 변경 반영)</td></tr>
+          <tr><td><code class="i">/model</code></td><td>모델 확인·변경</td></tr>
+          <tr><td><code class="i">/status</code></td><td>현재 대화 정보</td></tr>
+          <tr><td><code class="i">/usage</code></td><td>토큰·비용</td></tr>
+          <tr><td><code class="i">/cron</code></td><td>예약 작업 목록·추가·정지</td></tr>
+          <tr><td><code class="i">/skills</code></td><td>스킬 검색·설치·관리</td></tr>
+          <tr><td><code class="i">/memory</code></td><td>기억 쓰기 승인 대기 항목 검토</td></tr>
+          <tr><td><code class="i">/personality</code></td><td>말투 오버레이 변경</td></tr>
+          <tr><td><code class="i">/sethome</code></td><td>이 대화방을 결과 수신처로 지정 (메신저)</td></tr>
+          <tr><td><code class="i">/approve</code> / <code class="i">/deny</code></td><td>위험 작업 승인 / 거절</td></tr>
+          <tr><td><code class="i">/rollback</code></td><td>파일 변경 되돌리기 (체크포인트 켠 경우)</td></tr>
+          <tr><td><code class="i">/init</code></td><td>현재 폴더를 훑어 AGENTS.md 초안 생성</td></tr>
+          <tr><td><code class="i">/stop</code></td><td>진행 중 작업 중단</td></tr>
+        </tbody>
+      </table></div>
+      <h3>자주 여는 파일</h3>
+      <div class="code"><div class="bar">PowerShell<button class="copy" type="button">복사</button></div><pre>notepad "$env:LOCALAPPDATA\hermes\SOUL.md"            <span class="c"># 말투</span>
+notepad "$env:LOCALAPPDATA\hermes\memories\USER.md"    <span class="c"># 나에 대한 기억</span>
+notepad "$env:LOCALAPPDATA\hermes\config.yaml"         <span class="c"># 일반 설정</span>
+notepad "$env:LOCALAPPDATA\hermes\.env"                <span class="c"># API 키·토큰 (공유 금지)</span>
+notepad "$HOME\hermes\AGENTS.md"                       <span class="c"># 회사 컨텍스트</span></pre></div>
+    </section>
+
+    <!-- B -->
+    <section class="part" id="pb">
+      <p class="eyebrow">APPENDIX B · 강사용</p>
+      <h2>기존 자료와 달라진 점</h2>
+      <p>Google Drive <code class="i">CEO_18기/10.hermes</code>의 설치 메모(hermes설치.txt)와 핸드북(Hermes_Agent_Handbook.docx)을 2026년 11월 5일 기준 공식 문서(GitHub NousResearch/hermes-agent의 website/docs)와 대조해 아래를 고쳐 반영했습니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>기존 자료</th><th>공식 문서 기준</th><th>이 교재의 처리</th></tr></thead>
+        <tbody>
+          <tr><td>Allowed user IDs에 봇 username(<code class="i">hermes_donchang_bot</code>) 입력</td><td>허용 목록은 <b>숫자 사용자 ID</b>. username이 아님 (@userinfobot으로 확인)</td><td>2-2 단계 추가, 마법사 답변 수정</td></tr>
+          <tr><td>ai4ceo의 .env를 <code class="i">~\hermes</code>에 복사</td><td>Windows의 Hermes는 <code class="i">%LOCALAPPDATA%\hermes\.env</code>만 읽음. <code class="i">~\hermes</code>의 .env는 읽히지 않음</td><td>마법사에서 키 입력, 또는 <code class="i">hermes config set ANTHROPIC_API_KEY</code></td></tr>
+          <tr><td>PowerShell을 관리자 모드로 실행</td><td>설치에 관리자 권한 불필요. 작업 스케줄러도 일반 권한으로 등록</td><td>일반 PowerShell로 안내</td></tr>
+          <tr><td>핸드북 부록 A의 <code class="i">/init user|soul|agents</code>, <code class="i">/show</code>, <code class="i">/mode</code>, <code class="i">/brief</code>, <code class="i">/find</code>, <code class="i">/schedule</code>, <code class="i">/audit</code>, <code class="i">/backup</code>, <code class="i">/mcp list</code></td><td>공식 슬래시 명령 목록에 없음. <code class="i">/init</code>은 폴더를 스캔해 AGENTS.md를 만드는 명령</td><td>실제 명령(<code class="i">/cron</code>, <code class="i">/memory</code>, <code class="i">/skills</code>, <code class="i">/usage</code> 등)과 자연어 지시로 대체</td></tr>
+          <tr><td>USER.md·SOUL.md·AGENTS.md가 모두 <code class="i">~/.hermes/</code>에</td><td>SOUL.md는 Hermes 홈, USER/MEMORY는 <code class="i">memories\</code>, AGENTS.md는 작업 폴더</td><td>PART 1·8 위치표</td></tr>
+          <tr><td>텔레그램 토큰을 <code class="i">~/.hermes/config.yml</code>에 저장</td><td>비밀값은 <code class="i">.env</code>, 일반 설정은 <code class="i">config.yaml</code></td><td>PART 11·12 반영</td></tr>
+          <tr><td>Claude Pro/Max 구독(OAuth) 선택지</td><td>OAuth는 Max + 추가 크레딧에서만 동작, Pro는 불가</td><td>API 키 방식 유지 (기존 판단과 동일)</td></tr>
+          <tr><td>설치 첫 질문에서 “1번”</td><td>현재 마법사는 Quick Setup(Nous Portal) / Full Setup / Blank Slate</td><td>“Full Setup” 이름으로 안내, 번호 의존 제거</td></tr>
+          <tr><td>프로액티브 에이전트 6종 비교 (v1.1)</td><td>한국인 창업팀의 피클(Pickle)이 국내 앱스토어 생산성 1위로 부상 (2026-11-10 보도)</td><td>v1.2에서 INTRO에 피클 소개·비교표·요금표 추가, 7종 비교로 확대. “피클 깊이 보기” 섹션(작동 구조, 사례, 사고, 요청 공식, Hermes와 역할 분담) 신설. 한국 계정 무료(하루 한도)로 요금 정정</td></tr>
+          <tr><td>터미널 크론의 텔레그램 전달 (언급 없음)</td><td>터미널에서 만든 예약의 기본 전달처는 local(파일)</td><td><code class="i">--deliver telegram</code> 또는 텔레그램에서 생성하도록 안내</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">핸드북의 Hermes 공개 시기(2026년 2월), 최소 버전(0.14) 같은 수치는 이번에 별도 검증하지 않았습니다. PyPI의 hermes-agent 최신 공개 버전은 0.19.0(2026년 7월 20일)으로 확인되며, 설치 스크립트는 기본적으로 최신 stable 채널을 설치합니다.</p>
+    </section>
+  </main>
+</div>
+
+<footer class="dark closing">
+  <div class="dark-inner">
+    <p class="cover-eyebrow">CLOSING</p>
+    <h2>결단은 대표가,<br>실행은 Hermes가.</h2>
+    <p>오늘 만든 SOUL.md, 기억, 스킬은 대표님 노트북 안의 회사 자산입니다. 매주 한 번 <b>업데이트 · 백업 · 사용량</b>을 확인하는 것으로 운영을 시작하십시오.</p>
+    <div class="src">
+      <b style="color:#fff">교재 버전 v1.1 · 2026-11-06</b> (v1.1: 요금 비교 추가)<br><br>
+      <b style="color:#fff">출처 (확인일 2026-11-05)</b><br>
+      Hermes Agent 공식 문서 — Windows (Native) Guide, Installation, Quickstart, Telegram, Cron, Memory, Context Files, Slash Commands, CLI Reference, Running Hermes on a Work Machine (<a href="https://github.com/NousResearch/hermes-agent/tree/main/website/docs" target="_blank" rel="noopener">github.com/NousResearch/hermes-agent/website/docs</a>, 원 사이트 <a href="https://hermes-agent.nousresearch.com/docs/" target="_blank" rel="noopener">hermes-agent.nousresearch.com/docs</a>)<br>
+      PyPI hermes-agent 0.19.0 (<a href="https://pypi.org/project/hermes_agent/" target="_blank" rel="noopener">pypi.org/project/hermes_agent</a>)<br>
+      장동인, hermes설치.txt · Hermes_Agent_Handbook.docx · Hermes_Agent.pptx (Google Drive CEO_18기/10.hermes)<br><br>
+      화면 문구와 메뉴 번호는 Hermes 버전에 따라 달라질 수 있습니다. 비용·한도는 Anthropic Console의 최신 요금을 확인하십시오.
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var pre=btn.closest('.code').querySelector('pre');
+    var text=pre.innerText.replace(/\u00a0/g,' ');
+    var done=function(){btn.textContent='복사됨';btn.classList.add('done');setTimeout(function(){btn.textContent='복사';btn.classList.remove('done')},1600)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(pre);var s=window.getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='선택됨 · Ctrl+C';setTimeout(function(){btn.textContent='복사'},2200)};
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+});
+document.querySelectorAll('.check input').forEach(function(cb){
+  var k='hermes-ceo-'+cb.id;
+  try{if(localStorage.getItem(k)==='1')cb.checked=true}catch(e){}
+  cb.addEventListener('change',function(){try{localStorage.setItem(k,cb.checked?'1':'0')}catch(e){}});
+});
+</script>
+</body>
+</html>
