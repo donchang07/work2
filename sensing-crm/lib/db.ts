@@ -30,11 +30,17 @@ const g = globalThis as unknown as { __db?: Database.Database };
 export function dbPath() { return path.resolve(process.env.DATABASE_PATH || 'data/sensing.db'); }
 export function feedDir() { return path.resolve(process.env.DATA_DIR || 'data/feeds'); }
 
+function warnNodeVersion() {
+  const [maj, min] = process.versions.node.split('.').map(Number);
+  if (maj === 24 && min >= 19 && min <= 21) console.warn(`[sensing-crm] Node.js ${process.versions.node}에는 better-sqlite3가 갑자기 종료되는 결함이 있습니다(nodejs/node#65446). Node.js 24.22 이상 또는 22 LTS로 바꾸는 것을 권장합니다.`);
+}
 export function openDb(file = dbPath()): Database.Database {
+  warnNodeVersion();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   const db = new Database(file);
-  db.pragma('journal_mode = WAL');
-  db.pragma('foreign_keys = ON');
+  // db.pragma()는 캐시되지 않는 Statement를 만들어 GC 대상이 된다(아래 cachePrepare 설명 참고). exec는 Statement 객체를 만들지 않는다.
+  db.exec('PRAGMA journal_mode = WAL');
+  db.exec('PRAGMA foreign_keys = ON');
   db.exec(SCHEMA);
   return cachePrepare(db);
 }
