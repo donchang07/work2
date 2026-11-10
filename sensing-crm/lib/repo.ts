@@ -132,6 +132,8 @@ export function snapshot(db = getDb(), at = nowIso()) {
   const put = (scopeKey: string, m: QualityMetrics) => ins.run(scopeKey, m.completeness, m.accuracy, m.timeliness, m.consistency, m.uniqueness, m.overall, at);
   put('all', qualityFor(db, { userId: null }));
   for (const u of users) if (u.role === 'kam') put(`user:${u.id}`, qualityFor(db, { userId: u.id }));
+  // 고객 범위 화면(/quality?account=)의 추세도 그 고객 기준으로 그리기 위해 고객별 스냅샷을 함께 저장한다
+  for (const a of scopedAccounts(db, { userId: null })) put(`account:${a.id}`, qualityFor(db, { userId: null }, a.id));
 }
 export function accountQualityMap(db: Database.Database, scope: Scope): Map<number, number> {
   const m = new Map<number, number>();

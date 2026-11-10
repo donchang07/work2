@@ -14,7 +14,7 @@ export const GET = handle(async (req: Request) => {
   const ids = new Set(accounts.map(a => a.id));
   const accountId = accountParam && ids.has(accountParam) ? accountParam : undefined;
   const metrics = qualityFor(db, scope, accountId);
-  const key = scope.userId === null ? 'all' : `user:${scope.userId}`;
+  const key = accountId ? `account:${accountId}` : scope.userId === null ? 'all' : `user:${scope.userId}`;
   const trend = (db.prepare('SELECT overall, completeness, accuracy, timeliness, consistency, uniqueness, computed_at FROM dq_snapshots WHERE scope=? ORDER BY computed_at DESC, id DESC LIMIT 8').all(key) as Record<string, unknown>[]).reverse();
   const names = new Map(accounts.map(a => [a.id, a.name]));
   const all = (db.prepare("SELECT * FROM dq_issues WHERE status='open' ORDER BY id").all() as { id: number; issue_type: string; entity: string; entity_id: number; account_id: number | null; description: string; raw_name: string | null; candidate_account_id: number | null; similarity: number | null }[])

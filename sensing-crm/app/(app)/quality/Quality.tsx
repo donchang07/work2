@@ -48,8 +48,8 @@ export default function Quality({ account }: { account: string }) {
             <StatTile testId="SCR-007-EL-01" label={`${label} ⓘ`} value={pct(data.metrics[k])} sub={<span className="caption">{def}</span>} />
           </div>)}
         </div>
-        <Card title="품질 추세 (최근 8개 스냅샷)" style={{ marginBottom: 24 }}>
-          {data.trend.length >= 2 ? <LineChart testId="SCR-007-EL-02" label="품질 지표 추세" yDomain={[0, 100]} xKey="d" data={data.trend.map(t => ({ d: day(t.computed_at), 종합: Math.round(t.overall * 100), 완전성: Math.round(t.completeness * 100), 정확성: Math.round(t.accuracy * 100), 적시성: Math.round(t.timeliness * 100), 일관성: Math.round(t.consistency * 100) }))}
+        <Card title={`${data.accountName ? `${data.accountName} ` : ''}품질 추세 (최근 8개 스냅샷)`} style={{ marginBottom: 24 }}>
+          {data.trend.length >= 2 ? <LineChart testId="SCR-007-EL-02" label={data.accountName ? `${data.accountName} 품질 추세` : '품질 지표 추세'} yDomain={[0, 100]} xKey="d" data={data.trend.map(t => ({ d: day(t.computed_at), 종합: Math.round(t.overall * 100), 완전성: Math.round(t.completeness * 100), 정확성: Math.round(t.accuracy * 100), 적시성: Math.round(t.timeliness * 100), 일관성: Math.round(t.consistency * 100) }))}
             series={['종합', '완전성', '정확성', '적시성', '일관성'].map(k => ({ key: k, label: k }))} /> : <p className="muted">추세를 그리려면 스냅샷이 2개 이상 필요합니다.</p>}
         </Card>
         <div className="two">

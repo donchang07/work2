@@ -247,7 +247,7 @@ CRM — 제약·바이오 마켓 센싱 CRM 강의용 데모 PRD</h1>
 </tr>
 <tr class="even">
 <td>정본 개정</td>
-<td>v1.1</td>
+<td>v1.2</td>
 </tr>
 <tr class="odd">
 <td>PRD 스키마</td>
@@ -1993,7 +1993,8 @@ DATA-003</li>
 <td id="SCR-007-EL-02" class="id-anchor">SCR-007-EL-02</td>
 <td>표시</td>
 <td>LineChart</td>
-<td>최근 8개 스냅샷 추세</td>
+<td>최근 8개 스냅샷 추세. 고객 범위(<code>?account=</code>)로 열면 그
+고객의 추세와 제목 「{고객명} 품질 추세」</td>
 <td>로그인</td>
 <td>스냅샷 2개 이상</td>
 <td><a href="#DATA-011">DATA-011</a></td>
@@ -3227,8 +3228,8 @@ verified=0으로 되돌린다. AI 원값은 보존한다</td>
 </tr>
 <tr class="even">
 <td id="FR-028" class="id-anchor">FR-028</td>
-<td>재계산·통합·확정 저장·수집 후 스냅샷을 저장하고 최근 8개를 추세로
-표시한다</td>
+<td>재계산·통합·확정 저장·수집 후 스냅샷(전체·KAM별·고객별)을 저장하고
+최근 8개를 화면 범위에 맞는 추세로 표시한다</td>
 <td>P1 (Medium)</td>
 <td>US-03</td>
 <td>SCR-007-EL-02, EL-08</td>
@@ -5914,6 +5915,14 @@ API가 존재</td>
 </thead>
 <tbody>
 <tr class="odd">
+<td>v1.2</td>
+<td>2026-11-10</td>
+<td>고객 범위 데이터 품질 화면의 추세 그래프를 그 고객 기준으로
+표시(고객별 스냅샷 추가). 시연 중 타일과 추세가 다른 범위로 보이는 문제
+수정</td>
+<td>사용자 지시(데모 수정)</td>
+</tr>
+<tr class="even">
 <td>v1.1</td>
 <td>2026-11-09</td>
 <td>match rate 기준 95%로 상향, D-01~D-03 추천안 확정, bkit 미설치에
@@ -5921,7 +5930,7 @@ API가 존재</td>
 유도 방식 구체화</td>
 <td>사용자 지시(구현 착수)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>v1.0</td>
 <td>2026-11-09</td>
 <td>최초 작성(신규 모드). 대화의 요구사항 A-1·A-2·A-5·P-2·O-2와 사용자

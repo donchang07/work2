@@ -3,7 +3,7 @@
 | 항목 | 값 |
 |---|---|
 | 정본 | `docs/PRD.md` |
-| 정본 개정 | v1.1 |
+| 정본 개정 | v1.2 |
 | PRD 스키마 | screen-first-v2 |
 | feature | churn-risk (순서 6, 규모 S) |
 | 의존 | data-quality |
