@@ -163,6 +163,7 @@ table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
     <ul>
       <li><a href="#why"><span class="n">·</span>왜 Hermes인가 · 7종 비교</a></li>
       <li><a href="#cost"><span class="n">·</span>요금 비교 · 총비용</a></li>
+      <li><a href="#pickle"><span class="n">·</span>피클(Pickle) 깊이 보기</a></li>
       <li><a href="#p0"><span class="n">0</span>오늘의 목표와 준비물</a></li>
       <li><a href="#p1"><span class="n">1</span>Hermes Agent 한 장 이해</a></li>
       <li><a href="#p2"><span class="n">2</span>사전 준비 (텔레그램·API 키)</a></li>
@@ -217,7 +218,7 @@ table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
       </div>
 
       <div class="callout"><span class="tag">한국인이 만든 에이전트 · 피클(Pickle)</span>
-        <p><b>피클</b>은 한국인 창업팀(박채근 대표 등)이 미국 실리콘밸리에 세운 스타트업 Pickle이 만든 <b>휴대폰용 개인 AI 에이전트 앱</b>입니다. Y Combinator 등의 투자를 받았고, 2026년 11월 10일 기준 국내 애플 앱스토어 생산성 무료 앱 다운로드 1위에 올랐습니다(중앙일보 보도).</p>
+        <p><b>피클</b>은 창업자가 모두 한국인인 미국 샌프란시스코 스타트업 <b>Pickle, Inc.</b>(박채근 대표)가 만든 <b>휴대폰용 개인 AI 에이전트 앱</b>입니다. Y Combinator 2025년 겨울 프로그램을 거쳤고 2025년 6월 약 60억 원의 시드 투자를 받았습니다. 스스로를 “아시아를 위한 개인 AI 에이전트 네트워크”라고 소개하며, 2026년 11월 10일 기준 국내 앱스토어 생산성 무료 앱 다운로드 1위에 올랐습니다. <b>한국 계정은 무료</b>(하루 사용량 한도)입니다. 자세한 내용은 바로 뒤 <a href="#pickle">피클 깊이 보기</a>에 정리했습니다.</p>
         <ul>
           <li><b>하는 일</b> — 말로 시키면 전화 걸기, 기차표 예매, 주문, 친구와 약속 잡기를 대신합니다. 네이버 메일·정부24·코레일(KTX)·캐치테이블·요기요·쿠팡 등 <b>한국 서비스와의 연결</b>이 강점입니다.</li>
           <li><b>먼저 움직이는 방식</b> — 예약 작업(Scheduled)을 1회·매일·매주·매월로 걸 수 있고(예: “매일 아침 메일 훑고 챙길 것 알려줘”), 맡긴 일을 추적하려고 <b>피클이 스스로 예약 작업을 만들기도</b> 합니다. 재입고 확인 같은 후속 알림도 먼저 보냅니다.</li>
@@ -262,7 +263,8 @@ table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
       <div class="tbl"><table>
         <thead><tr><th>서비스</th><th>필요한 요금제</th><th>월 요금</th><th>원화 (월)</th></tr></thead>
         <tbody>
-          <tr><td>피클 (Pickle)</td><td>Plus / Pro / Max / Ultra<br><span class="caption">요금제가 있어야 대화·작업 가능, 주간 한도(매주 월요일 리셋)</span></td><td>$20 / $50 / $100 / $200</td><td>약 2.8만 / 7만 / 14만 / 28만 원</td></tr>
+          <tr><td>피클 (한국 계정)</td><td>무료 · 유료 요금제 없음<br><span class="caption">하루 사용량 한도, 매일 새벽 4시 초기화. 한도 초기화 티켓은 앱에서 구매 가능</span></td><td>$0</td><td>0원</td></tr>
+          <tr><td>피클 (미국 등 해외 계정)</td><td>Plus / Pro / Max / Ultra<br><span class="caption">주간 한도, 매주 월요일 초기화</span></td><td>$20 / $50 / $100 / $200</td><td>약 2.8만 / 7만 / 14만 / 28만 원</td></tr>
           <tr><td>Dots</td><td>ChatGPT Pro 100 / 200 / 500</td><td>$100 / $200 / $500</td><td>약 14만 / 28만 / 70만 원</td></tr>
           <tr><td>Dots (회사 계정)</td><td>ChatGPT Business Premium 좌석</td><td>1인당 $125 (연간 결제 시 $100)</td><td>약 17.5만 원 (연간 14만 원)</td></tr>
           <tr><td>Grok Bot</td><td>X Subscription Premium / Super / Ultra<br><span class="caption">Plus($8)에는 미포함</span></td><td>$30 / $100 / $200<br><span class="caption">연간 $300 / $1,000 / $2,000</span></td><td>약 4.2만 / 14만 / 28만 원</td></tr>
@@ -277,19 +279,20 @@ table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
         <thead><tr><th>선택지</th><th>월 비용</th><th>비용 성격</th></tr></thead>
         <tbody>
           <tr><td>Hermes + 로컬 모델</td><td>$0</td><td>고정 (고성능 PC 필요)</td></tr>
+          <tr><td>피클 (한국 계정)</td><td>$0</td><td>고정 (하루 한도, 휴대폰 앱 전용)</td></tr>
           <tr><td>Muse 무료</td><td>$0</td><td>고정 (한국 사용 가능 여부 미확인)</td></tr>
           <tr><td><b>Hermes + Nous Portal Plus</b></td><td><b>$20</b></td><td>고정 + 넘치면 추가 결제</td></tr>
           <tr><td>Muse Power</td><td>$20</td><td>고정</td></tr>
-          <tr><td>피클 Plus</td><td>$20</td><td>고정 (주간 한도 470 크레딧, 넘치면 상위 요금제)</td></tr>
+          
           <tr><td><b>Hermes + Claude API 키</b></td><td><b>약 $20~40</b> (추정)</td><td>변동</td></tr>
           <tr><td>Grok Bot (X Premium)</td><td>$30</td><td>고정</td></tr>
           <tr><td>Dots (ChatGPT Pro 100)</td><td>$100</td><td>고정</td></tr>
         </tbody>
       </table></div>
       <div class="callout"><span class="tag">비용만 보면 Hermes가 가장 싸지는 않습니다</span>
-        <p>Muse·피클·Grok Bot과 비슷한 수준이고 Dots보다는 쌉니다. Hermes를 고르는 이유는 가격보다 <b>모델을 골라 쓸 수 있고</b>(한 회사에 묶이지 않음), <b>스스로 성장하며</b>(스킬과 기억이 내 자산으로 쌓임), <b>데이터를 내가 통제한다</b>는 데 있습니다. 반대로 이미 ChatGPT Pro나 X Premium을 쓰고 있다면 Dots·Grok Bot은 추가 비용이 0원입니다.</p>
+        <p>Muse·Grok Bot과 비슷한 수준이고 Dots보다는 쌉니다. 한국에서는 <b>피클이 무료</b>라 생활 심부름 용도로는 피클이 가장 쌉니다. Hermes를 고르는 이유는 가격보다 <b>모델을 골라 쓸 수 있고</b>(한 회사에 묶이지 않음), <b>스스로 성장하며</b>(스킬과 기억이 내 자산으로 쌓임), <b>데이터를 내가 통제한다</b>는 데 있습니다. 반대로 이미 ChatGPT Pro나 X Premium을 쓰고 있다면 Dots·Grok Bot은 추가 비용이 0원입니다.</p>
       </div>
-      <p class="caption">요금 출처 (확인일 2026-11-06): OpenAI Help Center “About ChatGPT Pro tiers”, OpenAI “Introducing dots”, OpenAI “Premium seats are coming to ChatGPT Business”, xAI Docs “The X Subscription Pricing”, Meta Help Center “About Muse subscriptions”, Hermes Agent 공식 홈페이지 Nous Portal 요금표, Claude Platform Docs, 피클 도움말 “Check your plan”(확인일 2026-11-10). 환율 1달러 = 1,400원 가정. 한국 결제 시 부가세 10%나 앱스토어 가격이 적용되어 실제 청구액이 더 높을 수 있습니다. Dots·Muse·Grok Bot의 한국 사용 가능 여부는 확인하지 못했습니다. Instinct 요금은 공식 발표가 없습니다. 피클 요금은 영문 도움말 표기이며 “앱의 요금제 화면 가격이 우선”이라고 안내합니다. 한국판은 무료라는 SNS 게시물이 있으나 공식 확인하지 못했습니다.</p>
+      <p class="caption">요금 출처 (확인일 2026-11-06): OpenAI Help Center “About ChatGPT Pro tiers”, OpenAI “Introducing dots”, OpenAI “Premium seats are coming to ChatGPT Business”, xAI Docs “The X Subscription Pricing”, Meta Help Center “About Muse subscriptions”, Hermes Agent 공식 홈페이지 Nous Portal 요금표, Claude Platform Docs, 피클 도움말 “Check your plan”(확인일 2026-11-10). 환율 1달러 = 1,400원 가정. 한국 결제 시 부가세 10%나 앱스토어 가격이 적용되어 실제 청구액이 더 높을 수 있습니다. Dots·Muse·Grok Bot의 한국 사용 가능 여부는 확인하지 못했습니다. Instinct 요금은 공식 발표가 없습니다. 피클은 한국어 요금 도움말 기준 한국 계정 무료(하루 한도), 영문 도움말 기준 해외 계정 $20~$200이며 “앱의 요금제 화면이 우선”이라고 안내합니다. 예전 월 구독 “피클 플러스”는 판매가 중단됐습니다.</p>
 
       <h3>CEO 관점에서 읽는 법</h3>
       <div class="tbl"><table>
@@ -303,6 +306,97 @@ table.agents tr.hl td:first-child{color:var(--blue);font-size:19px}
           <tr><td>감수할 점은?</td><td>PC가 켜져 있어야 하고, 설치·보안·백업을 직접 챙겨야 합니다. 이 교재가 그 방법을 다룹니다</td></tr>
         </tbody>
       </table></div>
+    </section>
+
+    <!-- PICKLE -->
+    <section class="part" id="pickle">
+      <p class="eyebrow">INTRO 2 · 한국인이 만든 에이전트</p>
+      <h2>피클(Pickle) 깊이 보기 — 휴대폰에서 생활 심부름을 맡기는 AI</h2>
+      <p class="lead">Hermes가 <b>내 PC에서 회사 일</b>을 하는 비서라면, 피클은 <b>휴대폰에서 예약·주문·전화·서류 발급</b>을 대신하는 비서입니다. 대표님이 직접 써 보시거나 임직원이 이미 쓰고 있을 가능성이 높으므로, 작동 구조와 위험을 함께 알아 두십시오.</p>
+
+      <h3>시작 조건</h3>
+      <ul class="dots">
+        <li><b>앱 전용</b> — 아이폰(iOS 17 이상)·안드로이드 앱 “피클: 나만의 AI 에이전트”. PC 프로그램과 웹 버전은 없습니다.</li>
+        <li><b>초대제</b> — 이미 쓰는 사람의 초대 링크로 바로 가입하고, 링크가 없으면 대기 명단에 오릅니다. 모르는 사람이 올린 초대 링크는 <code class="i">pickle.com</code> 주소인지 먼저 확인합니다(피싱 주의).</li>
+        <li><b>가입 연령</b> — 블로그 정리는 만 18세 이상, 위키독스 매뉴얼은 한국어 약관상 만 16세 이상(만 19세 미만은 법정대리인 동의)으로 적고 있어 출처가 다릅니다. 가입 전 최신 약관을 확인하십시오.</li>
+        <li><b>이름 혼동</b> — 공동구독 플랫폼 “피클플러스”(서울)와 다른 회사입니다.</li>
+      </ul>
+
+      <h3>작동 구조 — 내 폰이 아니라 피클의 클라우드 브라우저</h3>
+      <p>피클은 휴대폰의 앱을 조작하지 않습니다. 회사 클라우드 서버의 <b>자체 브라우저</b>로 사이트에 들어가 사람처럼 클릭하고 입력합니다. 그래서 폰에서 쿠팡에 로그인되어 있어도 피클은 따로 로그인해야 합니다.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>연결 방식</th><th>대상</th><th>피클이 받는 것</th></tr></thead>
+        <tbody>
+          <tr><td>계정 권한 연결</td><td>구글, 마이크로소프트, 슬랙, 노션</td><td>메일·일정 등 허용한 범위의 접근 권한</td></tr>
+          <tr><td>휴대폰 데이터</td><td>연락처, 기본 캘린더</td><td>폰에서 허용한 항목</td></tr>
+          <tr><td>사이트 로그인</td><td>쿠팡, 코레일, 정부24 등</td><td>금고(Vault)에 저장한 아이디·비밀번호</td></tr>
+          <tr><td>메일 프로그램 연결</td><td>네이버 메일</td><td>IMAP 설정과 앱 비밀번호</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="dots">
+        <li><b>금고</b> — 비밀번호·카드번호는 폰에서 암호화되어 입력 순간에만 풀리고 AI에게는 가려집니다. 다만 아이디와 카드번호 끝 4자리는 AI가 읽을 수 있습니다.</li>
+        <li><b>사람이 하는 단계</b> — 캡차, 인증번호, PASS 인증, 카카오페이 최종 승인, 결제 비밀번호는 사용자가 직접 합니다. 결제 전에는 품목과 금액을 보여 주고, 금액이 오르면 다시 묻습니다.</li>
+        <li><b>전화</b> — 피클 전용 번호로 걸고, 통화는 녹음 대신 글로 바뀌어 채팅에 실시간 표시된 뒤 요약됩니다.</li>
+        <li><b>먼저 움직이는 기능</b> — 사용자가 건 예약 작업 외에 피클이 스스로 하는 <b>아침 루틴(브리핑)</b>이 있으며, 이것은 하루 한도를 쓰지 않습니다.</li>
+      </ul>
+
+      <h3>무엇이 되고 무엇이 막혔나 — 보도·후기 사례</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>분야</th><th>잘된 일</th><th>막히거나 틀린 일</th></tr></thead>
+        <tbody>
+          <tr><td>쇼핑·결제</td><td>단백질 음료 최저가 구매: 분할 결제로 쿠폰을 각각 적용해 2만9,530원 (요청~결제 약 2시간 18분). 쿠팡 재주문을 지난번보다 4,170원 싸게</td><td>본인 쿠팡 계정 연결 실패 사례, 배달비를 보고 사람이 주문 중단</td></tr>
+          <tr><td>예약·예매</td><td>“24일 용산→전주 오후 2시쯤”만 말해도 콘센트 있는 순방향 창가석 KTX 예매(약 20분, 하루 한도 8%p 사용). 치과 전화로 예약 변경</td><td>다른 필자 시험에서는 KTX 로그인, SRT 좌석 선택 단계에서 막힘. 공연 티켓팅 대기열은 통과 불가</td></tr>
+          <tr><td>공공 서류</td><td>정부24 주민등록등본 PDF 발급(사람은 PASS 인증만). 여권 재발급 신청, 홈택스 근로장려금 조회</td><td>처음엔 예전 주소로 신청해 한 번 막힘. 안내한 지원 사업이 이미 마감</td></tr>
+          <tr><td>메일·일정</td><td>광고 메일 1만5,640통 정리하며 금융·영수증 255통 보존, 잘못된 숙소 날짜 발견. 매일 06:30 날씨·일정·메일 브리핑</td><td>조사한 장소 1곳 주소·가격 오류. “알림 등록” 이 실제 구글 캘린더가 아닌 피클 내부 알림</td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">“솔직히 직접 하는 편이 훨씬 빠르다”는 평이 많습니다. 피클의 가치는 속도보다 <b>화면을 붙잡고 있지 않아도 된다</b>는 데 있습니다. 빨리 끝내야 하는 일보다 신경 쓰기 싫은 일부터 맡기십시오.</p>
+
+      <div class="callout warn"><span class="tag">보도된 사고와 데이터 위치</span>
+        <ul class="dots">
+          <li><b>지시하지 않은 전화</b> — 아침 브리핑을 준비하던 피클이 “자체 판단”으로 근처 식당 여러 곳에 전화(10월 27일 후기, 방송 보도). 일본에서는 호텔 조건을 물었을 뿐인데 호텔에 두 번 전화하고, 두 번째에는 사람 비서처럼 자신을 소개.</li>
+          <li><b>개인정보 추론</b> — 메일함의 자녀 계정 보안 알림, 넷플릭스 프로필, 연락처를 엮어 말한 적 없는 자녀의 이름과 생일을 파악(11월 9일 보도).</li>
+          <li><b>해외 IP 로그인 알림</b> — 쇼핑을 맡긴 뒤 네이버에서 해외 IP 로그인 알림 메일 5통. 피클 클라우드 브라우저의 접속 기록입니다.</li>
+          <li><b>데이터</b> — 미국 서버에 저장. 답변 생성에 구글·오픈AI·앤트로픽·xAI 모델을 쓰고 대화로 모델을 학습하지 않는다고 밝힙니다. 권한 있는 직원이 운영·안전 목적으로 열람할 수 있고 열람은 기록됩니다.</li>
+          <li><b>약관</b> — 자동화 접근을 금지하는 사이트에서 써도 되는지 확인할 책임은 이용자에게 있습니다.</li>
+        </ul>
+        <p><b>CEO 시사점:</b> 회사 메일·사내 슬랙·법인카드를 피클에 연결하는 것은 회사 정보를 미국 서버의 제3자 서비스로 보내는 일입니다. 임직원 사용 지침을 먼저 정하십시오.</p>
+      </div>
+
+      <h3>맡기기 전에 정할 다섯 가지</h3>
+      <ol>
+        <li>첫 대화에서 <b>“전화, 메시지, 메일 발송은 반드시 내 승인을 받은 뒤에 해”</b>라고 지시합니다.</li>
+        <li>앱은 맡길 일에 필요한 것부터 <b>하나씩</b> 연결합니다. 한꺼번에 연결하면 하루 한도가 연결에만 쓰이고, 피클이 볼 수 있는 정보도 늘어납니다.</li>
+        <li>결과는 <b>원래 서비스에서</b> 확인합니다(예매는 코레일 웹, 일정은 실제 캘린더, 주소·가격은 공식 페이지).</li>
+        <li>가족·지인에게 전화를 맡길 때는 미리 알려 둡니다(보이스피싱으로 오해해 끊은 사례).</li>
+        <li>쓰지 않는 연결은 끊고, 중요한 계정은 그 사이트의 로그인 기기 목록에서 피클 브라우저 접속도 정리합니다. 연결을 끊어도 대화와 기억은 남습니다.</li>
+      </ol>
+
+      <h3>요청 공식 — 목표 + 조건 + 결과 형식 + 금지 행동 + 승인 시점 + 완료 증거</h3>
+      <p>돈이나 다른 사람과의 약속이 걸리면 뒤의 세 항목(금지 행동, 승인 시점, 완료 증거)이 특히 중요합니다. 부담이 작은 일부터 단계를 올리십시오.</p>
+      <div class="code"><div class="bar">피클 채팅 · 1단계 후보만 찾기<button class="copy" type="button">복사</button></div><pre>토요일 오후 6시쯤 2명이 갈 식당 후보 세 곳을 찾아줘. 1인당 예산은 5만 원 이내야.
+위치, 가격대, 예약 가능 여부와 취소 조건을 표로 비교해 줘. 연락이나 예약 확정은 하지 마.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 2단계 조건부 예약<button class="copy" type="button">복사</button></div><pre>후보 중 A 식당의 토요일 오후 6시 2명 자리를 예약해 줘.
+예약금이 없고 취소 수수료가 없는 조건일 때만 진행해 줘. 조건이 다르면 승인 전에 다시 알려 줘.
+완료 뒤 예약 번호와 확인 화면을 보여 줘.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 정기 요약 (CEO용)<button class="copy" type="button">복사</button></div><pre>매주 월요일 오전에 이번 주 일정에서 내가 직접 결정해야 할 일만 요약해 줘.
+다른 사람에게 메시지를 보내거나 일정을 바꾸지는 마.</pre></div>
+      <div class="code"><div class="bar">피클 채팅 · 작업 중단과 상태 확인<button class="copy" type="button">복사</button></div><pre>이 주문 작업을 중단해 줘. 결제와 주문이 이미 접수됐는지, 아직 남은 단계가 무엇인지 구분해서 알려 줘.
+확인 전에는 다시 결제하지 마.</pre></div>
+
+      <h3>Hermes와 피클, 어떻게 나눠 쓰나</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>구분</th><th>피클</th><th>Hermes</th></tr></thead>
+        <tbody>
+          <tr><td>잘하는 일</td><td>국내 사이트 예약·주문·결제, 전화 대행, 정부24 서류</td><td>회사 문서 요약, 회의록, 경쟁사 감시, 엑셀 분석, 반복 업무 스킬화</td></tr>
+          <tr><td>실행 위치</td><td>피클 클라우드(미국 서버), 휴대폰 앱</td><td>내 PC·사내 서버</td></tr>
+          <tr><td>비용(한국)</td><td>무료, 하루 한도</td><td>소프트웨어 무료 + 모델 비용</td></tr>
+          <tr><td>설치·관리</td><td>앱 설치만 (초대 필요)</td><td>설치·업데이트·백업 직접</td></tr>
+          <tr><td>데이터 통제</td><td>회사 서버에 저장, 직원 열람 가능(기록)</td><td>내 PC에 저장, 모델 회사로 가는 내용만 관리</td></tr>
+          <tr><td>권장 용도</td><td><b>개인 생활 심부름</b></td><td><b>회사 업무</b></td></tr>
+        </tbody>
+      </table></div>
+      <p class="caption">출처 (확인일 2026-11-10): 피클 공식 도움말(pickle.com/help — Check your plan, Usage limit, Scheduled tasks, FAQ), 준이아빠(홍승협) “피클(Pickle) AI 사용법과 후기: 초대, 무료 한도, 보안” digitalmarketer.co.kr (2026-11-10, 공식 정보 11-10 기준·사례 11-09까지), hae02y “처음 쓰는 피클 AI: 개인 에이전트 사용 매뉴얼” 위키독스 (비공식, 2026-11-02 기준), 중앙일보 [팩플] (2026-11-10). 사용 사례는 기자 체험기와 이용자 후기를 블로그가 정리한 것으로, 이 교재가 직접 재현하지 않았습니다.</p>
     </section>
 
     <!-- 0 -->
@@ -841,7 +935,7 @@ notepad "$HOME\hermes\AGENTS.md"                       <span class="c"># 회사 
           <tr><td>텔레그램 토큰을 <code class="i">~/.hermes/config.yml</code>에 저장</td><td>비밀값은 <code class="i">.env</code>, 일반 설정은 <code class="i">config.yaml</code></td><td>PART 11·12 반영</td></tr>
           <tr><td>Claude Pro/Max 구독(OAuth) 선택지</td><td>OAuth는 Max + 추가 크레딧에서만 동작, Pro는 불가</td><td>API 키 방식 유지 (기존 판단과 동일)</td></tr>
           <tr><td>설치 첫 질문에서 “1번”</td><td>현재 마법사는 Quick Setup(Nous Portal) / Full Setup / Blank Slate</td><td>“Full Setup” 이름으로 안내, 번호 의존 제거</td></tr>
-          <tr><td>프로액티브 에이전트 6종 비교 (v1.1)</td><td>한국인 창업팀의 피클(Pickle)이 국내 앱스토어 생산성 1위로 부상 (2026-11-10 보도)</td><td>v1.2에서 INTRO에 피클 소개·비교표·요금표 추가, 7종 비교로 확대</td></tr>
+          <tr><td>프로액티브 에이전트 6종 비교 (v1.1)</td><td>한국인 창업팀의 피클(Pickle)이 국내 앱스토어 생산성 1위로 부상 (2026-11-10 보도)</td><td>v1.2에서 INTRO에 피클 소개·비교표·요금표 추가, 7종 비교로 확대. “피클 깊이 보기” 섹션(작동 구조, 사례, 사고, 요청 공식, Hermes와 역할 분담) 신설. 한국 계정 무료(하루 한도)로 요금 정정</td></tr>
           <tr><td>터미널 크론의 텔레그램 전달 (언급 없음)</td><td>터미널에서 만든 예약의 기본 전달처는 local(파일)</td><td><code class="i">--deliver telegram</code> 또는 텔레그램에서 생성하도록 안내</td></tr>
         </tbody>
       </table></div>
