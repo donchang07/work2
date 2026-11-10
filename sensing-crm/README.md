@@ -1,0 +1,34 @@
+# Sensing CRM — 제약·바이오 마켓 센싱 CRM (강의용 데모)
+
+자동화(A-1 신호 브리핑·A-2 리드 변환·A-5 미팅 노트 구조화)가 CRM 데이터 품질을 높이고, 그 품질이 이탈위험 예측(P-2)과 다음 행동 추천(O-2)의 성과를 좌우한다는 것을 시연하는 로컬 웹앱입니다. **모든 데이터는 합성·가상 데이터**입니다.
+
+## 실행
+
+```bash
+npm install
+npm run setup        # data/sensing.db 생성·시드 (오늘 날짜 기준)
+npm run dev          # http://localhost:3000
+```
+
+| 역할 | 계정 | 비밀번호 |
+|---|---|---|
+| KAM | kam1@demo.local, kam2@demo.local | `.env.local`의 `SEED_PASSWORD` (기본 demo1234) |
+| 관리자(강사) | admin@demo.local | 같음 |
+
+- AI: `ANTHROPIC_API_KEY`가 있으면 Claude로 구조화·요약·설명(`AI_MODEL` 기본 `claude-sonnet-5-5`), 없으면 결정적 모의 응답. `AI_MODE=off`면 규칙 기반.
+- 시연 시나리오(25분, 자동화→예측→시뮬레이션→최적화): `docs/demo-scenario.md`
+
+## 문제 해결
+- Windows 등에서 `Assertion failed: (env) != nullptr ... RemoveEnvironmentCleanupHook`로 서버가 죽는 경우: Node.js 24.19~24.21의 알려진 회귀(nodejs/node#65446, 24.22.0에서 수정)입니다. 앱은 prepared statement 캐시로 이를 피하도록 되어 있으며, Node.js 22 LTS 또는 24.22 이상 사용을 권장합니다.
+
+## 테스트
+
+```bash
+npm run test         # 단위 (Vitest)
+npm run test:e2e     # E2E (Playwright, 프로덕션 빌드·포트 3100)
+npm run gap -- <feature>
+```
+
+## 문서
+- 요구사항 정본 `docs/PRD.md` (v1.1), 읽기용 `docs/PRD.html`
+- PDCA: `docs/01-plan`, `docs/02-design`, `docs/03-analysis`, `docs/04-report` (요약: `docs/04-report/sensing-crm.summary.md`)

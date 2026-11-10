@@ -1,0 +1,21 @@
+import { requireApiUser } from '@/lib/auth';
+import { getDb, json } from '@/lib/db';
+import { handle, ok } from '@/lib/api';
+import { scopeFor } from '@/lib/repo';
+export const dynamic = 'force-dynamic';
+export const GET = handle(async (req: Request) => {
+  const u = await requireApiUser();
+  const db = getDb();
+  const scope = scopeFor(u);
+  const sp = new URL(req.url).searchParams;
+  const tab = sp.get('status') || 'new';
+  const account = Number(sp.get('account')) || null;
+  const statuses = tab === 'adopted' ? ['adopted'] : tab === 'closed' ? ['held', 'rejected'] : ['new'];
+  const base = `FROM recommendations r JOIN accounts a ON a.id=r.account_id WHERE a.status='active' AND (? IS NULL OR a.owner_user_id=?) AND (? IS NULL OR r.account_id=?)`;
+  const counts = Object.fromEntries((db.prepare(`SELECT r.status, count(*) n ${base} GROUP BY r.status`).all(scope.userId, scope.userId, account, account) as { status: string; n: number }[]).map(x => [x.status, x.n]));
+  const rows = db.prepare(`SELECT r.*, a.name AS account_name ${base} AND r.status IN (${statuses.map(() => '?').join(',')}) ORDER BY r.priority, r.due_date, a.name`).all(scope.userId, scope.userId, account, account, ...statuses) as (Record<string, unknown> & { basis_signal_ids: string })[];
+  const sig = db.prepare('SELECT id, title FROM signals WHERE id=?');
+  const items = rows.map(r => ({ ...r, basis: json<number[]>(r.basis_signal_ids, []).map(id => sig.get(id)).filter(Boolean) }));
+  const accountName = account ? (db.prepare('SELECT name FROM accounts WHERE id=?').get(account) as { name: string } | undefined)?.name ?? null : null;
+  return ok({ counts: { new: counts.new ?? 0, adopted: counts.adopted ?? 0, closed: (counts.held ?? 0) + (counts.rejected ?? 0) }, items, accountName });
+});

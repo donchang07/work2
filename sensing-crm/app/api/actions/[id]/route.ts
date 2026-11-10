@@ -1,0 +1,21 @@
+import { requireApiUser } from '@/lib/auth';
+import { getDb } from '@/lib/db';
+import { body, fail, handle, ok } from '@/lib/api';
+import { canAccessAccount, nowIso } from '@/lib/repo';
+const REASONS = ['이미 진행 중', '시점 부적절', '근거 부정확', '기타'];
+const NEXT: Record<string, { to: string; from: string[] }> = { adopt: { to: 'adopted', from: ['new', 'held'] }, hold: { to: 'held', from: ['new'] }, reject: { to: 'rejected', from: ['new', 'held'] } };
+export const POST = handle(async (req: Request, ctx: { params: Promise<{ id: string }> }) => {
+  const u = await requireApiUser();
+  const id = Number((await ctx.params).id);
+  const db = getDb();
+  const r = db.prepare('SELECT account_id, status FROM recommendations WHERE id=?').get(id) as { account_id: number; status: string } | undefined;
+  if (!r) return fail(404, 'not_found');
+  if (!canAccessAccount(db, u, r.account_id)) return fail(403, 'forbidden');
+  const { action, reason } = await body<{ action?: string; reason?: string }>(req);
+  const t = action ? NEXT[action] : undefined;
+  if (!t) return fail(400, 'bad_action');
+  if (!t.from.includes(r.status)) return fail(409, 'bad_transition');
+  if (action === 'reject' && (!reason || !REASONS.includes(reason))) return fail(400, 'need_reason', '거절 사유를 선택하세요');
+  db.prepare('UPDATE recommendations SET status=?, reject_reason=?, decided_by=?, decided_at=? WHERE id=?').run(t.to, action === 'reject' ? reason : null, u.id, nowIso(), id);
+  return ok({ ok: true });
+});
